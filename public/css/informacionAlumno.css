@@ -1,0 +1,98 @@
+.ponerDatos {
+    display: flex;
+    margin-top: 3%;
+    justify-content: center;
+    min-height: 100vh; /* Para centrar verticalmente */
+    font-family: 'Montserrat', sans-serif;
+}
+
+.recuadroInfo {
+    border: none;
+    width: 80%;
+    height: 100%;
+    padding: 20px;
+    color: black;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.tituloInfo {
+    margin-bottom: 20px;
+    font-size: 90%;
+    font-weight: 700;
+    text-align: center;
+    text-transform: uppercase;
+    color: black;
+}
+
+.datosGenerales {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Espaciado entre los elementos */
+}
+
+.datosAlum {
+    font-size: 90%;
+    font-weight: 500;
+    margin-bottom: 5px;
+}
+
+.inputAlum {
+    font-size: 80%;
+    width: 100%;
+    height: 40px;
+    padding: 5px 10px;
+    margin-bottom: 10px;
+    border: 2px solid #1B396A;
+    border-radius: 8px;
+    background-color: white;
+    color: #04145a;
+    outline: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.inputAlum:focus {
+    border-color: #f8eb15;
+    box-shadow: 0 0 5px rgba(255, 247, 0, 0.699);
+}
+
+.btnComprobante {
+    display: inline-block;
+    width: 20%;
+    padding: 10px 20px;
+    background-color: #1B396A; /* Color de fondo */
+    color: #fff; /* Color del texto */
+    text-align: center;
+    text-decoration: none; /* Quita el subrayado */
+    border-radius: 10px; /* Bordes redondeados */
+    border: none; /* Sin borde */
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer; /* Hace que el cursor se convierta en mano al pasar */
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Animación suave */
+}
+
+.btnComprobante:hover {
+    background-color: #f8eb15; /* Cambia de color en hover */
+    color: #1B396A; /* Cambia el color del texto */
+    transform: scale(1.05); /* Efecto de zoom */
+}
+
+.datosGenerales {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+}
+
+.fila {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.campo {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}

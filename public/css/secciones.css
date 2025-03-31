@@ -1,0 +1,61 @@
+.perfilPrin {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-family: 'Montserrat', sans-serif;
+  margin: 5% 37%;
+  background-color: white;
+  width: 45%;
+  border-radius: 15px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.5);
+}
+
+.datosPG {
+  display: flex;
+  justify-content: center;
+  justify-content: space-between;
+  padding: 2%;
+}
+
+.datosPrin h3{
+  font-size: 100%;
+}
+.datosPrin p {
+  font-size: 85%;
+  margin-bottom: 1%;
+}
+.datosPrin {
+  margin-top: 2.5%;
+}
+
+.foroDirec {
+  margin-top: 5%;
+  width: 100px;
+  height: auto;
+  transition: all 0.3s ease-in-out;
+}
+
+.foroDirec:hover {
+  background-color: #f8eb15; /* Cambia de color en hover */
+  color: #1B396A; /* Cambia el color del texto */
+  transform: scale(1.05); /* Efecto de zoom */
+  border-radius: 10px;
+}
+
+.foroDirec a {
+  font-weight: bold;
+  color: black;
+  width: 100%;
+  font-size: 110%;
+  text-decoration: none;
+  margin-left: 20%;
+  
+}
+
+.imgPrin  img{
+  width: 150px;
+  height: auto;
+  border-radius: 50%;
+}
+
+

@@ -1,0 +1,81 @@
+
+.tituloBoton {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 65%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 100px;
+    margin-bottom: 20px;
+}
+
+.gruposTF {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 80%;
+    margin: 20px auto;
+}
+
+button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #1B396A; /* Color de fondo */
+    color: #fff; /* Color del texto */
+    text-align: center;
+    text-decoration: none; /* Quita el subrayado */
+    border-radius: 10px; /* Bordes redondeados */
+    border: none; /* Sin borde */
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer; /* Hace que el cursor se convierta en mano al pasar */
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Animación suave */
+}
+
+button:hover {
+    background-color: #f8eb15; /* Cambia de color en hover */
+    color: #1B396A; /* Cambia el color del texto */
+    transform: scale(1.05); /* Efecto de zoom */
+}
+
+.tabla {
+    width: 100%;
+    margin: 0 auto;
+    border-collapse: collapse; /* Colapsa los bordes para un diseño limpio */
+}
+
+.tabla table {
+    width: 100%;
+    border-spacing: 0;
+}
+
+.tabla th, .tabla td {
+    padding: 15px;
+    text-align: center;
+    border: 1px solid #ddd; /* Bordes suaves */
+    font-family: 'Montserrat', sans-serif;
+    font-size: 80%;
+}
+
+.tabla th {
+    background-color: #1B396A; /* Fondo del encabezado */
+    color: #fff; /* Texto del encabezado */
+}
+
+.tabla tr:nth-child(even) {
+    background-color: #f8eb15; /* Fondo de filas pares */
+}
+
+.tabla tr:nth-child(odd) {
+    background-color: #fff; /* Fondo de filas impares */
+}
+
+.tabla tr:hover {
+    background-color: rgba(27, 57, 106, 0.2); /* Efecto hover en filas */
+    transition: background-color 0.3s ease;
+}

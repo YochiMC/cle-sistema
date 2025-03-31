@@ -1,0 +1,46 @@
+/* Menú */
+.menu {
+    position: relative; /* Mantener en el flujo */
+    width: 14%; /* Ancho del menú */
+    background-color: rgba(27, 57, 106, 0.9); /* Azul translúcido */
+    color: white;
+    backdrop-filter: blur(8px); /* Efecto de desenfoque opcional */
+    height: 100%; /* Altura completa de la ventana */
+    float: left; /* Menú a la izquierda */
+}
+
+.menu a, button {
+    font-family: 'Roboto', 'Arial', sans-serif;
+    font-size: 80%;
+    display: block;
+    padding: 15px;
+    color: white;
+    text-decoration: none;
+}
+
+.menu a:hover {
+    background-color: #444;
+}
+
+.menu button:hover {
+    background-color: #444;
+}
+
+.iconoMenu {
+    width: 16px; /* Tamaño fijo para los íconos */
+    height: 16px;
+    margin-right: 10px; /* Espacio entre el ícono y el texto */
+    vertical-align: middle;
+    fill: white;
+}
+
+/* Separador */
+.menu-separator {
+    border: none;
+    height: 1px;
+    background-color: #f8eb15; /* Color del separador */
+    margin: 10px 0; /* Espaciado */
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}

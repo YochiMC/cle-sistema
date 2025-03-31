@@ -1,0 +1,21 @@
+.modificaTabla {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.btnModificar {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #38b6ff; /* Color de fondo */
+    color: white; /* Color del texto */
+    text-align: center;
+    text-decoration: none; /* Quita el subrayado */
+    border-radius: 10px; /* Bordes redondeados */
+    border: none; /* Sin borde */
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer; /* Hace que el cursor se convierta en mano al pasar */
+    transition: background-color 0.3s ease; /* Animación suave en hover */
+    margin: 10px;
+}

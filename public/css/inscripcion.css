@@ -1,0 +1,118 @@
+.reciboTabla {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    width: 80%;
+    margin: 20px auto;
+}
+
+.titulos {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 90%;
+}
+
+.file-input {
+    display: none; /* Oculta el input file por defecto */
+}
+
+.btnsubirConfirmar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 5%;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    background-color: #1B396A; /* Verde elegante */
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(2, 24, 121, 0.1);
+}
+
+.btnsubirConfirmar:hover {
+    background-color: #f8eb15;
+    color: #1B396A;
+    transform: scale(1.05); /* Efecto de zoom */
+    box-shadow: 0 4px 10px rgba(6, 50, 251, 0.3);
+}
+
+.btnEliminar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 5%;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    background-color: #d41b16; /* Color de fondo */
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(2, 24, 121, 0.1);
+}
+
+.btnEliminar:hover {
+    background-color: #f8eb15;
+    color:  #d41b16;
+    transform: scale(1.05); /* Efecto de zoom */
+    box-shadow: 0 4px 10px rgba(6, 50, 251, 0.3);
+}
+
+.imgPdf{
+    width: 50px;
+    height: auto;
+}
+
+.tablaArchivos{
+    width: 40%;
+    margin-left: 20%;
+}
+
+.subirArchivo{
+    width: 40%;
+}
+
+.tabla {
+    width: 100%;
+    margin: 0 auto;
+    border-collapse: collapse; /* Colapsa los bordes para un diseño limpio */
+}
+
+.tabla table {
+    width: 100%;
+    border-spacing: 0;
+}
+
+.tabla th, .tabla td {
+    padding: 15px;
+    text-align: center;
+    border: 1px solid #ddd; /* Bordes suaves */
+    font-family: 'Montserrat', sans-serif;
+    font-size: 80%;
+}
+
+.tabla th {
+    background-color: #1B396A; /* Fondo del encabezado */
+    color: #fff; /* Texto del encabezado */
+}
+
+.tabla tr:nth-child(even) {
+    background-color: #f8eb15; /* Fondo de filas pares */
+}
+
+.tabla tr:nth-child(odd) {
+    background-color: #fff; /* Fondo de filas impares */
+}
+
+.tabla tr:hover {
+    background-color: rgba(27, 57, 106, 0.2); /* Efecto hover en filas */
+    transition: background-color 0.3s ease;
+}

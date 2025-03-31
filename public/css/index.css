@@ -1,0 +1,898 @@
+@font-face {
+    font-family: 'GMX-Bold';
+    src: url('recursos/GMX-Bold.ttf') format('truetype');
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+}
+
+/*Parte de arriba*/
+.logosG {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 24%;
+    width: 100%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+    margin-bottom: 35px;
+    padding-top: 0.5%;
+    padding-bottom: 0.5%;
+}
+
+.logosPart a img {
+    height: 40px;
+    width: auto;
+}
+
+.logosPart {
+    display: flex;
+    gap: 12%;
+}
+
+.logosNuestros {
+    display: flex;
+    gap: 50%;
+}
+
+.logosNuestros a img {
+    height: 40px;
+    width: auto;
+}
+
+/*Navegador*/
+.encabezadoIT {
+    position: sticky;
+    /* Se adhiere al contenedor padre */
+    top: 0;
+    /* Punto de referencia para el pegado */
+    background-color: white;
+    /* Estilo opcional */
+    z-index: 10;
+    /* Para evitar que sea cubierto por otros elementos */
+}
+
+.encabezadoI {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #002d6d;
+}
+
+.encabezadoI h1 {
+    margin-bottom: 5px;
+}
+
+.apartados {
+    display: flex;
+    gap: 18%;
+    padding-left: 1%;
+}
+
+
+.logoTec {
+    height: 40px;
+    width: auto;
+}
+
+.logoItl {
+    height: 40px;
+    width: auto;
+}
+
+.edulang {
+    padding-top: 6%;
+    font-size: 120%;
+}
+
+.edu {
+    color: #f19b26;
+    font-style: italic;
+}
+
+.lang {
+    color: black;
+    font-style: italic;
+}
+
+/* From Uiverse.io by shah1345 */
+.button2 {
+    display: inline-block;
+    transition: all 0.2s ease-in;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    color: white;
+    padding: 0.7em 1.7em;
+    cursor: pointer;
+    font-size: 15px;
+    font-family: 'Roboto', 'Arial', sans-serif;
+    border-radius: 0.5em;
+    background: #04145a;
+    border: 1px solid #e8e8e8;
+    box-shadow: 6px 6px 12px #c5c5c5, -6px -6px 12px #ffffff;
+}
+
+.button2:active {
+    color: #666;
+    box-shadow: inset 4px 4px 12px #c5c5c5, inset -4px -4px 12px #ffffff;
+}
+
+.button2:before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%) scaleY(1) scaleX(1.25);
+    top: 100%;
+    width: 140%;
+    height: 180%;
+    background-color: #c5cdd9;
+    border-radius: 50%;
+    display: block;
+    transition: all 0.5s 0.1s cubic-bezier(0.55, 0, 0.1, 1);
+    z-index: -1;
+}
+
+.button2:after {
+    content: "";
+    position: absolute;
+    left: 55%;
+    transform: translateX(-50%) scaleY(1) scaleX(1.45);
+    top: 180%;
+    width: 160%;
+    height: 190%;
+    background-color: #8798b1;
+    border-radius: 50%;
+    display: block;
+    transition: all 0.5s 0.1s cubic-bezier(0.55, 0, 0.1, 1);
+    z-index: -1;
+}
+
+.button2:hover {
+    color: #ffffff;
+    border: 1px solid #4b648a;
+}
+
+.button2:hover:before {
+    top: -35%;
+    background-color: #e6db11;
+    transform: translateX(-50%) scaleY(1.3) scaleX(0.8);
+}
+
+.button2:hover:after {
+    top: -45%;
+    background-color: #f8eb15;
+    transform: translateX(-50%) scaleY(1.3) scaleX(0.8);
+}
+
+/* Estilos generales del botón */
+.button {
+    --width: 100px;
+    --height: 35px;
+    --tooltip-height: 35px;
+    --tooltip-width: 90px;
+    --gap-between-tooltip-to-button: 18px;
+    --button-color: none;
+    --tooltip-color: #fff;
+    width: var(--width);
+    height: var(--height);
+    background: var(--button-color);
+    position: relative;
+    text-align: center;
+    border-radius: 0.45em;
+    font-family: "Arial";
+    transition: background 0.3s;
+}
+
+.button::before {
+    position: absolute;
+    content: attr(data-tooltip);
+    width: var(--tooltip-width);
+    height: var(--tooltip-height);
+    background-color: #555;
+    font-size: 0.9rem;
+    color: #fff;
+    border-radius: .25em;
+    line-height: var(--tooltip-height);
+    bottom: calc(var(--height) + var(--gap-between-tooltip-to-button) + 10px);
+    left: calc(50% - var(--tooltip-width) / 2);
+}
+
+.button::after {
+    position: absolute;
+    content: '';
+    width: 0;
+    height: 0;
+    border: 10px solid transparent;
+    border-top-color: #555;
+    left: calc(50% - 10px);
+    bottom: calc(100% + var(--gap-between-tooltip-to-button) - 10px);
+}
+
+.button::after,
+.button::before {
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.5s;
+}
+
+.text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Roboto', 'Arial', sans-serif;
+    font-size: 75%;
+}
+
+.button-wrapper,
+.text,
+#icon {
+    overflow: hidden;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    color: #fff;
+}
+
+.text {
+    top: 0;
+}
+
+.text,
+#icon {
+    transition: top 0.5s;
+}
+
+#icon {
+    background-image: url("https://cdn-icons-png.flaticon.com/512/295/295128.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    top: 100%;
+}
+
+.button:hover {
+    background: none;
+}
+
+.button:hover .text {
+    top: -110%;
+}
+
+.button:hover #icon {
+    top: 0;
+}
+
+
+
+.button:hover:after {
+    bottom: calc(var(--height) + var(--gap-between-tooltip-to-button) - 20px);
+}
+
+.button:hover:before {
+    bottom: calc(var(--height) + var(--gap-between-tooltip-to-button));
+}
+
+
+/*Seccion*/
+.button-wrapper,
+.text,
+#iconS {
+    overflow: hidden;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    color: #fff;
+}
+
+.text,
+#iconS {
+    transition: top 0.5s;
+}
+
+#iconS {
+    background-image: url("https://cdn-icons-png.flaticon.com/512/3603/3603642.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    top: 100%;
+}
+
+.button:hover #iconS {
+    top: 0;
+}
+
+/*Seccion Ad*/
+.button-wrapper,
+.text,
+#iconA {
+    overflow: hidden;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    color: #fff;
+}
+
+.text,
+#iconA {
+    transition: top 0.5s;
+}
+
+#iconA {
+    background-image: url("https://cdn-icons-png.flaticon.com/512/3603/3603642.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    top: 100%;
+}
+
+.button:hover #iconA {
+    top: 0;
+}
+
+
+.salir {
+    width: 40px;
+    height: auto;
+}
+
+.linea {
+    border: none;
+    /* Elimina el borde predeterminado */
+    height: 5px;
+    /* Grosor de la línea */
+    background-color: #f8eb15;
+    /* Color de la línea */
+}
+
+/*SLIDER*/
+.sliderCont {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f1f1f1;
+    padding: 20px;
+    padding-bottom: 5%;
+    padding-top: 5%;
+}
+
+.container-carousel {
+    position: relative;
+    width: 800px;
+    height: 600px;
+    background-color: #e0e0e0;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.66);
+    border-radius: 15px;
+    overflow: hidden;
+
+}
+
+.carruseles {
+    width: 1000%;
+    height: 100%;
+    display: flex;
+
+}
+
+.slider-section {
+    width: calc(100% / 10);
+    height: 100%;
+}
+
+.slider-section img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 15px;
+}
+
+.btn-left,
+.btn-right {
+    display: flex;
+    position: absolute;
+    top: 50%;
+    font-size: 1.5rem;
+    background-color: rgba(0, 0, 0, 0.1);
+    border-radius: 50%;
+    font-weight: 600;
+    cursor: pointer;
+    color: #ffffff81;
+    transform: translate(0, -50%);
+    transition: .5s ease;
+    user-select: none;
+    width: 35px;
+    height: 35px;
+    padding-top: 2px;
+    padding-left: 5px;
+}
+
+.btn-left:hover,
+.btn-right:hover {
+    background-color: #333333d4;
+    color: #fff;
+}
+
+.btn-left {
+    left: 10px;
+}
+
+.btn-right {
+    right: 10px;
+}
+
+.lineaST {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    /* Espacio entre las líneas y el ícono */
+    background: #f1f1f1;
+    padding: 3%;
+}
+
+.lineaS {
+    flex-grow: 1;
+    /* Las líneas se expanden para llenar el espacio disponible */
+    border: none;
+    border-top: 2px solid #555;
+    /* Estilo para la línea */
+
+}
+
+/*Video*/
+.acercadeVideo {
+    background: #f1f1f1;
+    padding-top: 1%;
+    padding-bottom: 3%;
+}
+
+.introduccion {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 0 80px;
+    gap: 20px;
+
+}
+
+.acercaNosotros {
+    width: 600px;
+    height: 100%;
+    font-size: 75%;
+    line-height: 1.5;
+    text-align: justify;
+    transition: all .5s;
+    color: black;
+    font-family: 'Roboto', 'Arial', sans-serif;
+    margin-top: 3%;
+}
+
+#ch {
+    display: none;
+    /* Oculta el checkbox */
+}
+
+/* Cuando el checkbox está marcado, muestra el contenido */
+#ch:checked~.content {
+    max-height: 280px;
+    /* Se ajusta a la altura necesaria para que el contenido se vea */
+    padding: 10px 10px;
+    /* Agregamos padding cuando se despliega */
+}
+
+/* Cuando el checkbox no está marcado, esconde el contenido */
+.content {
+    display: block;
+    overflow: hidden;
+    max-height: 0;
+    /* Inicialmente, el contenido está colapsado */
+    transition: max-height 0.3s ease-out;
+    /* Transición suave */
+    padding: 0 10px;
+    /* Asegura que el contenido tenga algo de espacio */
+    margin-bottom: 2%;
+}
+
+
+/* Formato para los labels */
+label {
+    width: 100%;
+    display: block;
+    cursor: pointer;
+    color: white;
+    background-color: #cfcfcf;
+    padding: 5px 10px;
+    font-family: 'Roboto', 'Arial', sans-serif;
+    font-size: 100%;
+    color: black;
+}
+
+/*EDUSOFT LTD.*/
+.edusoft {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 0 80px;
+    gap: 20px;
+}
+
+.edusoftText {
+    width: 600px;
+    height: 100%;
+    font-size: 75%;
+    line-height: 1.5;
+    text-align: justify;
+    transition: all .5s;
+    color: black;
+    font-family: 'Roboto', 'Arial', sans-serif;
+    margin-top: 3%;
+}
+
+#ch2 {
+    display: none;
+    /* Oculta el checkbox */
+}
+
+/* Cuando el checkbox está marcado, muestra el contenido */
+#ch2:checked~.content {
+    max-height: 280px;
+    /* Se ajusta a la altura necesaria para que el contenido se vea */
+    padding: 10px 10px;
+    /* Agregamos padding cuando se despliega */
+}
+
+/*TEST PLACEMENT*/
+.placementT {
+    text-align: center;
+    padding: 15px;
+    background:
+        linear-gradient(rgba(75, 100, 138, 0.9), rgba(75, 100, 138, 0.9)),
+        url('https://scontent.fcyw1-1.fna.fbcdn.net/v/t39.30808-6/428207482_122099706416217426_8665710597063378594_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeHeFXDwpo513XhseJAezy-klu8yZjbprSaW7zJmNumtJnPm8Y4HOfP076YKQ_GiqnV3W0kaEgwtFlzEipGUf9da&_nc_ohc=oDytH2ZywEoQ7kNvgHksE75&_nc_zt=23&_nc_ht=scontent.fcyw1-1.fna&_nc_gid=AyoANp36gqH-MxEu7iwjTK2&oh=00_AYAdvAfhGSoqDudc_q7psYjOO6E5l1BP9-XxscC18HDU-Q&oe=6741B017');
+
+
+}
+
+.placementT h1 {
+    font-family: 'Roboto', 'Arial', sans-serif;
+
+    font-size: 120%;
+    color: white;
+}
+
+.placementT p {
+    margin: 15px 70px;
+    font-family: 'Roboto', 'Arial', sans-serif;
+    font-size: 75%;
+    color: white;
+}
+
+.btnPT {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: none;
+    /* Color de fondo */
+    color: white;
+    /* Color del texto */
+    text-align: center;
+    text-decoration: none;
+    /* Quita el subrayado */
+    border-radius: 10px;
+    /* Bordes redondeados */
+    border: none;
+    /* Sin borde */
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    /* Hace que el cursor se convierta en mano al pasar */
+    transition: 0.3s ease;
+    /* Animación suave en hover */
+    margin: 10px;
+    font-family: 'Roboto', 'Arial', sans-serif;
+}
+
+.btnPT:hover {
+    color: black;
+    background-color: #f8eb15;
+    transition: all 0.3s ease;
+    /* Animación suave en hover */
+}
+
+.contact {
+    padding: 10px;
+
+    background:
+        linear-gradient(rgba(0, 7, 37, 0.95), rgba(0, 7, 37, 0.95)),
+        url('https://scontent.fcyw1-1.fna.fbcdn.net/v/t39.30808-6/430874150_122115536474217426_3799430566535851728_n.jpg?stp=dst-jpg_s960x960&_nc_cat=103&ccb=1-7&_nc_sid=cc71e4&_nc_eui2=AeF8mNRiFYL54NMxBlWQgtBpEXkZwOEV0NIReRnA4RXQ0rJoM0jiVPY7a8vxv_mv2JA1Rs_RLXUbiyaBMd1zvkn_&_nc_ohc=-t5EBlhp7wwQ7kNvgFbjFZM&_nc_zt=23&_nc_ht=scontent.fcyw1-1.fna&_nc_gid=AU67Q_P7WMF2XnLPze5iLEu&oh=00_AYBv3FldvwMdgwcdTtIMLVagJeyd4D-hWB9fwPHTTtAyzQ&oe=6741CC8C');
+    background-size: cover;
+    /* El fondo cubrirá todo el contenedor */
+    background-position: center;
+    /* Centra la imagen de fondo */
+    background-repeat: no-repeat;
+    /* Evita que el fondo se repita */
+}
+
+.contact h2 {
+    font-size: 120%;
+    width: 100%;
+    color: white;
+    text-align: center;
+    font-family: 'Roboto', 'Arial', sans-serif;
+    margin-top: 1%;
+    margin-bottom: 3%;
+}
+
+.horarioAT {
+    display: flex;
+    justify-content: center;
+    gap: 20%;
+    margin-bottom: 20px;
+}
+
+.horarioA {
+    margin: 15px;
+    font-size: 75%;
+    color: white;
+    width: 420px;
+    height: auto;
+    padding: 10px;
+    border-radius: 10px;
+    font-family: 'Roboto', 'Arial', sans-serif;
+    line-height: 1.8;
+}
+
+.horarioA li {
+    color: white;
+}
+
+
+.rs {
+    text-align: center;
+    align-items: center;
+    margin-top: 15px;
+}
+
+.rs p {
+    font-size: 16px;
+}
+
+.rs a {
+    font-size: 40px;
+    color: inherit;
+    /* Quitar el estilo de enlace azul */
+    text-decoration: none;
+    /* Quitar subrayado */
+    display: inline-block;
+    /* Permitir margen y padding */
+    margin: 10px;
+    /* Separación alrededor del enlace */
+    padding: 5px;
+    /* Espacio interno */
+    transition: background-color 0.8s;
+    /* Transición suave */
+    color: #102646;
+}
+
+.rs a:hover {
+    color: #3b5998;
+}
+
+/* From Uiverse.io by SharpTH */
+
+.linkFB {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.faces {
+    text-decoration: none;
+    color: #fff;
+}
+
+.btn-cssbuttons {
+    --btn-color: none;
+    position: relative;
+    padding: 16px 32px;
+    font-family: Roboto, sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 1;
+    color: white;
+    background: none;
+    border: none;
+    outline: none;
+    overflow: hidden;
+    filter: drop-shadow(0 2px 8px rgba(39, 94, 254, 0.32));
+    transition: 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+.btn-cssbuttons::before {
+    position: absolute;
+    content: "";
+    top: 0;
+    left: 0;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    background: var(--btn-color);
+    border-radius: 24px;
+    transition: 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+.btn-cssbuttons span,
+.btn-cssbuttons span span {
+    display: inline-flex;
+    vertical-align: middle;
+    transition: 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+.btn-cssbuttons span {
+    transition-delay: 0.05s;
+}
+
+.btn-cssbuttons span:first-child {
+    padding-right: 7px;
+}
+
+.btn-cssbuttons span span {
+    margin-left: 8px;
+    transition-delay: 0.1s;
+}
+
+.btn-cssbuttons ul {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    display: flex;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    transform: translateY(-50%);
+}
+
+.btn-cssbuttons ul li {
+    flex: 1;
+}
+
+.btn-cssbuttons ul li a {
+    display: inline-flex;
+    vertical-align: middle;
+    transform: translateY(55px);
+    transition: 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
+
+}
+
+.btn-cssbuttons ul li a:hover {
+    opacity: 0.5;
+}
+
+.btn-cssbuttons:hover::before {
+    transform: scale(1.2);
+}
+
+.btn-cssbuttons:hover span,
+.btn-cssbuttons:hover span span {
+    transform: translateY(-55px);
+}
+
+.btn-cssbuttons:hover ul li a {
+    transform: translateY(0);
+}
+
+.btn-cssbuttons:hover ul li:nth-child(1) a {
+    transition-delay: 0.15s;
+}
+
+.btn-cssbuttons:hover ul li:nth-child(2) a {
+    transition-delay: 0.2s;
+}
+
+.btn-cssbuttons:hover ul li:nth-child(3) a {
+    transition-delay: 0.25s;
+}
+
+.btn-cssbuttons svg.icon {
+    width: 20px;
+    /* Ajusta el tamaño del icono */
+    height: 20px;
+}
+
+.iconoF {
+    display: flex;
+    justify-content: center;
+}
+
+
+.gobiernoDeMexicoT {
+    height: 65vh;
+    background-image: url("https://www.gob.mx/cms/uploads/press/main_image/259927/post_generico_logo_ECONOMIA_verde.jpg");
+}
+
+.gobiernoDeMexico {
+    font-size: 13px;
+    font-family: 'Open Sans', sans-serif;
+    display: flex;
+    background-color: #14322b;
+    color: white;
+    padding-top: 40px;
+    justify-content: center;
+    height: 60vh;
+}
+
+.txtGob img {
+    height: 70px;
+    width: auto;
+}
+
+.txtGob {
+    width: 400px;
+    height: auto;
+}
+
+.titulosGob {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.enlacesGob {
+    color: white;
+    text-decoration: none;
+}
+
+.redesSocialesGob {
+    margin-top: 10px;
+}
+
+.redesSocialesGob a {
+    color: #fff;
+    /* Cambia el color a blanco */
+    font-size: 24px;
+    /* Tamaño del ícono */
+    margin: 10px;
+    /* Espacio entre íconos */
+    text-decoration: none;
+    /* Quita subrayado */
+}
+
+.leerMas {
+    color: white;
+}
+
+.cerrarsesion-wrapper {
+    display: flex;
+    /* Alinear elementos en línea */
+    align-items: center;
+    /* Centrar verticalmente texto e icono */
+    gap: 5px;
+    /* Espaciado entre texto e icono */
+    font-family: 'Roboto', 'Arial', sans-serif;
+    /* Asegura consistencia de fuente */
+    font-size: 14px;
+    /* Tamaño del texto */
+    color: white;
+    /* Color del texto */
+    text-decoration: none;
+    /* Elimina subrayado si es un enlace */
+    cursor: pointer;
+    /* Cambiar el cursor para indicar que es clickeable */
+}
+
+.cerrarsesion {
+    width: 20px;
+    /* Asegura que el icono tenga un tamaño fijo */
+    height: 20px;
+    fill: currentColor;
+    /* Aplica el color actual */
+    vertical-align: middle;
+    /* Asegura alineación con el texto */
+}

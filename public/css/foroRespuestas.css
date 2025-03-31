@@ -1,0 +1,121 @@
+.preguntaRespuesta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    width: 80%;
+    margin: 20px auto;
+}
+
+
+.preguntaIn {
+    font-family: 'Montserrat', sans-serif;
+    width: 40%;
+    padding: 8px;
+    margin-bottom: 10px;
+    height: auto;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.5);
+    background-color: white;;
+}
+
+.respuestasT {
+    font-family: 'Montserrat', sans-serif;
+    margin-left: 20%;
+    width: 40%;
+    height: auto;
+    
+}
+
+.respuestasT h1{
+    font-family: 'Montserrat', sans-serif;
+    margin: 15px;
+    font-size: 30px;
+}
+
+.respuestaAlum {
+    background-color: white;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.5);
+    padding: 8px;
+    margin-bottom: 10px;
+    width: 400px;
+}
+
+.nombre {
+    font-weight: bolder;
+    font-size: 80%
+}
+.preguntaA {
+    font-size: 80%;
+}
+
+.nomnrePreguntador {
+    font-weight: bolder;
+    font-size: 80%
+}
+.preguntaSo {
+    font-size: 80%;
+}
+
+.hacerR {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.escribeR {
+    width: 100%;
+    max-width: 400px;
+    padding: 15px;
+    font-size: 16px;
+    border: 2px solid #ddd;
+    border-radius: 25px;
+    outline: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(2, 24, 121, 0.1);
+    background-color: #fff;
+}
+
+.escribeR:focus {
+    border-color: #1B396A; /* Verde elegante */
+    box-shadow: 0 4px 10px rgba(6, 50, 251, 0.3);
+}
+
+.escribeR::placeholder {
+    color: #aaa;
+    font-style: italic;
+}
+
+button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    background-color: #1B396A; /* Verde elegante */
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(2, 24, 121, 0.1);
+}
+
+button:hover {
+    background-color: #f8eb15;
+    color: #1B396A;
+    transform: scale(1.05); /* Efecto de zoom */
+    box-shadow: 0 4px 10px rgba(6, 50, 251, 0.3);
+}
+
+button:active {
+    transform: scale(0.98);
+}
+
+.btnEnviarRes {
+    width: 20px;
+    height: 20px;
+    filter: brightness(0) invert(1); /* Cambia la imagen a blanco */
+}

@@ -1,0 +1,65 @@
+.tituloBoton {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 65%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 100px;
+    margin-bottom: 20px;
+}
+
+.resultados{
+    font-family: 'Montserrat', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 80%;
+    margin: 20px auto;
+}
+
+.tablaResultados {
+    width: 100%;
+    margin: 0 auto;
+    border-collapse: collapse; /* Colapsa los bordes para un diseño limpio */
+}
+
+.tablaResultados table {
+    width: 100%;
+    border-spacing: 0;
+}
+
+.tablaResultados th, .tabla td {
+    padding: 15px;
+    text-align: center;
+    border: 1px solid #ddd; /* Bordes suaves */
+    font-family: 'Montserrat', sans-serif;
+    font-size: 80%;
+}
+
+.tablaResultados th {
+    background-color: #1B396A; /* Fondo del encabezado */
+    color: #fff; /* Texto del encabezado */
+}
+
+.tablaResultados tr:nth-child(even) {
+    background-color: #f8eb15; /* Fondo de filas pares */
+}
+
+.tablaResultados tr:nth-child(odd) {
+    background-color: #fff; /* Fondo de filas impares */
+}
+
+.tablaResultados tr:hover {
+    background-color: rgba(27, 57, 106, 0.2); /* Efecto hover en filas */
+    transition: background-color 0.3s ease;
+}
+
+.cerrarsesion {
+    width: 18px;
+    color: white;
+}

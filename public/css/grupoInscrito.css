@@ -1,0 +1,10 @@
+.tablas {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 500px;
+}
+
+.titulos {
+    margin-bottom: 20px;
+}

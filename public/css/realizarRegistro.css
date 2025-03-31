@@ -1,0 +1,116 @@
+.horarioNota {
+    
+    align-items: center;
+    justify-content: center;
+    gap: 20%;
+    margin: 30px;
+}
+
+
+.cerrarsesion {
+    width: 18px;
+    color: white;
+}
+
+.horario {
+    font-family: 'Montserrat', sans-serif;
+    background-color: white;
+    padding: 20px;
+    border-radius: 15px;
+    width: 450px;
+    margin-left: 32%;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.5);
+}
+
+.formulario-opciones{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.horario h3{
+    text-align: center;
+    font-size: 120%;
+    width: 400px;
+    height: auto;
+    margin-bottom: 20px;
+}
+
+.opciones {
+    margin-bottom: 15px;
+}
+
+.opcionesM {
+    font-size: 80%;
+}
+
+.btnAceptar {
+
+    font-family: 'Montserrat', sans-serif;
+    display: inline-block;
+    padding: 10px 20px;
+    
+    color: black; /* Color del texto */
+    text-align: center;
+    text-decoration: none; /* Quita el subrayado */
+    border-radius: 10px; /* Bordes redondeados */
+    border: none; /* Sin borde */
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer; /* Hace que el cursor se convierta en mano al pasar */
+    transition: background-color 0.3s ease; /* Animación suave en hover */
+    margin-top: 10px;
+    margin-left: 32%;
+}
+
+.btnAceptar:hover {
+    background-color: #f19b26;
+}
+
+.nota {
+    width: 450px;
+    height: 100%;
+    font-size: 75%;
+    line-height: 1.5;
+    text-align: justify;
+    transition: all .5s;
+    color: black;
+    font-family: 'Roboto', 'Arial', sans-serif;
+    margin-top: 3%;
+    margin-left: 32%;
+}
+
+#ch {
+    display: none; /* Oculta el checkbox */
+}
+
+/* Cuando el checkbox está marcado, muestra el contenido */
+#ch:checked ~ .content {
+    max-height: 280px; /* Se ajusta a la altura necesaria para que el contenido se vea */
+    padding: 10px 10px; /* Agregamos padding cuando se despliega */
+}
+
+/* Cuando el checkbox no está marcado, esconde el contenido */
+.content {
+    font-family: 'Montserrat', sans-serif;
+    display: block;
+    overflow: hidden;
+    max-height: 0; /* Inicialmente, el contenido está colapsado */
+    transition: max-height 0.3s ease-out; /* Transición suave */
+    padding: 0 10px; /* Asegura que el contenido tenga algo de espacio */
+    margin-bottom: 2%;
+}
+
+
+/* Formato para los labels */
+.notaDesp {
+    width: 100%;
+    display: block;
+    cursor: pointer;
+    color: white;
+    background-color: #cfcfcf;
+    padding: 5px 10px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 100%;
+    color: black;
+}

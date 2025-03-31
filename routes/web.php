@@ -1,6 +1,7 @@
 <?php
-
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Auth\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +14,38 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+// Página Principal
+Route::view('/', 'index')->name('index');
+
+// Grupo para ALUMNOS (con middleware 'auth')
+Route::prefix('alumno')->name('alumno.')->middleware('auth')->group(function () {
+    Route::view('/inscripcion', 'alumno.inscripcion')->name('inscripcion');
+    Route::view('/kardex', 'alumno.kardex')->name('kardex');
+    Route::view('/informacion-personal', 'alumno.informacion_personal_alumno')->name('info_personal');
+    Route::view('/grupo-inscrito', 'alumno.grupo_inscrito')->name('grupo_inscrito');
+    Route::view('/secciones', 'alumno.secciones')->name('secciones');
 });
+
+// Grupo para ADMINISTRADORES (también con middleware 'auth')
+Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
+    Route::view('/grupos', 'administrador.grupos_finales')->name('grupos');
+    Route::view('/alumnos', 'administrador.informacion_alumnados')->name('alumnos');
+    Route::view('/secciones', 'administrador.secciones_admin')->name('secciones');
+});
+
+// Grupo para Vistas Generales
+Route::prefix('general')->name('general.')->group(function () {
+    Route::view('/foro', 'general.foro')->name('foro');
+    Route::view('/foro-respuestas', 'general.foro_respuestas')->name('foro_respuestas');
+    Route::view('/placement-test', 'general.placement_test')->name('placement_test');
+    Route::view('/inicio-sesion', 'general.inicio_sesion')->name('inicio_sesion');
+    Route::view('/registro', 'general.registro')->name('registro');
+    Route::view('/realizar-registro', 'general.realizar_registro')->name('realizar_registro');
+    Route::view('/resultados-inscripcion', 'general.resultados_inscripcion')->name('resultados_inscripcion');
+    Route::view('/resultados-pt', 'general.resultados_pt')->name('resultados_pt');
+});
+
+// Login de usuarios
+#Route::post('/validar-registro', [LoginController::class, 'register'])->name('validar-registro');
+Route::post('/validar-login', [LoginController::class, 'login'])->name('validar-login');
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout'); // POST es la mejor práctica para logout

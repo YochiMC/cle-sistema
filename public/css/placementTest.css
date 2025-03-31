@@ -1,0 +1,100 @@
+.pasos {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 25px;
+}
+
+.paso123 {
+    width: 400px;
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    color: white;
+    border-radius: 15px;
+    transition: all 0.5s;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-top: 25px;
+}
+.paso123:hover {
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3); /* Incrementa el tamaño y la intensidad de la sombra */
+    transform: scale(1.02); /* Hace un pequeño zoom para resaltarlo */
+    transition: all 0.3s ease-in-out; /* Suaviza el efecto */
+}
+#pasoUno {
+    background: 
+        linear-gradient(rgba(75, 100, 138, 0.8), rgba(75, 100, 138, 0.8)), 
+        url('https://cle-itl.info/wp-content/uploads/2024/08/110795791_gettyimages-918572576.jpg');
+
+}
+#pasoDos {
+    background: 
+        linear-gradient(rgba(75, 100, 138, 0.8), rgba(75, 100, 138, 0.8)), 
+        url('https://cle-itl.info/wp-content/uploads/2024/08/depositphotos_35259389-stock-photo-school-boy-in-computing-class.webp');
+}
+#pasoTres {
+    background: 
+        linear-gradient(rgba(75, 100, 138, 0.8), rgba(75, 100, 138, 0.8)), 
+        url('https://cle-itl.info/wp-content/uploads/2024/08/surfing-the-internet-184146944-57f1a5d65f9b586c35868278.jpg');
+}
+
+.imagenNumeros {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+
+}
+
+.imagenNumeros img{
+    width: 50px;
+    height: auto;
+}
+
+.fotoTexto {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 15px;
+}
+.fotoTexto img{
+    width: 280px;
+    height: 200px;
+    border-radius: 5px;
+}
+.fotoTexto p {
+    margin: 10px;
+    font-size: 14px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.btnPT {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: none; /* Color de fondo */
+    color: white; /* Color del texto */
+    text-align: center;
+    text-decoration: none; /* Quita el subrayado */
+    border-radius: 10px; /* Bordes redondeados */
+    border: none; /* Sin borde */
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer; /* Hace que el cursor se convierta en mano al pasar */
+    transition: 0.3s ease; /* Animación suave en hover */
+    margin: 10px;
+    font-family: 'Montserrat', sans-serif;
+}
+.btnPT:hover {
+    color: black;
+    background-color: #f8eb15;
+    transition: all 0.3s ease; /* Animación suave en hover */
+}
+
+.cerrarsesion {
+    color: white;
+    width: 18px;
+}

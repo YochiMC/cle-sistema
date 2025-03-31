@@ -1,0 +1,436 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #f1f1f1;
+    background-attachment: fixed; /* Fija el fondo para que no se mueva con el scroll */
+    margin: 0; /* Elimina márgenes adicionales del body */
+    height: 100vh; /* Asegura que el body tenga al menos el tamaño de la ventana */
+}
+
+/*Parte de arriba*/
+.logosG {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 24%;
+    width: 100%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+    margin-bottom: 35px;
+    padding-top: 0.5%;
+    padding-bottom: 0.5%;
+    background-color: #fff;
+}
+
+.logosGM {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 24%;
+    width: 100%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+    margin-bottom: 20px;
+    padding-top: 0.5%;
+    padding-bottom: 0.5%;
+    background-color: #fff;
+}
+
+.logosPart a img {
+    height: 40px;
+    width: auto;
+}
+.logosPart {
+    display: flex;
+    gap: 12%;
+}
+
+.logosNuestros {
+    display: flex;
+    gap: 50%;
+}
+
+.logosNuestros a img {
+    height: 40px;
+    width: auto;
+}
+
+/*Navegador*/
+.encabezadoIT{
+    position: sticky; /* Se adhiere al contenedor padre */
+    top: 0; /* Punto de referencia para el pegado */
+    background-color: white; /* Estilo opcional */
+    z-index: 10; /* Para evitar que sea cubierto por otros elementos */
+}
+.encabezadoI{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #002d6d;
+}
+.encabezadoI h1 {
+    margin-bottom: 5px;
+}
+
+.encabezadoIM h1 {
+    font-size: 120%;
+    margin-bottom: 5px;
+}
+
+.apartados {
+    display: flex;
+    gap: 18%;
+    padding-left: 1%;
+}
+
+
+.logoTec{
+    height: 40px;
+    width: auto;
+}
+
+.logoItl{
+    height: 40px;
+    width: auto;
+}
+
+.edulang{
+    padding-top: 6%;
+    font-size: 120%;
+}
+.edu{
+    color: #f19b26;
+    font-style: italic;
+}
+.lang{
+    color: black;
+    font-style: italic;
+}
+
+
+.encabezadoI {
+    display: flex;
+    align-items: center; /* Centra verticalmente */
+    justify-content: space-between; /* Espacio entre los elementos */
+    position: relative;
+    background-color: #1B396A; /* O el color de tu elección */
+    padding: 10px 20px; /* Ajusta los márgenes internos */
+}
+
+.encabezadoIM {
+    display: flex;
+    align-items: center; /* Centra verticalmente */
+    justify-content: space-between; /* Espacio entre los elementos */
+    position: relative;
+    background-color: #1B396A; /* O el color de tu elección */
+    padding: 10px 20px; /* Ajusta los márgenes internos */
+    border-bottom: 5px solid #f8eb15;
+}
+
+.logoTec{
+    height: 40px;
+    width: auto;
+}
+
+.logoItl{
+    height: 40px;
+    width: auto;
+}
+
+.edulangA {
+    text-decoration: none;
+}
+.edulang{
+    font-size: 30px;
+    text-decoration: none;
+}
+.edu{
+    color: #f19b26;
+    font-style: italic;
+}
+.lang{
+    color: #fcfcfc;
+    font-style: italic;
+}
+
+.apartados {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+/* From Uiverse.io by shah1345 */ 
+.button2 {
+    display: inline-block;
+    transition: all 0.2s ease-in;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    color: #090909;
+    padding: 0.7em 1.7em;
+    cursor: pointer;
+    font-size: 14px;
+    border-radius: 0.5em;
+    background: #4a92ff;
+    border: 1px solid #e8e8e8;
+    box-shadow: 6px 6px 12px #c5c5c5, -6px -6px 12px #ffffff;
+  }
+  
+  .button2:active {
+    color: #666;
+    box-shadow: inset 4px 4px 12px #c5c5c5, inset -4px -4px 12px #ffffff;
+  }
+  
+  .button2:before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%) scaleY(1) scaleX(1.25);
+    top: 100%;
+    width: 140%;
+    height: 180%;
+    background-color: rgba(0, 0, 0, 0.05);
+    border-radius: 50%;
+    display: block;
+    transition: all 0.5s 0.1s cubic-bezier(0.55, 0, 0.1, 1);
+    z-index: -1;
+  }
+  
+  .button2:after {
+    content: "";
+    position: absolute;
+    left: 55%;
+    transform: translateX(-50%) scaleY(1) scaleX(1.45);
+    top: 180%;
+    width: 160%;
+    height: 190%;
+    background-color: #009087;
+    border-radius: 50%;
+    display: block;
+    transition: all 0.5s 0.1s cubic-bezier(0.55, 0, 0.1, 1);
+    z-index: -1;
+  }
+  
+  .button2:hover {
+    color: #ffffff;
+    border: 1px solid #009087;
+  }
+  
+  .button2:hover:before {
+    top: -35%;
+    background-color: #009087;
+    transform: translateX(-50%) scaleY(1.3) scaleX(0.8);
+  }
+  
+  .button2:hover:after {
+    top: -45%;
+    background-color: #009087;
+    transform: translateX(-50%) scaleY(1.3) scaleX(0.8);
+  }
+  
+
+
+
+/* Estilos generales del botón */
+.button {
+    --width: 100px;
+    --height: 35px;
+    --tooltip-height: 35px;
+    --tooltip-width: 90px;
+    --gap-between-tooltip-to-button: 18px;
+    --button-color: none;
+    --tooltip-color: #fff;
+    width: var(--width);
+    height: var(--height);
+    background: var(--button-color);
+    position: relative;
+    text-align: center;
+    border-radius: 0.45em;
+    font-family: 'Roboto', 'Arial', sans-serif;
+    transition: background 0.3s;
+}
+
+.button::before {
+    position: absolute;
+    content: attr(data-tooltip);
+    width: var(--tooltip-width);
+    height: var(--tooltip-height);
+    background-color: #555;
+    font-size: 0.9rem;
+    color: #fff;
+    border-radius: .25em;
+    line-height: var(--tooltip-height);
+    bottom: calc(var(--height) + var(--gap-between-tooltip-to-button) + 10px);
+    left: calc(50% - var(--tooltip-width) / 2);
+}
+
+.button::after {
+    position: absolute;
+    content: '';
+    width: 0;
+    height: 0;
+    border: 10px solid transparent;
+    border-top-color: #555;
+    left: calc(50% - 10px);
+    bottom: calc(100% + var(--gap-between-tooltip-to-button) - 10px);
+}
+
+.button::after, .button::before {
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.5s;
+}
+
+.text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Roboto', 'Arial', sans-serif;
+    font-size: 14px;
+}
+
+.button-wrapper, .text, #icon {
+    overflow: hidden;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    color: #fff;
+}
+
+.text {
+    top: 0;
+}
+
+.text, #icon {
+    transition: top 0.5s;
+}
+
+#icon {
+    background-image: url("https://cdn-icons-png.flaticon.com/512/295/295128.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    top: 100%;
+}
+
+.button:hover {
+    background: none;
+}
+
+.button:hover .text {
+    top: -110%;
+}
+
+.button:hover #icon {
+    top: 0;
+}
+
+
+
+.button:hover:after {
+    bottom: calc(var(--height) + var(--gap-between-tooltip-to-button) - 20px);
+}
+
+.button:hover:before {
+    bottom: calc(var(--height) + var(--gap-between-tooltip-to-button));
+}
+
+  
+/*Seccion*/
+.button-wrapper, .text, #iconS {
+    overflow: hidden;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    color: #fff;
+}
+
+.text, #iconS {
+    transition: top 0.5s;
+}
+
+#iconS {
+    background-image: url("https://cdn-icons-png.flaticon.com/512/3603/3603642.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    top: 100%;
+}
+
+.button:hover #iconS {
+    top: 0;
+}
+  
+/*Seccion Ad*/  
+.button-wrapper, .text, #iconA {
+    overflow: hidden;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    color: #fff;
+}
+
+.text, #iconA {
+    transition: top 0.5s;
+}
+
+#iconA {
+    background-image: url("https://cdn-icons-png.flaticon.com/512/3603/3603642.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    top: 100%;
+}
+
+.button:hover #iconA {
+    top: 0;
+}
+
+
+.salir {
+    width: 30px;
+    height: auto;
+}
+
+.linea{
+    border: none; /* Elimina el borde predeterminado */
+    height: 2px; /* Grosor de la línea */
+    background-color: #000; /* Color de la línea */
+    margin: 30px 5px; /* Espaciado arriba y abajo de la línea */
+}
+
+.icons-wrapper {
+    display: flex; /* Alinear elementos en línea */
+    align-items: center; /* Centrar verticalmente texto e icono */
+    gap: 5px; /* Espaciado entre texto e icono */
+    font-family: 'Roboto', 'Arial', sans-serif; /* Asegura consistencia de fuente */
+    font-size: 14px; /* Tamaño del texto */
+    color: white; /* Color del texto */
+    text-decoration: none; /* Elimina subrayado si es un enlace */
+    cursor: pointer; /* Cambiar el cursor para indicar que es clickeable */
+}
+
+.icons_barra{
+    width: 20px; /* Asegura que el icono tenga un tamaño fijo */
+    height: 20px;
+    fill: currentColor; /* Aplica el color actual */
+    vertical-align: middle; /* Asegura alineación con el texto */
+}
+
+/* Cintilla amarilla */
+.cintilla {
+    position: fixed; /* Fijo para que siempre esté visible */
+    top: 55px; /* Debajo del header */
+    left: 0;
+    width: 100%;
+    height: 5px; /* Altura de la cintilla */
+    background-color: #f8eb15; /* Amarillo */
+    z-index: 1100; /* Encima del contenido pero debajo del header principal */
+}
+
+

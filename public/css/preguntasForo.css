@@ -1,0 +1,202 @@
+.preguntasForo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    width: 80%;
+    margin: 20px auto;
+}
+
+
+.preguntas {
+    font-size: 14px;
+    margin-left: 75px;
+    margin-top: 10px;
+}
+
+.respuestas {
+    text-align: justify;
+    margin-left: 75px;
+    margin-bottom: 10px;
+    margin-right: 15px;
+    
+}
+
+.foro {
+    font-family: 'Montserrat', sans-serif;
+    width: 40%;
+    height: auto;
+}
+
+.foro h1{
+    font-family: 'Montserrat', sans-serif;
+    margin: 15px;
+    font-size: 150%;
+}
+
+.preguntaAlumno {
+    background-color: white;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.5);
+    padding: 8px;
+    margin-bottom: 10px;
+    width: 400px;
+    
+}
+
+.preguntaAlumno a {
+    text-decoration: none;
+    color: black;
+}
+
+.nombre {
+    font-weight: bolder;
+    font-size: 80%
+}
+.preguntaA {
+    font-size: 80%;
+}
+
+.hacerP {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.escribeR {
+    width: 100%;
+    max-width: 400px;
+    padding: 15px;
+    font-size: 16px;
+    border: 2px solid #ddd;
+    border-radius: 25px;
+    outline: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(2, 24, 121, 0.1);
+    background-color: #fff;
+}
+
+.escribeR:focus {
+    border-color: #1B396A; /* Verde elegante */
+    box-shadow: 0 4px 10px rgba(6, 50, 251, 0.3);
+}
+
+.escribeR::placeholder {
+    color: #aaa;
+    font-style: italic;
+}
+
+button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    background-color: #1B396A; /* Verde elegante */
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(2, 24, 121, 0.1);
+}
+
+button:hover {
+    background-color: #f8eb15;
+    color: #1B396A;
+    transform: scale(1.05); /* Efecto de zoom */
+    box-shadow: 0 4px 10px rgba(6, 50, 251, 0.3);
+}
+
+button:active {
+    transform: scale(0.98);
+}
+
+.btnEnviarRes {
+    width: 20px;
+    height: 20px;
+    filter: brightness(0) invert(1); /* Cambia la imagen a blanco */
+}
+
+/*DESPLIEGUE*/
+.despliegue {
+    width: 60%;
+}
+
+.preguntasFre{
+    width: 480px;
+    height: 100%;
+    font-size: 75%;
+    line-height: 1.5;
+    text-align: justify;
+    transition: all .5s;
+    color: black;
+    font-family: 'Montserrat', sans-serif;
+    margin-top: 3%;
+}
+
+#ch {
+    display: none; /* Oculta el checkbox */
+}
+
+/* Cuando el checkbox está marcado, muestra el contenido */
+#ch:checked ~ .content {
+    max-height: 280px; /* Se ajusta a la altura necesaria para que el contenido se vea */
+    padding: 10px 10px; /* Agregamos padding cuando se despliega */
+}
+
+#ch2 {
+    display: none; /* Oculta el checkbox */
+}
+
+/* Cuando el checkbox está marcado, muestra el contenido */
+#ch2:checked ~ .content {
+    max-height: 280px; /* Se ajusta a la altura necesaria para que el contenido se vea */
+    padding: 10px 10px; /* Agregamos padding cuando se despliega */
+}
+
+#ch3 {
+    display: none; /* Oculta el checkbox */
+}
+
+/* Cuando el checkbox está marcado, muestra el contenido */
+#ch3:checked ~ .content {
+    max-height: 280px; /* Se ajusta a la altura necesaria para que el contenido se vea */
+    padding: 10px 10px; /* Agregamos padding cuando se despliega */
+}
+
+#ch4 {
+    display: none; /* Oculta el checkbox */
+}
+
+/* Cuando el checkbox está marcado, muestra el contenido */
+#ch4:checked ~ .content {
+    max-height: 280px; /* Se ajusta a la altura necesaria para que el contenido se vea */
+    padding: 10px 10px; /* Agregamos padding cuando se despliega */
+}
+
+/* Cuando el checkbox no está marcado, esconde el contenido */
+.content {
+    display: block;
+    overflow: hidden;
+    max-height: 0; /* Inicialmente, el contenido está colapsado */
+    transition: max-height 0.3s ease-out; /* Transición suave */
+    padding: 0 10px; /* Asegura que el contenido tenga algo de espacio */
+    margin-bottom: 2%;
+}
+
+
+/* Formato para los labels */
+.preguntasG {
+    width: 100%;
+    display: flex;
+    cursor: pointer;
+    color: white;
+    background-color: #cfcfcf;
+    padding: 5px 10px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 100%;
+    color: black;
+}
