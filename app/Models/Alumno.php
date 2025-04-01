@@ -16,8 +16,9 @@ class Alumno extends Model
     public $timestamps = true; // Habilita created_at y updated_at
 
     protected $fillable = [
-        'id_alumno', 'alumno_edad', 'carrera', 'semestre',
-        'id_seguimiento', 'inscrito', 'acredita'
+        'id_alumno', 'id_usuario', 'alumno_edad', 'alumno_nombre',
+        'alumno_apeliidos', 'carrera', 'semestre',
+        'id_seguimiento', 'inscrito', 'acredita',
     ];
 
     // Relación con User (un alumno es un usuario)

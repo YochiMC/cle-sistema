@@ -2,6 +2,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\CrudController;
 
 /*
 |--------------------------------------------------------------------------
@@ -46,6 +47,8 @@ Route::prefix('general')->name('general.')->group(function () {
 });
 
 // Login de usuarios
-#Route::post('/validar-registro', [LoginController::class, 'register'])->name('validar-registro');
 Route::post('/validar-login', [LoginController::class, 'login'])->name('validar-login');
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout'); // POST es la mejor práctica para logout
+
+// Crud completo
+Route::post('registrar-usuario', [CrudController::class, 'create'])->name('registrar-usuario');

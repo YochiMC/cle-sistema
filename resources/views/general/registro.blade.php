@@ -43,22 +43,52 @@
 <body>
     <div class="container">
         <h2>Registro de Usuario</h2>
-        <form action="{{ route('validar-registro') }}" method="POST">
+        <form action="{{ route('registrar-usuario') }}" method="POST">
             @csrf
+            <label for="usuario_nombre">Nombre de usuario:</label>
+            <input type="text" id="name" name="name" required>
+
             <label for="usuario_correo">Correo Electrónico:</label>
-            <input type="email" id="usuario_correo" name="usuario_correo" required>
+            <input type="email" id="email" name="email" required>
 
             <label for="usuario_contraseña">Contraseña:</label>
-            <input type="password" id="usuario_contraseña" name="usuario_contraseña" required>
+            <input type="password" id="password" name="password" required>
 
-            <label for="id_rol">Rol:</label>
-            <select name="id_rol" id="id_rol" required>
-                <option value="1">Administrador</option>
-                <option value="2">Docente</option>
-                <option value="3">Alumno</option>
-                </select>
+            <label for="tipo">Rol:</label>
+            <select name="tipo" id="tipo" required>
+                <option value="admin">Administrador</option>
+                <option value="docente">Docente</option>
+                <option value="alumno">Alumno</option>
+            </select>
+
+            <label for="nombre">Nombre(s):</label>
+            <input type="text" id="nombre" name="nombre">
+
+            <label for="apellidos">Apellido(s):</label>
+            <input type="text" id="apellidos" name="apellidos">
+
+            <label for="edad">Edad:</label>
+            <input type="number" id="edad" name="edad">
+
+            <h3>Alumno Datos</h3>
+            <label for="numero_control">Numero de control:</label>
+            <input type="text" id="numero_control" name="numero_control">
+
+            <label for="semestre">Semestre:</label>
+            <input type="number" id="semestre" name="semestre">
+
+            <select name="carrera" id="carrera" required>
+                <option value="Sistemas computacionales">ISC</option>
+                <option value="Logistica">Logistica</option>
+                <option value="Gestion empresarial">Gestion</option>
+            </select>
+
+            <h3>Docente Datos</h3>
+            <label for="numero_trabajador">Numero de trabajador:</label>
+            <input type="text" id="numero_trabajador" name="numero_trabajador">
 
             <button type="submit">Registrarse</button>
+
         </form>
     </div>
 </body>

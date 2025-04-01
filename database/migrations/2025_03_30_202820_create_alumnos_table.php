@@ -16,6 +16,8 @@ return new class extends Migration
         Schema::create('alumnos', function (Blueprint $table) {
             $table->id('id_alumno'); // Clave primaria
             $table->foreignId('id_usuario')->constrained('users')->cascadeOnDelete(); // Clave foránea correcta
+            $table->string('alumno_nombre', 100);
+            $table->string('alumno_apellidos',100);
             $table->integer('alumno_edad')->check('alumno_edad >= 15');
             $table->string('carrera', 100);
             $table->integer('semestre');

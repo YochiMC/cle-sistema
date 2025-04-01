@@ -2,7 +2,9 @@
 
 namespace Database\Seeders;
 
+use App\Models\Docente;
 use App\Models\User;
+use App\Models\Alumno;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Role;
@@ -26,6 +28,36 @@ class UserSeeder extends Seeder
         Permission::create(['name' => 'ver docentes']);
         Permission::create(['name' => 'ver grupos']);
 
+        $roleAdmin = Role::create(['name' => 'coordinador']);
+        $roleAdmin->syncPermissions([
+            'ver usuarios',
+            'crear usuarios',
+            'eliminar usuarios',
+            'editar usuarios',
+
+            'ver alumnos',
+            'ver docentes',
+            'ver grupos'
+        ]);
+
+        $roleAdmin_ = Role::create(['name' => 'admin']);
+        $roleAdmin_->syncPermissions([
+            'ver alumnos',
+            'ver docentes',
+            'ver grupos'
+        ]);
+
+        $roleAlumno = Role::create(['name' => 'alumno']);
+        $roleAlumno->syncPermissions([
+            'ver grupos'
+        ]);
+
+        $roleDocente = Role::create(['name' => 'docente']);
+        $roleDocente->syncPermissions([
+            'ver alumnos',
+            'ver grupos'
+        ]);
+
         $adminUser = User::query()->create([
             'name' => 'admin_chido',
             'email' => 'admin@admin.com',
@@ -33,9 +65,44 @@ class UserSeeder extends Seeder
             'email_verified_at' => now(),
         ]);
 
-        $roleAdmin = Role::create(['name' => 'coordinador']);
         $adminUser->assignRole($roleAdmin);
-        $permissionsAdmin = Permission::query()->pluck('name');
-        $roleAdmin->syncPermissions($permissionsAdmin);
+
+        $alumnoUser = User::query()->create([
+            'name' => 'alumno',
+            'email' => 'alumno@alumno.com',
+            'password' => bcrypt('alumno123'),
+            'email_verified_at' => now(),
+        ]);
+
+        Alumno::query()->create([
+            'id_alumno' => 21240551,
+            'id_usuario' => $alumnoUser->id,
+            'alumno_nombre' => 'Joseph Alexander',
+            'alumno_apellidos' => 'Martinez Cortes',
+            'alumno_edad' => 20,
+            'carrera' => 'Ingeniería en Sistemas',
+            'semestre' => 8,
+            'id_seguimiento' => 1,
+            'inscrito' => true,
+            'acredita' => false
+        ]);
+
+        $alumnoUser->assignRole($roleAlumno);
+
+        $docenteUser = User::query()->create([
+            'name' => 'docente',
+            'email' => 'docente@docente.com',
+            'password' => bcrypt('docente123'),
+            'email_verified_at' => now(),
+        ]);
+
+        Docente::create([
+            'id_docente' => 11921,
+            'id_usuario' => $docenteUser->id,
+            'docente_nombre' => 'Ana',
+            'docente_apellidos' => 'González Pérez'
+        ]);
+
+        $docenteUser->assignRole($roleDocente);
     }
 }
