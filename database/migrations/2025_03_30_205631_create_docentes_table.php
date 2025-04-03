@@ -18,6 +18,7 @@ return new class extends Migration
             $table->foreignId('id_usuario')->constrained('users')->cascadeOnDelete(); // Clave foránea hacia users
             $table->string('docente_nombre', 100);
             $table->string('docente_apellidos', 100);
+            $table->integer('docente_edad')->check('docente_edad >= 20');
             $table->timestamps();
         });
     }

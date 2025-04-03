@@ -28,6 +28,17 @@ class UserSeeder extends Seeder
         Permission::create(['name' => 'ver docentes']);
         Permission::create(['name' => 'ver grupos']);
 
+        Permission::create(['name' => 'editar alumnos']);
+        Permission::create(['name' => 'editar docentes']);
+        Permission::create(['name' => 'editar grupos']);
+
+        Permission::create(['name' => 'consultar kardex']);
+        Permission::create(['name' => 'inscribirse']);
+
+        Permission::create(['name' => 'crud usuarios']);
+        Permission::create(['name' => 'crud grupos']);
+
+
         $roleAdmin = Role::create(['name' => 'coordinador']);
         $roleAdmin->syncPermissions([
             'ver usuarios',
@@ -37,19 +48,34 @@ class UserSeeder extends Seeder
 
             'ver alumnos',
             'ver docentes',
-            'ver grupos'
+            'ver grupos',
+
+            'editar alumnos',
+            'editar docentes',
+            'editar grupos',
+
+            'crud usuarios',
+            'crud grupos'
         ]);
 
         $roleAdmin_ = Role::create(['name' => 'admin']);
         $roleAdmin_->syncPermissions([
             'ver alumnos',
             'ver docentes',
-            'ver grupos'
+            'ver grupos',
+
+            'editar alumnos',
+            'editar docentes',
+            'editar grupos',
+
+            'crud usuarios',
+            'crud grupos'
         ]);
 
         $roleAlumno = Role::create(['name' => 'alumno']);
         $roleAlumno->syncPermissions([
-            'ver grupos'
+            'consultar kardex',
+            'inscribirse'
         ]);
 
         $roleDocente = Role::create(['name' => 'docente']);
@@ -100,7 +126,8 @@ class UserSeeder extends Seeder
             'id_docente' => 11921,
             'id_usuario' => $docenteUser->id,
             'docente_nombre' => 'Ana',
-            'docente_apellidos' => 'González Pérez'
+            'docente_apellidos' => 'González Pérez',
+            'docente_edad' => 25
         ]);
 
         $docenteUser->assignRole($roleDocente);

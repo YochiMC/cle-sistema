@@ -31,7 +31,7 @@ class CrudController extends Controller
                     'id_alumno' => $request->numero_control,
                     'id_usuario' => $newUser->id,
                     'alumno_nombre' => $request->nombre,
-                    'alumno_apeliidos' => $request->apellidos,
+                    'alumno_apellidos' => $request->apellidos,
                     'alumno_edad' => $request->edad,
                     'carrera' => $request->carrera,
                     'semestre' => $request->semestre,
@@ -71,8 +71,24 @@ class CrudController extends Controller
         //
     }
 
-    public function delete(Request $request)
+    public function delete($id)
     {
-        //
+        $usuario = User::find($id);
+
+        if (!$usuario) {
+            return redirect()->back()->with('error', 'Usuario no encontrado.');
+        }
+
+        // Verificamos el rol del usuario y eliminamos los datos correspondientes
+        if ($usuario->hasRole('alumno')) {
+            Alumno::where('id_usuario', $usuario->id)->delete();
+        } elseif ($usuario->hasRole('docente')) {
+            Docente::where('id_usuario', $usuario->id)->delete();
+        }
+
+        // Eliminamos al usuario y su rol
+        $usuario->delete();
+
+        return redirect()->back()->with('success', 'Usuario eliminado correctamente.');
     }
 }

@@ -1,0 +1,191 @@
+/* Colores */
+:root {
+    --azul: #1B396A;
+    --azul-secundario: #25477d;
+    --naranja: #f19b26;
+    --fondo-claro: linear-gradient(to bottom, #f0f4f8, #d9e2ec);
+    --blanco: #ffffff
+}
+
+/* Estilos generales */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    overflow: hidden;
+    background: var(--fondo-claro);
+    color: #ffffff;
+}
+/* Encabezado */
+header {
+    width: 130%;
+    background: linear-gradient(90deg, var(--blanco), var(--blanco));
+    color: white;
+    padding: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;  /* Alinear el contenido hacia la izquierda */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-bottom: 5px solid var(--naranja);
+    position: relative;
+}
+
+/* Logo contenedor */
+.logo {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;  /* Alinear los logos hacia la izquierda */
+    gap: 20px;  /* Espacio entre los logos */
+    margin-left: 30px;  /* Añadir un margen de 30px desde el lado izquierdo */
+    padding-left: 30px;  /* Añadir un relleno izquierdo adicional para alejar más del borde */
+}
+
+/* Tamaño y efectos del logo */
+.logo img,
+.redirect-image {
+    height: 50px;
+    transition: transform 0.3s ease-in-out, filter 0.3s;
+    border-radius: 2px;
+}
+
+/* Efecto al pasar el mouse */
+.logo img:hover,
+.redirect-image:hover {
+    transform: scale(1.1); /* Aumenta el tamaño al pasar el mouse */
+    filter: brightness(1.2); /* Aumenta el brillo */
+}
+
+/* Iconos a la derecha */
+.right-icons {
+    position: absolute;
+    top: 25px;
+    right: 30px;
+    display: flex;
+    gap: 15px;
+}
+
+/* Efecto de iconos */
+.icon-container {
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    transition: background 0.3s, transform 0.3s;
+}
+
+/* Efecto hover con animación de rebote */
+.icon-container:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(1.1);
+    filter: brightness(1.2);
+    animation: bounce 0.5s ease-in-out;
+}
+
+/* Estilos de los iconos */
+.icon {
+    font-size: 25px;
+    cursor: pointer;
+    color: white;
+    transition: color 0.2s, transform 0.3s;
+}
+
+.icon:hover {
+    color: var(--naranja);
+    transform: rotate(10deg) scale(1.2);
+    animation: blink 0.3s infinite alternate;
+}
+
+/* Contenedor principal */
+.container {
+    display: flex;
+    flex: 1;
+    height: calc(100vh - 60px);
+    overflow: hidden;
+}
+
+/* Menú lateral */
+.menu-icons {
+    width: 20px;
+    background-color: var(--azul);
+    padding: 10px;
+
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.menu-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px;
+    margin: 7px 0;
+    cursor: pointer;
+    border-radius: 0px;
+    transition: background-color 0.3s, transform 0.2s;
+    width: 20px;
+    height: 20px;
+    background: var(--azul);
+}
+
+.menu-item:hover {
+    background-color: var(--azul);
+    transform: scale(1.1);
+}
+
+.menu-item .icon {
+    font-size: 55px;
+    color: white;
+    transition: transform 0.3s;
+}
+
+.menu-item:hover .icon {
+    transform: scale(1.5);
+}
+
+/* Texto del menú */
+.menu-text {
+    position: absolute;
+    left: 35px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: var(--azul);
+    color: white;
+    padding: 9px 30px;
+    text-align: center;
+    white-space: nowrap;
+    opacity: 0;
+    border-radius: 0px;
+    transition: opacity 0.3s ease-in-out;
+    display: none; /* Ocultar por defecto */
+}
+
+.menu-item:hover .menu-text {
+    opacity: 1;
+    display: block; /* Solo se muestra al hacer hover */
+}
+
+/* Contenedor de contenido */
+.content-container {
+    flex-grow: 1;
+    padding: 20px;
+    background-color: #ffffff;
+
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    overflow-y: auto;
+}
+
+.content-page {
+    display: none;
+}
+
+.content-page.active {
+    display: block;
+}
+
+.section{
+    display: flex;
+}
+

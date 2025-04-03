@@ -1,6 +1,6 @@
 <x-layout_prin>
-    <x-slot:title>Kardex</x-slot>
-    <x-slot:estilo>{{ asset('css/kardex.css') }}</x-slot:estilo>
+    <x-slot:title>Dashboard</x-slot>
+    <x-slot:estilo>{{ asset('css/inicio.css') }}</x-slot:estilo>
     <div class="container-contenido">
         <div class="profile-header">
             <img src={{ asset('resources/img/GATO.jpeg') }} alt="Foto de perfil">

@@ -1,50 +1,56 @@
-document.addEventListener("DOMContentLoaded", function() {
-    const btnLeft = document.querySelector(".btn-left"),
-      btnRight = document.querySelector(".btn-right"),
-      slider = document.querySelector("#slider"),
-      sliderSection = document.querySelectorAll(".slider-section");
 
+let currentIndex = 0;
+const items = document.querySelectorAll('.carrusel-item');
+const indicator = document.getElementById('indicator');
 
-btnLeft.addEventListener("click", e => moveToLeft())
-btnRight.addEventListener("click", e => moveToRight())
-
-setInterval(() => {
-    moveToRight()
-}, 3000);
-
-
-let operacion = 0,
-    counter = 0,
-    widthImg = 100 / sliderSection.length;
-
-function moveToRight() {
-    if (counter >= sliderSection.length-1) {
-        counter = 0;
-        operacion = 0;
-        slider.style.transform = `translate(-${operacion}%)`;
-        slider.style.transition = "none";
-        return;
-    } 
-    counter++;
-    operacion = operacion + widthImg;
-    slider.style.transform = `translate(-${operacion}%)`;
-    slider.style.transition = "all ease .6s"
+// Función para mostrar la imagen correspondiente
+function showImage(index) {
+    // Ocultamos todas las imágenes
+    items.forEach(item => item.style.display = 'none');
     
-}  
+    // Mostramos la imagen correspondiente
+    items[index].style.display = 'block';
 
-function moveToLeft() {
-    counter--;
-    if (counter < 0 ) {
-        counter = sliderSection.length-1;
-        operacion = widthImg * (sliderSection.length-1)
-        slider.style.transform = `translate(-${operacion}%)`;
-        slider.style.transition = "none";
-        return;
-    } 
-    operacion = operacion - widthImg;
-    slider.style.transform = `translate(-${operacion}%)`;
-    slider.style.transition = "all ease .6s"
-    
-    
-}   
-})
+    // Actualizamos los puntos
+    const dots = document.querySelectorAll('.dot');
+    dots.forEach(dot => dot.classList.remove('active'));
+    dots[index].classList.add('active');
+}
+
+// Función para crear los puntos (indicadores) dinámicamente
+function createIndicators() {
+    for (let i = 0; i < items.length; i++) {
+        const dot = document.createElement('span');
+        dot.classList.add('dot');
+        indicator.appendChild(dot);
+    }
+}
+
+// Agregar eventos para los botones de navegación
+document.getElementById('next').addEventListener('click', () => {
+    currentIndex = (currentIndex + 1) % items.length; // Avanza al siguiente índice
+    showImage(currentIndex);
+});
+
+document.getElementById('prev').addEventListener('click', () => {
+    currentIndex = (currentIndex - 1 + items.length) % items.length; // Retrocede al índice anterior
+    showImage(currentIndex);
+});
+
+// Cambiar imagen usando las teclas del teclado
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight') {
+        currentIndex = (currentIndex + 1) % items.length;
+    } else if (e.key === 'ArrowLeft') {
+        currentIndex = (currentIndex - 1 + items.length) % items.length;
+    }
+    showImage(currentIndex);
+});
+
+// Inicializar el carrusel
+createIndicators(); // Crear los puntos
+showImage(currentIndex); // Mostrar la primera imagen
+
+
+
+

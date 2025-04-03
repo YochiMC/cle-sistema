@@ -16,7 +16,7 @@ class Docente extends Model
     public $timestamps = true;
 
     protected $fillable = [
-        'id_docente', 'id_usuario', 'docente_nombre', 'docente_apellidos'
+        'id_docente', 'id_usuario', 'docente_nombre', 'docente_apellidos', 'docente_edad'
     ];
 
     // Relación con User (un docente es un usuario)
