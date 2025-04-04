@@ -13,7 +13,7 @@ class UserController extends Controller
     public function show_users()
     {
         $usuarios = User::all();
-        return view('general.gestion_usuarios', compact('usuarios'));
+        return view('general.registro', compact('usuarios'));
     }
 
     public function show_user()
