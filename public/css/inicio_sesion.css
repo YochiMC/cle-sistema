@@ -13,82 +13,116 @@
     box-sizing: border-box;
 }
 
-body {
-    background-color: var(--blanco);
-    color: #333;
-    font-family: Arial, sans-serif;
-}
-
 /* ------------------------- */
-/* ENCABEZADO CON LOGOS */
+/* ENCABEZADO CON LÍNEA NARANJA MEJORADA */
 /* ------------------------- */
 .encabezadoI {
-    background-color: var(--azul);
-    padding: 15px 20px;
     position: relative;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
     display: flex;
     justify-content: center;
-    border-bottom: 3px solid var(--naranja); /* Línea divisoria naranja */
+    background-color: var(--azul-secundario); /* Fondo más suave */
+
+    border-bottom: 2px solid var(--naranja); /* Borde inferior sutil */
 }
 
+.encabezadoI::after {
+    content: '';
+    display: block;
+    position: absolute;
+    bottom: -2px; /* Línea un poco por debajo */
+    left: 0;
+    width: 100%;
+    height: 5px; /* Línea un poco más delgada */
+    background-color: var(--naranja);
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2); /* Sombra sutil */
+}
+
+/* ------------------------- */
+/* LOGOS CON FONDO MEJORADO */
+/* ------------------------- */
 .logosPart {
     display: flex;
     align-items: center;
-    gap: 30px;
-    background-color: var(--blanco);
-    padding: 15px;
-    border-radius: 8px;
-    border: 2px solid var(--azul-secundario); /* Marco azul */
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    gap: 20px; /* Espacio más pequeño entre los logos */
+    background-color: var(--blanco); /* Fondo blanco */
+    padding: 10px;
+    border-radius: 15px; /* Bordes redondeados */
+    box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.1); /* Sombra más sutil */
 }
 
 .logosPart img {
-    height: 60px;
+    height: 35px; /* Logos más pequeños */
     width: auto;
-    max-width: 160px;
+    max-width: 130px; /* Ajuste más pequeño para evitar estiramientos */
     object-fit: contain;
+    transition: transform 0.3s ease-in-out; /* Efecto suave al pasar el mouse */
+}
+
+.logosPart img:hover {
+    transform: scale(1.05); /* Zoom más sutil */
 }
 
 /* ------------------------- */
 /* FORMULARIO DE INICIO DE SESIÓN */
 /* ------------------------- */
+/* Evita el desplazamiento en la página */
+html, body {
+    height: 100%;
+    overflow: hidden; /* Deshabilita el desplazamiento de la página */
+    margin: 0;
+}
+
+/* Fondo */
 .fondo {
     background-image: url("https://media.assets.medline.eu/www/media/amasty/blog/cache/B/A/1200/500/BAN_Language_Learning.jpg");
     background-size: cover;
     background-position: center;
-    min-height: calc(100vh - 83px);
+    height: 100%; /* Se asegura que el fondo ocupe toda la pantalla */
+    overflow: hidden; /* Evita el desbordamiento */
 }
 
+/* Contenedor central (se mueve el formulario hacia abajo) */
 .isDL {
     display: flex;
-    align-items: center;
+    align-items: center; /* Cambiado de flex-start a center para centrarlo verticalmente */
     justify-content: center;
     height: 100%;
-    padding: 40px 20px;
+    padding: 30px 20px 100px 20px; /* Ajustado el padding para moverlo más abajo */
     backdrop-filter: blur(3px);
+    overflow: hidden;
 }
 
+/* El formulario (se ajusta el padding para moverlo hacia abajo y se aumenta su tamaño) */
 .inicioSesion {
     width: 100%;
-    max-width: 500px;
-    padding: 40px;
+    max-width: 600px; /* Aumentado el max-width para que el formulario sea más grande */
+    padding: 40px 40px; /* Aumentado el padding para dar más espacio dentro del formulario */
     border-radius: 20px;
     background: rgba(255, 255, 255, 0.9);
     box-shadow: 0 10px 35px rgba(0, 0, 0, 0.15);
+    overflow: hidden;
 }
 
 /* ------------------------- */
 /* ELEMENTOS DEL FORMULARIO */
 /* ------------------------- */
+/* ------------------------- */
+/* MEJORA DE LA CAJA PARA CORREO Y CONTRASEÑA */
+/* ------------------------- */
 .renglonSesion {
     display: flex;
     align-items: center;
-    margin-bottom: 20px;
-    padding: 12px 15px;
+    margin-bottom: 15px; /* Espacio reducido */
+    padding: 10px 12px; /* Menos padding */
     border-radius: 10px;
     background-color: rgba(255, 255, 255, 0.7);
     border: 1px solid rgba(27, 57, 106, 0.15);
+    transition: all 0.3s ease; /* Transición suave al interactuar */
+}
+
+.renglonSesion:focus-within {
+    border-color: var(--naranja); /* Cambio de color del borde cuando se hace focus */
+    box-shadow: 0 0 10px rgba(241, 155, 38, 0.5); /* Sombra sutil al hacer focus */
 }
 
 .inInicio {
@@ -96,35 +130,56 @@ body {
     border: none;
     background: transparent;
     color: #333;
-    font-size: 16px;
-    padding-left: 12px;
+    font-size: 14px; /* Texto más pequeño */
+    padding-left: 10px;
+    outline: none; /* Elimina el contorno predeterminado */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Transiciones suaves */
 }
 
+/* Cambio de color del borde y la sombra cuando el campo está enfocado */
+.inInicio:focus {
+    border-color: var(--naranja);
+    box-shadow: 0 0 5px rgba(241, 155, 38, 0.5);
+}
+
+/* Mejora la apariencia de las cajas de entrada */
+.inicioSesion {
+    width: 100%;
+    max-width: 450px;
+    padding: 25px 30px; /* Ajuste de padding */
+    border-radius: 15px;
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* ------------------------- */
+/* AGREGANDO ESTILOS AL BOTÓN DE NAVEGAR */
+/* ------------------------- */
 .navegar {
     width: 100%;
-    padding: 12px;
+    padding: 10px;
     background: linear-gradient(90deg, var(--naranja), #f8c515);
     color: var(--azul);
     font-weight: bold;
     border: none;
     border-radius: 30px;
     cursor: pointer;
+    transition: background 0.3s ease; /* Efecto suave al hacer hover */
+}
+
+.navegar:hover {
+    background: linear-gradient(90deg, #f8c515, var(--naranja)); /* Cambio de dirección del gradiente al hacer hover */
 }
 
 /* ------------------------- */
-/* ENLACES CENTRADOS */
+/* FORMATO DE LOS ENLACES DE "OLVIDÉ MI CONTRASEÑA" */
 /* ------------------------- */
-.contraOlvi {
-    text-align: center; /* Centrado horizontal */
-    margin: 15px 0;
-    width: 100%;
-}
-
 .contraOlvi a {
     color: var(--azul);
     text-decoration: none;
-    display: inline-block; /* Para mejor control del centrado */
-    padding: 5px 0;
+    display: inline-block;
+    padding: 4px 0;
+    font-weight: 600; /* Negrita para los enlaces */
 }
 
 .contraOlvi a:hover {
@@ -137,38 +192,38 @@ body {
 /* ------------------------- */
 @media (max-width: 768px) {
     .logosPart {
-        gap: 20px;
-        padding: 12px;
+        gap: 15px;
+        padding: 10px;
     }
-    
+
     .logosPart img {
-        height: 50px;
-        max-width: 140px;
+        height: 35px;
+        max-width: 120px;
     }
-    
+
     .inicioSesion {
-        padding: 30px;
+        padding: 20px 30px;
     }
 }
 
 @media (max-width: 480px) {
     .encabezadoI {
-        padding: 12px 15px;
+        padding: 10px 12px;
     }
-    
+
     .logosPart {
         flex-wrap: wrap;
         justify-content: center;
-        gap: 10px;
-        padding: 10px;
+        gap: 8px;
+        padding: 8px;
     }
-    
+
     .logosPart img {
-        height: 40px;
-        max-width: 120px;
+        height: 30px;
+        max-width: 100px;
     }
-    
+
     .inicioSesion {
-        padding: 25px 20px;
+        padding: 20px 15px;
     }
 }
