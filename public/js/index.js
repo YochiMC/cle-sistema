@@ -4,13 +4,13 @@ const indicator = document.getElementById('indicator');
 let autoSlideInterval;
 
 // Configuración del tiempo de auto-desplazamiento (en milisegundos)
-const AUTO_SLIDE_INTERVAL = 5000; // 5 segundos
+const AUTO_SLIDE_INTERVAL = 8000; // 5 segundos
 
 // Función para mostrar la imagen correspondiente
 function showImage(index) {
     // Ocultamos todas las imágenes
     items.forEach(item => item.style.display = 'none');
-    
+
     // Mostramos la imagen correspondiente
     items[index].style.display = 'block';
 
