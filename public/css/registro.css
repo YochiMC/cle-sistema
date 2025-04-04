@@ -14,6 +14,7 @@
     width: 100%;
     margin-top: 20px;
     color: #333333; /* Cambio solo esta línea (color de texto) */
+    text-align: center;
 }
 
 table {
@@ -47,4 +48,17 @@ input {
     padding: 5px;
     margin: 5px;
     width: 200px;
+}
+
+select {
+    padding: 10px;
+    margin: 10px auto;
+    width: 220px;
+    border: 1px solid var(--azul-secundario);
+    border-radius: 5px;
+    font-size: 16px;
+    background-color: white;
+    color: var(--azul);
+    text-align: center;
+    display: block;
 }

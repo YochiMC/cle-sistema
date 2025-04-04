@@ -25,7 +25,10 @@
                     src="https://leon.tecnm.mx/wp-content/themes/twentysixteen/img/logo_itl.png"
                     alt=""></a>
         </div>
-
+        <div class="encabezadoI">
+            <!-- tu contenido del encabezado -->
+            <div class="linea-divisoria"></div>
+        </div>
     </section>
 
     <main class="fondo">
@@ -67,7 +70,7 @@
             </div>
         </section>
     </main>
-    
+
 </body>
 
 </html>
