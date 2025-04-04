@@ -84,7 +84,7 @@
                 </div>
             @endcan
             @can('crud usuarios')
-                <div class="menu-item" onclick="mostrarContenido('usuarios')">
+                <div class="menu-item" onclick="window.location.href='{{route('general.registro')}}'">
                     <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="white"
                         class="bi bi-people" viewBox="0 0 16 16">
                         <path

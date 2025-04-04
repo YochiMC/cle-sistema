@@ -1,3 +1,12 @@
+:root {
+    --azul: #1B396A;
+    --azul-secundario: #25477d;
+    --naranja: #f19b26;
+    --fondo-claro: linear-gradient(to bottom, #f0f4f8, #d9e2ec);
+    --negro: #000000;
+    --blanco: #ffffff;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -5,126 +14,81 @@
 }
 
 body {
-    background-color: #f4f4f9; /* Fondo neutro */
-    color: #333; /* Texto general */
+    background-color: var(--blanco);
+    color: #333;
+    font-family: Arial, sans-serif;
 }
 
-.encabezadoI{
+/* ------------------------- */
+/* ENCABEZADO CON LOGOS */
+/* ------------------------- */
+.encabezadoI {
+    background-color: var(--azul);
+    padding: 15px 20px;
+    position: relative;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: center;
+    border-bottom: 3px solid var(--naranja); /* Línea divisoria naranja */
+}
+
+.logosPart {
     display: flex;
     align-items: center;
-    justify-content: center;
-    background-color: #1B396A;
-    padding: 15px 20px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    gap: 30px;
+    background-color: var(--blanco);
+    padding: 15px;
+    border-radius: 8px;
+    border: 2px solid var(--azul-secundario); /* Marco azul */
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
 
-.encabezadoIM{
-    align-items: center;
-    justify-content: center;
-    font-size: 100%;
-}
-
-
-.logoTec{
-    height: 40px;
+.logosPart img {
+    height: 60px;
     width: auto;
+    max-width: 160px;
+    object-fit: contain;
 }
 
-.logoItl{
-    height: 40px;
-    width: auto;
-}
-
-.edulang{
-    font-size: 40px;
-}
-.edu{
-    color: #f19b26;
-    font-style: italic;
-}
-.lang{
-    color: white;
-    font-style: italic;
-}
-
-.linea{
-    border: none; /* Elimina el borde predeterminado */
-    height: 2px; /* Grosor de la línea */
-    border: solid #f8eb15;
-    background-color: #f8eb15; /* Color de la línea */
-    
-}
-
-.inicioEdu{
-    text-decoration: none;
-}
-
+/* ------------------------- */
+/* FORMULARIO DE INICIO DE SESIÓN */
+/* ------------------------- */
 .fondo {
     background-image: url("https://media.assets.medline.eu/www/media/amasty/blog/cache/B/A/1200/500/BAN_Language_Learning.jpg");
-    background-size: cover; /* Para que el fondo ocupe todo el contenedor */
-    background-repeat: no-repeat;
+    background-size: cover;
     background-position: center;
+    min-height: calc(100vh - 83px);
 }
 
 .isDL {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 100vh;
-    background-color: rgba(255, 255, 255, 0.3); /* Fondo semitransparente para el desenfoque */
-    backdrop-filter: blur(8px); /* Aplica el desenfoque */
+    height: 100%;
+    padding: 40px 20px;
+    backdrop-filter: blur(3px);
 }
 
 .inicioSesion {
     width: 100%;
-    max-width: 500px; /* Tamaño aumentado */
+    max-width: 500px;
     padding: 40px;
     border-radius: 20px;
-    background: rgba(255, 255, 255, 0.85);
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
-    text-align: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.15);
 }
 
-.inicioSesion:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
-}
-
-.boton{
-    align-items: center;
-    justify-content: center;
-}
-
+/* ------------------------- */
+/* ELEMENTOS DEL FORMULARIO */
+/* ------------------------- */
 .renglonSesion {
     display: flex;
     align-items: center;
     margin-bottom: 20px;
-    padding: 12px;
+    padding: 12px 15px;
     border-radius: 10px;
-    background-color: rgba(27, 57, 106, 0.1);
-    border: 1px solid rgba(27, 57, 106, 0.2);
-}
-
-.inicioST{
-    font-family: 'Montserrat', sans-serif;
-    font-size: 24px;
-    color: #ffffff;
-    margin-bottom: 5px;
-}
-
-.txtRelleno{
-    font-size: 20px;
-    font-weight: bold;
-    margin-top: 15px;
-}
-
-.contraOlvi{
-    font-size: 15px;
-    margin-top: 15px;
-    margin-bottom: 15px;
-    color: #fff;
-    text-decoration: none;
+    background-color: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(27, 57, 106, 0.15);
 }
 
 .inInicio {
@@ -133,63 +97,78 @@ body {
     background: transparent;
     color: #333;
     font-size: 16px;
-    outline: none;
-    padding-left: 10px;
+    padding-left: 12px;
 }
 
-.inInicio::placeholder {
-    color: #777;
-}
-
-/* Iconos dentro del formulario */
-.icono {
-    width: 90%;
-    height: 90%;
-    color: #1B396A;
-}
-
-/* Botón */
 .navegar {
-    width: 20%;
-    padding: 10px 0; /* Tamaño reducido */
-    background: linear-gradient(90deg, #f19b26, #f8eb15);
-    color: #1B396A;
-    font-size: 16px;
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(90deg, var(--naranja), #f8c515);
+    color: var(--azul);
     font-weight: bold;
-    text-transform: uppercase;
     border: none;
     border-radius: 30px;
     cursor: pointer;
-    transition: background 0.3s ease, transform 0.2s ease;
 }
 
-.navegar:hover {
-    background: linear-gradient(90deg, #f8eb15, #f19b26);
-    transform: translateY(-3px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-}
-
-.logosIS {
-    width: 30px;
-}
-
-.logoG {
-    height: 300px;
-}
-
-/* Enlace de recuperar contraseña */
+/* ------------------------- */
+/* ENLACES CENTRADOS */
+/* ------------------------- */
 .contraOlvi {
-    margin-top: 15px;
-    font-size: 14px;
-    text-align: center;
+    text-align: center; /* Centrado horizontal */
+    margin: 15px 0;
+    width: 100%;
 }
 
 .contraOlvi a {
-    color: #1B396A;
-    text-decoration: none; /* Sin subrayado */
-    transition: color 0.3s ease;
+    color: var(--azul);
+    text-decoration: none;
+    display: inline-block; /* Para mejor control del centrado */
+    padding: 5px 0;
 }
 
 .contraOlvi a:hover {
-    color: #f19b26;
+    color: var(--naranja);
+    text-decoration: underline;
+}
+
+/* ------------------------- */
+/* DISEÑO RESPONSIVE */
+/* ------------------------- */
+@media (max-width: 768px) {
+    .logosPart {
+        gap: 20px;
+        padding: 12px;
+    }
+    
+    .logosPart img {
+        height: 50px;
+        max-width: 140px;
+    }
+    
+    .inicioSesion {
+        padding: 30px;
+    }
+}
+
+@media (max-width: 480px) {
+    .encabezadoI {
+        padding: 12px 15px;
+    }
+    
+    .logosPart {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+        padding: 10px;
+    }
+    
+    .logosPart img {
+        height: 40px;
+        max-width: 120px;
+    }
+    
+    .inicioSesion {
+        padding: 25px 20px;
+    }
 }

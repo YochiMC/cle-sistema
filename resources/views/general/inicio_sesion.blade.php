@@ -14,27 +14,20 @@
 <body>
     <section class="logosGM">
         <div class="logosPart">
-            <a href="https://www.gob.mx/"><img
-                    src="https://i0.wp.com/celaya.tecnm.mx/wp-content/uploads/2021/02/gob-logo-e1584515967701.png?w=1200&ssl=1"
-                    alt="GobiernoMexico"></a>
+
             <a href="https://www.gob.mx/sep"><img
-                    src="https://i0.wp.com/celaya.tecnm.mx/wp-content/uploads/2021/02/edu-header.png?w=1116&ssl=1"
+                    src="https://leon.tecnm.mx/wp-content/uploads/2025/03/pleca-gobv4.png"
                     alt="educacion"></a>
             <a href="https://www.tecnm.mx/"><img
-                    src="https://i0.wp.com/celaya.tecnm.mx/wp-content/uploads/2021/02/tecnm-header-1.png?w=1116&ssl=1"
+                    src="https://leon.tecnm.mx/wp-content/themes/twentysixteen/img/pleca_tecnm.jpg"
+                    alt=""></a>
+            <a href="https://leon.tecnm.mx/"><img
+                    src="https://leon.tecnm.mx/wp-content/themes/twentysixteen/img/logo_itl.png"
                     alt=""></a>
         </div>
 
-        <section class="logosPart">
-            <a href="https://leon.tecnm.mx/"><img src="https://www.itleon.edu.mx/itl-logo.jpg" alt="itl"></a>
-        </section>
-
     </section>
-    <header class="encabezadoIM">
-        <a href="{{ route('index') }}" class="inicioEdu">
-            <h1 class="edulang"><span class="edu">Edu</span><span class="lang">Lang</span></h1>
-        </a>
-    </header>
+
     <main class="fondo">
         <section class="isDL">
             <div class="inicioSesion">
@@ -64,9 +57,9 @@
                     </div>
                     <div class="boton">
                         <button type="submit" class="navegar"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="icono_puerta" viewBox="0 0 16 16">
-                            <path d="M8.5 10c-.276 0-.5-.448-.5-1s.224-1 .5-1 .5.448.5 1-.224 1-.5 1"/>
-                            <path d="M10.828.122A.5.5 0 0 1 11 .5V1h.5A1.5 1.5 0 0 1 13 2.5V15h1.5a.5.5 0 0 1 0 1h-13a.5.5 0 0 1 0-1H3V1.5a.5.5 0 0 1 .43-.495l7-1a.5.5 0 0 1 .398.117M11.5 2H11v13h1V2.5a.5.5 0 0 0-.5-.5M4 1.934V15h6V1.077z"/>
-                          </svg></button>
+                                <path d="M8.5 10c-.276 0-.5-.448-.5-1s.224-1 .5-1 .5.448.5 1-.224 1-.5 1" />
+                                <path d="M10.828.122A.5.5 0 0 1 11 .5V1h.5A1.5 1.5 0 0 1 13 2.5V15h1.5a.5.5 0 0 1 0 1h-13a.5.5 0 0 1 0-1H3V1.5a.5.5 0 0 1 .43-.495l7-1a.5.5 0 0 1 .398.117M11.5 2H11v13h1V2.5a.5.5 0 0 0-.5-.5M4 1.934V15h6V1.077z" />
+                            </svg></button>
                     </div>
                     <p class="contraOlvi"><a href="">¿Olvidaste tu contraseña?</a></p>
                     <p class="contraOlvi"><a href="">¿Necesitas ayuda?</a></p>
@@ -74,6 +67,7 @@
             </div>
         </section>
     </main>
+    
 </body>
-</html>
 
+</html>
