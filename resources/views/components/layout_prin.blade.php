@@ -49,7 +49,7 @@
     <div class="container">
         <!-- Contenedor izquierdo para los iconos -->
         <div class="menu-icons">
-            <div class="menu-item" onclick="loadContent('inicio.html')">
+            <div class="menu-item" onclick="window.location.href='{{route('general.dashboard')}}'">
                 <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="white" class="bi bi-house"
                     viewBox="0 0 16 16">
                     <path

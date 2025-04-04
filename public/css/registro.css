@@ -1,0 +1,50 @@
+:root {
+    --azul: #1B396A;
+    --azul-secundario: #25477d;
+    --naranja: #f19b26;
+    --fondo-claro: linear-gradient(to bottom, #f0f4f8, #d9e2ec);
+}
+
+.container- {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    display: inline-block;
+    width: 100%;
+    margin-top: 20px;
+    color: #333333; /* Cambio solo esta línea (color de texto) */
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    border: 1px solid var(--accent-color);
+    padding: 10px;
+    text-align: center;
+}
+
+th {
+    background-color: var(--naranja);
+    color: var(--azul);
+}
+
+button {
+    margin-top: 10px;
+    padding: 10px;
+    background-color: var(--azul);
+    color: var(--blanco); /* Nota: Esto dejaría el texto del botón en azul (poco visible) */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+input {
+    padding: 5px;
+    margin: 5px;
+    width: 200px;
+}

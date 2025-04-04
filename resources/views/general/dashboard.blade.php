@@ -1,5 +1,5 @@
 <x-layout_prin>
-    <x-slot:title>Dashboard</x-slot>
+    <x-slot:title>Dashboard</x-slot:title>
     <x-slot:estilo>{{ asset('css/inicio.css') }}</x-slot:estilo>
     <div class="container-contenido">
         <div class="profile-header">
