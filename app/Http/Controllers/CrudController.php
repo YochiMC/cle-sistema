@@ -49,7 +49,8 @@ class CrudController extends Controller
                     'id_docente' => $request->numero_trabajador,
                     'id_usuario' => $newUser->id,
                     'docente_nombre' => $request->nombre,
-                    'docente_apellidos' => $request->apellidos
+                    'docente_apellidos' => $request->apellidos,
+                    'docente_edad' => $request->edad
                 ]);
 
                 $newUser->assignRole('docente');
