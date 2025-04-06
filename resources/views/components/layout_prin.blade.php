@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ $title }}</title>
     <link rel="stylesheet" href={{ asset('css/layout_prin.css') }}>
+    <link rel="stylesheet" href="{{ asset('css/modal.css') }}">
     <link rel="stylesheet" href={{ $estilo }}>
 </head>
 
@@ -49,7 +50,7 @@
     <div class="container">
         <!-- Contenedor izquierdo para los iconos -->
         <div class="menu-icons">
-            <div class="menu-item" onclick="window.location.href='{{route('general.dashboard')}}'">
+            <div class="menu-item" onclick="window.location.href='{{ route('general.dashboard') }}'">
                 <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="white" class="bi bi-house"
                     viewBox="0 0 16 16">
                     <path
@@ -84,7 +85,7 @@
                 </div>
             @endcan
             @can('crud usuarios')
-                <div class="menu-item" onclick="window.location.href='{{route('general.registro')}}'">
+                <div class="menu-item" onclick="window.location.href='{{ route('general.registro') }}'">
                     <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="white"
                         class="bi bi-people" viewBox="0 0 16 16">
                         <path
@@ -120,7 +121,9 @@
                 @csrf
             </form>
         </div>
-        {{ $slot }}
+        <div class="contenido">
+            {{ $slot }}
+        </div>
     </div>
 </body>
 

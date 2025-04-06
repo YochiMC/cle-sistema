@@ -11,7 +11,6 @@ class CrudController extends Controller
 {
     public function create(Request $request)
     {
-
         $newUser = User::query()->create([
             'name' => $request->name,
             'email' => $request->email,
@@ -64,12 +63,38 @@ class CrudController extends Controller
 
     public function read(Request $request)
     {
-        //
+
+        $tipo = $request->input('tipo', 'usuarios'); // default: usuarios
+
+        switch ($tipo) {
+            case 'alumnos':
+                $data = Alumno::paginate(5);
+                break;
+            case 'docentes':
+                $data = Docente::paginate(5);
+                break;
+            default:
+                $data = User::paginate(5);
+                break;
+        }
+
+        return view('general.registro', [
+            'tipo' => $tipo,
+            'datos' => $data
+        ]);
     }
 
-    public function update(Request $request)
+    public function update($id)
     {
-        //
+        $usuario = User::find($id);
+
+        return view('general.actualiza_usuario', [
+            'usuario' => $usuario
+        ]);
+    }
+
+    public function update_user(){
+
     }
 
     public function delete($id)

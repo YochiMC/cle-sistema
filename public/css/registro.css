@@ -62,3 +62,12 @@ select {
     text-align: center;
     display: block;
 }
+
+.opciones{
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}

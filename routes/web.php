@@ -40,20 +40,18 @@ Route::prefix('general')->name('general.')->group(function () {
     Route::view('/foro-respuestas', 'general.foro_respuestas')->name('foro_respuestas');
     Route::view('/placement-test', 'general.placement_test')->name('placement_test');
     Route::view('/inicio-sesion', 'general.inicio_sesion')->name('inicio_sesion');
-    Route::get('/registro', [UserController::class, 'show_users'])->name('registro');
-    Route::get('/gestion_usuarios', [UserController::class, 'show_users'])->name('gestion_usuarios'); //Cambiar esto
     Route::delete('/gestion_usuarios/{id}', [CrudController::class, 'delete'])->name('usuarios.delete'); //Cambiar esto
     Route::view('/realizar-registro', 'general.realizar_registro')->name('realizar_registro');
     Route::view('/resultados-inscripcion', 'general.resultados_inscripcion')->name('resultados_inscripcion');
     Route::view('/resultados-pt', 'general.resultados_pt')->name('resultados_pt');
     Route::get('/dashboard', [UserController::class, 'show_user'])->name('dashboard');
+    Route::get('/registro', [CrudController::class, 'read'])->name('registro');
+    Route::get('/actualiza_usuario/{id}', [CrudController::class, 'update'])->name('actualiza_usuario');
 });
 
 // Login de usuarios
 Route::post('/validar-login', [LoginController::class, 'login'])->name('validar-login');
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout'); // POST es la mejor práctica para logout
-
-
 
 // Crud completo
 Route::post('registrar-usuario', [CrudController::class, 'create'])->name('registrar-usuario');
