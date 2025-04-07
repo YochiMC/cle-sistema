@@ -71,3 +71,28 @@ select {
     align-items: center;
     gap: 20px;
 }
+
+.gestionar{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.form-agregar{
+    display: flex;
+    flex-direction: column;
+}
+
+.form-agregar .contenedor-info-general{
+    display: flex;
+}
+
+.form-agregar .contenedor-info-alumno{
+    display: flex;
+}
+
+.form-agregar .contenedor-info-docente{
+    display: flex;
+}
+

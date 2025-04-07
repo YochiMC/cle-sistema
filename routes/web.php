@@ -30,28 +30,28 @@ Route::prefix('alumno')->name('alumno.')->middleware('auth')->group(function () 
 
 // Grupo para ADMINISTRADORES (también con middleware 'auth')
 Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
-    Route::view('/grupos', 'administrador.grupos_finales')->name('grupos');
-    Route::view('/alumnos', 'administrador.informacion_alumnados')->name('alumnos');
+    // Crud Alumno - completo
+    Route::post('>/registrar-usuario', [CrudController::class, 'create'])->name('registrar-usuario');
+    Route::delete('/borrar_usuarios/{id}', [CrudController::class, 'delete'])->name('usuarios.delete');
+    Route::get('/registro', [CrudController::class, 'read'])->name('registro');
+    Route::get('/actualiza_usuario/{id}', [CrudController::class, 'update'])->name('actualiza_usuario');
+    Route::post('/update_alumno/{tipo}/{id_alumno}', [CrudController::class, 'update_alumno'])->name('update_alumno');
+    Route::post('/update_docente/{tipo}/{id_docente}', [CrudController::class, 'update_docente'])->name('update_docente');
+});
+
+// Grupo para Vistas Generales con auttenticación
+Route::prefix('general')->name('general.')->middleware('auth')->group(function () {
+    Route::get('/dashboard', [UserController::class, 'show_user'])->name('dashboard');
 });
 
 // Grupo para Vistas Generales
 Route::prefix('general')->name('general.')->group(function () {
-    Route::view('/foro', 'general.foro')->name('foro');
-    Route::view('/foro-respuestas', 'general.foro_respuestas')->name('foro_respuestas');
-    Route::view('/placement-test', 'general.placement_test')->name('placement_test');
     Route::view('/inicio-sesion', 'general.inicio_sesion')->name('inicio_sesion');
-    Route::delete('/gestion_usuarios/{id}', [CrudController::class, 'delete'])->name('usuarios.delete'); //Cambiar esto
-    Route::view('/realizar-registro', 'general.realizar_registro')->name('realizar_registro');
-    Route::view('/resultados-inscripcion', 'general.resultados_inscripcion')->name('resultados_inscripcion');
-    Route::view('/resultados-pt', 'general.resultados_pt')->name('resultados_pt');
-    Route::get('/dashboard', [UserController::class, 'show_user'])->name('dashboard');
-    Route::get('/registro', [CrudController::class, 'read'])->name('registro');
-    Route::get('/actualiza_usuario/{id}', [CrudController::class, 'update'])->name('actualiza_usuario');
+
+    // Login y logout de usuarios
+    Route::post('/validar-login', [LoginController::class, 'login'])->name('validar-login');
+    Route::post('/logout', [LoginController::class, 'logout'])->name('logout'); // POST es la mejor práctica para logout
 });
 
-// Login de usuarios
-Route::post('/validar-login', [LoginController::class, 'login'])->name('validar-login');
-Route::post('/logout', [LoginController::class, 'logout'])->name('logout'); // POST es la mejor práctica para logout
 
-// Crud completo
-Route::post('registrar-usuario', [CrudController::class, 'create'])->name('registrar-usuario');
+

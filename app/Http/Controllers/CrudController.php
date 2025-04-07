@@ -57,14 +57,14 @@ class CrudController extends Controller
                 break;
         }
 
-        return redirect(route('general.registro'));
+        return redirect(route('admin.registro'));
 
     }
 
     public function read(Request $request)
     {
 
-        $tipo = $request->input('tipo', 'usuarios'); // default: usuarios
+        $tipo = $request->input('tipo', 'alumnos'); // default: usuarios
 
         switch ($tipo) {
             case 'alumnos':
@@ -74,27 +74,56 @@ class CrudController extends Controller
                 $data = Docente::paginate(5);
                 break;
             default:
-                $data = User::paginate(5);
+                $data = Alumno::paginate(5);
                 break;
         }
-
-        return view('general.registro', [
-            'tipo' => $tipo,
-            'datos' => $data
-        ]);
+        return view('administrador.registro', compact('tipo', 'data'));
     }
 
     public function update($id)
     {
         $usuario = User::find($id);
+        $data_docente = null;
+        $data_alumno = null;
 
-        return view('general.actualiza_usuario', [
-            'usuario' => $usuario
-        ]);
+        if (!$usuario) {
+            return redirect()->back()->with('error', 'Usuario no encontrado.');
+        }
+
+        // Verificamos el rol del usuario y eliminamos los datos correspondientes
+        if ($usuario->hasRole('alumno')) {
+            $data_alumno = Alumno::where('id_usuario', $usuario->id)->first();
+            $tipo = 'alumno';
+        } elseif ($usuario->hasRole('docente')) {
+            $data_docente = Docente::where('id_usuario', $usuario->id)->first();
+            $tipo = 'docente';
+        }
+
+        return view('administrador.actualiza_usuario', compact('usuario', 'tipo', 'data_alumno', 'data_docente'));
     }
 
-    public function update_user(){
+    public function update_alumno(Request $request, $tipo, $id_alumno)
+    {
+        $alumno = Alumno::find($id_alumno);
+        $usuario = User::find($alumno->id_usuario);
 
+        $usuario->name = $request->nombre;
+
+        $usuario->save();
+
+        return redirect()->back()->with('success', 'Usuario actualizado correctamente.');
+    }
+
+    public function update_docente(Request $request, $tipo, $id_docente)
+    {
+        $docente = Docente::find($id_docente);
+        $usuario = User::find($docente->id_usuario);
+
+        $usuario->name = $request->nombre;
+
+        $usuario->save();
+
+        return redirect()->back()->with('success', 'Usuario actualizado correctamente.');
     }
 
     public function delete($id)

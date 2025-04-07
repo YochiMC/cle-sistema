@@ -85,7 +85,7 @@
                 </div>
             @endcan
             @can('crud usuarios')
-                <div class="menu-item" onclick="window.location.href='{{ route('general.registro') }}'">
+                <div class="menu-item" onclick="window.location.href='{{ route('admin.registro') }}'">
                     <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="white"
                         class="bi bi-people" viewBox="0 0 16 16">
                         <path
@@ -117,7 +117,7 @@
                 </svg>
                 <span class="menu-text">Salir</span>
             </div>
-            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+            <form id="logout-form" action="{{ route('general.logout') }}" method="POST" style="display: none;">
                 @csrf
             </form>
         </div>
