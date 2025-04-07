@@ -30,7 +30,7 @@ Route::prefix('alumno')->name('alumno.')->middleware('auth')->group(function () 
 
 // Grupo para ADMINISTRADORES (también con middleware 'auth')
 Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
-    // Crud Alumno - completo
+    // Crud Usuarios - completo
     Route::post('>/registrar-usuario', [CrudController::class, 'create'])->name('registrar-usuario');
     Route::delete('/borrar_usuarios/{id}', [CrudController::class, 'delete'])->name('usuarios.delete');
     Route::get('/registro', [CrudController::class, 'read'])->name('registro');

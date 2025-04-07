@@ -18,7 +18,7 @@ class CrudController extends Controller
             'email_verified_at' => now(),
         ]);
 
-        switch ($request->tipo) {
+        switch ($request->tipo_usuario) {
             case 'admin':
 
                 $newUser->assignRole('admin');
@@ -107,9 +107,17 @@ class CrudController extends Controller
         $alumno = Alumno::find($id_alumno);
         $usuario = User::find($alumno->id_usuario);
 
+        //Datos de usuario
         $usuario->name = $request->nombre;
+        $usuario->email = $request->correo;
+
+        //Datos de alumno
+        $alumno->alumno_nombre = $request->nombre_alumno;
+        $alumno->alumno_apellidos = $request->apellidos_alumno;
+        $alumno->alumno_edad = $request->edad_alumno;
 
         $usuario->save();
+        $alumno->save();
 
         return redirect()->back()->with('success', 'Usuario actualizado correctamente.');
     }
@@ -119,9 +127,17 @@ class CrudController extends Controller
         $docente = Docente::find($id_docente);
         $usuario = User::find($docente->id_usuario);
 
+        //Datos de usuario
         $usuario->name = $request->nombre;
+        $usuario->email = $request->correo;
+
+        //Datos de docente
+        $docente->docente_nombre = $request->nombre_docente;
+        $docente->docente_apellidos = $request->apellidos_docente;
+        $docente->docente_edad = $request->edad_docente;
 
         $usuario->save();
+        $docente->save();
 
         return redirect()->back()->with('success', 'Usuario actualizado correctamente.');
     }
