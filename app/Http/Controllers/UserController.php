@@ -37,6 +37,6 @@ class UserController extends Controller
             $apellidos = null;
         }
 
-        return view('general.dashboard', compact('usuario', 'roles', 'edad', 'nombre', 'apellidos'));
+        return view('general.dashboard', compact('usuario', 'edad', 'nombre', 'apellidos'));
     }
 }
