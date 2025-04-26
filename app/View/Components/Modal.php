@@ -4,7 +4,7 @@ namespace App\View\Components;
 
 use Illuminate\View\Component;
 
-class layout_prin extends Component
+class Modal extends Component
 {
     /**
      * Create a new component instance.
@@ -23,6 +23,6 @@ class layout_prin extends Component
      */
     public function render()
     {
-        return view('components.layout_prin');
+        return view('components.modal');
     }
 }

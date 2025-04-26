@@ -3,6 +3,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\CrudController;
+use App\Http\Controllers\CrudCursosController;
 use App\Http\Controllers\UserController;
 
 /*
@@ -37,6 +38,7 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     Route::get('/actualiza_usuario/{id}', [CrudController::class, 'update'])->name('actualiza_usuario');
     Route::post('/update_alumno/{tipo}/{id_alumno}', [CrudController::class, 'update_alumno'])->name('update_alumno');
     Route::post('/update_docente/{tipo}/{id_docente}', [CrudController::class, 'update_docente'])->name('update_docente');
+    Route::get('/registro_cursos', [CrudCursosController::class, 'read'])->name('registro_cursos');
 });
 
 // Grupo para Vistas Generales con auttenticación

@@ -1,8 +1,9 @@
-<x-layout_prin>
-
-    <x-slot:title>Usuarios</x-slot:title>
-    <x-slot:estilo>{{ asset('css/registro.css') }}</x-slot:estilo>
-
+@extends('layouts.layout_prin')
+@section('title', 'Usuarios')
+@section('estilos')
+    <link rel="stylesheet" href="{{ asset('css/registro.css') }}">
+@endsection
+@section('contenido')
     <div class="container-">
         <h2>Actualizar Datos</h2>
         @if ($tipo == 'alumno')
@@ -17,9 +18,9 @@
                 <input type="email" name="correo" value="{{ $usuario->email }}" placeholder="Correo de usuario">
                 <br>
                 <!--<label for="contraseña">Contraseña:</label>
-            <input type="password" name="contraseña" value="{{ $usuario->password }}" placeholder="Contraseña">
-            <label for="comfirma">Confirma contraseña:</label>
-            <input type="password" name="confirma" placeholder="Contraseña">-->
+                <input type="password" name="contraseña" value="{{ $usuario->password }}" placeholder="Contraseña">
+                <label for="comfirma">Confirma contraseña:</label>
+                <input type="password" name="confirma" placeholder="Contraseña">-->
                 <br>
                 <h3>Datos del alumno</h3>
                 <label for="nombre_alumno">Nombre del alumno:</label>
@@ -48,9 +49,9 @@
                 <input type="email" name="correo" value="{{ $usuario->email }}" placeholder="Correo de usuario">
                 <br>
                 <!--<label for="contraseña">Contraseña:</label>
-            <input type="password" name="contraseña" value="{{ $usuario->password }}" placeholder="Contraseña">
-            <label for="comfirma">Confirma contraseña:</label>
-            <input type="password" name="confirma" placeholder="Contraseña">-->
+                <input type="password" name="contraseña" value="{{ $usuario->password }}" placeholder="Contraseña">
+                <label for="comfirma">Confirma contraseña:</label>
+                <input type="password" name="confirma" placeholder="Contraseña">-->
                 <br>
                 <h3>Datos del Docente</h3>
                 <label for="nombre_docente">Nombre del docente:</label>
@@ -69,5 +70,4 @@
             </form>
         @endif
     </div>
-
-</x-layout_prin>
+@endsection

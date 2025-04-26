@@ -4,10 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ $title }}</title>
+    <title>@yield('title')</title>
     <link rel="stylesheet" href={{ asset('css/layout_prin.css') }}>
     <link rel="stylesheet" href="{{ asset('css/modal.css') }}">
-    <link rel="stylesheet" href={{ $estilo }}>
+    @yield('estilos')
 </head>
 
 <body>
@@ -95,7 +95,7 @@
                 </div>
             @endcan
             @can('crud grupos')
-                <div class="menu-item" onclick="mostrarContenido('cursos')">
+                <div class="menu-item" onclick="window.location.href='{{ route('admin.registro_cursos') }}'">
                     <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="white"
                         class="bi bi-journal-bookmark" viewBox="0 0 16 16">
                         <path fill-rule="evenodd"
@@ -122,7 +122,7 @@
             </form>
         </div>
         <div class="contenido">
-            {{ $slot }}
+            @yield('contenido')
         </div>
     </div>
 </body>

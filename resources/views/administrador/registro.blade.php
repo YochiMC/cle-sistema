@@ -1,9 +1,9 @@
-<x-layout_prin>
-
-    <x-slot:title>Usuarios</x-slot:title>
-    <x-slot:estilo>{{ asset('css/registro.css') }}</x-slot:estilo>
-
-
+@extends('layouts.layout_prin')
+@section('title', 'Usuarios')
+@section('estilos')
+    <link rel="stylesheet" href="{{ asset('css/registro.css') }}">
+@endsection
+@section('contenido')
     <div class="container-">
         <h2>Gestión de usuarios</h2>
 
@@ -213,4 +213,4 @@
             });
         </script>
         <script src="{{ asset('js/crud_usuarios.js') }}"></script>
-</x-layout_prin>
+    @endsection
