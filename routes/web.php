@@ -38,7 +38,9 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     Route::get('/actualiza_usuario/{id}', [CrudController::class, 'update'])->name('actualiza_usuario');
     Route::post('/update_alumno/{tipo}/{id_alumno}', [CrudController::class, 'update_alumno'])->name('update_alumno');
     Route::post('/update_docente/{tipo}/{id_docente}', [CrudController::class, 'update_docente'])->name('update_docente');
+    //Crud Cursos - completo
     Route::get('/registro_cursos', [CrudCursosController::class, 'read'])->name('registro_cursos');
+    Route::post('/registrar-curso', [CrudCursosController::class, 'create'])->name('registrar-curso');
 });
 
 // Grupo para Vistas Generales con auttenticación

@@ -16,8 +16,8 @@ class Curso extends Model
     public $timestamps = true; // Habilita created_at y updated_at
 
     protected $fillable = [
-        'id_curso', 'id_docente', 'nivel', 'modalidad',
-        'hora', 'dias', 'cupo',
+        'id_curso', 'id_docente', 'nivel_curso', 'modalidad_curso',
+        'hora_inicio_curso', 'hora_fin_curso', 'dias_curso', 'cupo_curso',
     ];
 
     // Relación con User (un alumno es un usuario)
