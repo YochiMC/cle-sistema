@@ -66,7 +66,7 @@
                 @csrf
                 <div>
                     <h3>Modalidad:</h3>
-                    <select id="modalidad_curso" name="modalidad_curso">
+                    <select id="modalidad_curso" name="modalidad_curso" required>
                         <option value="" selected>...</option>
                         <option value="Presencial">Presencial</option>
                         <option value="Virtual">Virtual</option>

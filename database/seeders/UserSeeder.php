@@ -109,6 +109,7 @@ class UserSeeder extends Seeder
 
         $roleAlumno = Role::create(['name' => 'alumno']);
         $roleAlumno->syncPermissions([
+            'crud grupos',
             'consultar kardex',
             'inscribirse'
         ]);
