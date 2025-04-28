@@ -12,8 +12,8 @@ class UserController extends Controller
 {
     public function show_users()
     {
-        $usuarios = User::all();
-        return view('general.registro', compact('usuarios'));
+        $usuario = Auth::user();
+        return view('general.registro', compact('usuario'));
     }
 
     public function show_user()
@@ -37,6 +37,6 @@ class UserController extends Controller
             $apellidos = null;
         }
 
-        return view('general.dashboard', compact('usuario', 'roles', 'edad', 'nombre', 'apellidos'));
+        return view('general.dashboard', compact('usuario', 'edad', 'nombre', 'apellidos'));
     }
 }

@@ -4,9 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ $title }}</title>
+    <title>@yield('title')</title>
     <link rel="stylesheet" href={{ asset('css/layout_prin.css') }}>
-    <link rel="stylesheet" href={{ $estilo }}>
+    <link rel="stylesheet" href="{{ asset('css/modal.css') }}">
+    @yield('estilos')
 </head>
 
 <body>
@@ -49,7 +50,7 @@
     <div class="container">
         <!-- Contenedor izquierdo para los iconos -->
         <div class="menu-icons">
-            <div class="menu-item" onclick="window.location.href='{{route('general.dashboard')}}'">
+            <div class="menu-item" onclick="window.location.href='{{ route('general.dashboard') }}'">
                 <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="white" class="bi bi-house"
                     viewBox="0 0 16 16">
                     <path
@@ -84,7 +85,7 @@
                 </div>
             @endcan
             @can('crud usuarios')
-                <div class="menu-item" onclick="window.location.href='{{route('general.registro')}}'">
+                <div class="menu-item" onclick="window.location.href='{{ route('admin.registro') }}'">
                     <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="white"
                         class="bi bi-people" viewBox="0 0 16 16">
                         <path
@@ -94,7 +95,7 @@
                 </div>
             @endcan
             @can('crud grupos')
-                <div class="menu-item" onclick="mostrarContenido('cursos')">
+                <div class="menu-item" onclick="window.location.href='{{ route('admin.registro_cursos') }}'">
                     <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="white"
                         class="bi bi-journal-bookmark" viewBox="0 0 16 16">
                         <path fill-rule="evenodd"
@@ -116,11 +117,13 @@
                 </svg>
                 <span class="menu-text">Salir</span>
             </div>
-            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+            <form id="logout-form" action="{{ route('general.logout') }}" method="POST" style="display: none;">
                 @csrf
             </form>
         </div>
-        {{ $slot }}
+        <div class="contenido">
+            @yield('contenido')
+        </div>
     </div>
 </body>
 

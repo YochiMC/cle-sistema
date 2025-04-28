@@ -1,0 +1,28 @@
+.modal {
+    position: fixed;
+    background-color: white;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 1000px;
+    max-width: 90%;
+    height: 700px;
+    max-width: 90%;
+    border: 2px;
+}
+
+.modal h2 {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.modal label {
+    display: block;
+    margin-top: 10px;
+    color: #333;
+}
+
+.modal #btn-cerrar-modal {
+    cursor: pointer;
+    margin-left: 85%;
+}
+

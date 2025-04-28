@@ -75,10 +75,11 @@
     <!-- Carrusel de imágenes -->
     <div class="carrusel-container">
         <div class="carrusel">
-            <img src={{asset("resources/img/cursosAlineados.png")}} alt="Imagen 3" class="carrusel-item">
             <img src={{asset("resources/img/CalendarioActividades.png")}} alt="Imagen 1" class="carrusel-item">
-            <img src={{asset("resources/img/cursosAlineados.png")}} alt="Imagen 3" class="carrusel-item">
-            <img src={{asset("resources/img/cursosAlineados2.png")}} alt="Imagen 3" class="carrusel-item">
+            <img src={{asset("resources/img/CalendarioActividades.png")}} alt="Imagen 1" class="carrusel-item">
+            <img src={{asset("resources/img/CalendarioActividades.png")}} alt="Imagen 1" class="carrusel-item">
+            <img src={{asset("resources/img/CalendarioActividades.png")}} alt="Imagen 1" class="carrusel-item">
+            <img src={{asset("resources/img/CalendarioActividades.png")}} alt="Imagen 1" class="carrusel-item">
         </div>
         <button class="nav-button" id="prev">❮</button>
         <button class="nav-button" id="next">❯</button>

@@ -17,23 +17,6 @@
     text-align: center;
 }
 
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-}
-
-th, td {
-    border: 1px solid var(--accent-color);
-    padding: 10px;
-    text-align: center;
-}
-
-th {
-    background-color: var(--naranja);
-    color: var(--azul);
-}
-
 button {
     margin-top: 10px;
     padding: 10px;
@@ -63,13 +46,23 @@ select {
     display: block;
 }
 
-.opciones{
-    width: 100%;
-    height: auto;
+.container-grupos{
     display: flex;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
-    gap: 20px;
+    margin-top: 20px;
+    gap: 15px;
+}
+
+.grupo{
+    width: 25%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 10px;
+    background-color: var(--naranja);
+    border-radius: 20px;
 }
 
 .gestionar{
@@ -79,20 +72,4 @@ select {
     gap: 20px;
 }
 
-.form-agregar{
-    display: flex;
-    flex-direction: column;
-}
-
-.form-agregar .contenedor-info-general{
-    display: flex;
-}
-
-.form-agregar .contenedor-info-alumno{
-    display: flex;
-}
-
-.form-agregar .contenedor-info-docente{
-    display: flex;
-}
 

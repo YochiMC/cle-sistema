@@ -24,13 +24,25 @@ class UserSeeder extends Seeder
         Permission::create(['name' => 'eliminar usuarios']);
         Permission::create(['name' => 'editar usuarios']);
 
+        Permission::create(['name' => 'crear alumnos']);
+        Permission::create(['name' => 'crear docentes']);
+        Permission::create(['name' => 'crear admins']);
+        Permission::create(['name' => 'crear grupos']);
+
         Permission::create(['name' => 'ver alumnos']);
         Permission::create(['name' => 'ver docentes']);
+        Permission::create(['name' => 'ver admins']);
         Permission::create(['name' => 'ver grupos']);
 
         Permission::create(['name' => 'editar alumnos']);
         Permission::create(['name' => 'editar docentes']);
+        Permission::create(['name' => 'editar admins']);
         Permission::create(['name' => 'editar grupos']);
+
+        Permission::create(['name' => 'eliminar alumnos']);
+        Permission::create(['name' => 'eliminar docentes']);
+        Permission::create(['name' => 'eliminar admins']);
+        Permission::create(['name' => 'eliminar grupos']);
 
         Permission::create(['name' => 'consultar kardex']);
         Permission::create(['name' => 'inscribirse']);
@@ -46,13 +58,27 @@ class UserSeeder extends Seeder
             'eliminar usuarios',
             'editar usuarios',
 
+            'crear alumnos',
+            'crear docentes',
+            'crear admins',
+            'crear grupos',
+
             'ver alumnos',
             'ver docentes',
+            'ver admins',
             'ver grupos',
 
             'editar alumnos',
             'editar docentes',
+            'editar admins',
             'editar grupos',
+
+            'eliminar alumnos',
+            'eliminar docentes',
+            'eliminar admins',
+            'eliminar grupos',
+
+            'consultar kardex',
 
             'crud usuarios',
             'crud grupos'
@@ -60,6 +86,15 @@ class UserSeeder extends Seeder
 
         $roleAdmin_ = Role::create(['name' => 'admin']);
         $roleAdmin_->syncPermissions([
+            'ver usuarios',
+            'crear usuarios',
+            'eliminar usuarios',
+            'editar usuarios',
+
+            'crear alumnos',
+            'crear docentes',
+            'crear grupos',
+
             'ver alumnos',
             'ver docentes',
             'ver grupos',
@@ -80,9 +115,19 @@ class UserSeeder extends Seeder
 
         $roleDocente = Role::create(['name' => 'docente']);
         $roleDocente->syncPermissions([
+            'consultar kardex',
             'ver alumnos',
             'ver grupos'
         ]);
+
+        $adminUser = User::query()->create([
+            'name' => 'Coordinador',
+            'email' => 'coordinacion@coordinacion.com',
+            'password' => bcrypt('coordinacion123'),
+            'email_verified_at' => now(),
+        ]);
+
+        $adminUser->assignRole($roleAdmin);
 
         $adminUser = User::query()->create([
             'name' => 'admin_chido',
@@ -91,7 +136,7 @@ class UserSeeder extends Seeder
             'email_verified_at' => now(),
         ]);
 
-        $adminUser->assignRole($roleAdmin);
+        $adminUser->assignRole($roleAdmin_);
 
         $alumnoUser = User::query()->create([
             'name' => 'alumno',

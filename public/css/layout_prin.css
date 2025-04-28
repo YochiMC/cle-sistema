@@ -14,13 +14,14 @@ body {
     display: flex;
     flex-direction: column;
     height: 100vh;
-    overflow: hidden;
+    overflow-x: auto;
+    overflow-y: auto;
     background: var(--fondo-claro);
     color: #ffffff;
 }
 /* Encabezado */
 header {
-    width: 130%;
+    width: 100%;
     background: linear-gradient(90deg, var(--blanco), var(--blanco));
     color: white;
     padding: 2px;
@@ -107,6 +108,7 @@ header {
 /* Menú lateral */
 .menu-icons {
     width: 20px;
+    min-width: 20px;
     background-color: var(--azul);
     padding: 10px;
 
@@ -177,15 +179,29 @@ header {
     overflow-y: auto;
 }
 
-.content-page {
-    display: none;
-}
-
-.content-page.active {
-    display: block;
-}
-
-.section{
+.contenido{
+    width: 100%;
+    height: 100%;
     display: flex;
 }
+
+@media (max-width: 768px) {
+    .menu-icons {
+        width: 50px;
+    }
+
+    .menu-item .icon {
+        font-size: 30px;
+    }
+
+    .content-container {
+        padding: 10px;
+    }
+
+    .right-icons {
+        top: 10px;
+        right: 10px;
+    }
+}
+
 

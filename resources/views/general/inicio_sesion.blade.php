@@ -34,7 +34,7 @@
     <main class="fondo">
         <section class="isDL">
             <div class="inicioSesion">
-                <form action="{{ route('validar-login') }}" method="post">
+                <form action="{{ route('general.validar-login') }}" method="post">
                     @csrf
                     <div class="renglonSesion">
                         <label for="correo">
