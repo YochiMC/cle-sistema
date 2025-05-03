@@ -9,20 +9,33 @@ class Curso extends Model
 {
     use HasFactory;
 
-    protected $table = 'cursos'; // Nombre de la tabla en la BD
-
-    protected $primaryKey = 'id_curso'; // Clave primaria
-
-    public $timestamps = true; // Habilita created_at y updated_at
+    protected $table = 'cursos';
+    protected $primaryKey = 'id_curso';
+    public $timestamps = true;
 
     protected $fillable = [
-        'id_curso', 'id_docente', 'nivel_curso', 'modalidad_curso',
-        'hora_inicio_curso', 'hora_fin_curso', 'dias_curso', 'cupo_curso',
+        'id_docente',
+        'modelo_solucion_curso',
+        'tecnm_curso',
+        'modelo_curso',
+        'modulo_curso',
+        'nombre_tms_curso',
+        'inicio_curso',
+        'fin_curso',
+        'dias_curso',
+        'horario_curso',
+        'alumnos_actuales_curso',
+        'cupo_curso',
+        'clases_via_curso',
+        'tipo_curso',
+        'acceso_plataforma_curso',
+        'acceso_teams_curso',
+        'link_clase_curso',
     ];
 
-    // Relación con User (un alumno es un usuario)
-    public function user()
+    // Relación: un curso pertenece a un docente
+    public function docente()
     {
-        return $this->belongsTo(User::class, 'id_docente');
+        return $this->belongsTo(Docente::class, 'id_docente');
     }
 }

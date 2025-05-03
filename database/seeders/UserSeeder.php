@@ -146,16 +146,28 @@ class UserSeeder extends Seeder
             'email_verified_at' => now(),
         ]);
 
-        Alumno::query()->create([
-            'id_alumno' => 21240551,
+        Alumno::create([
             'id_usuario' => $alumnoUser->id,
-            'alumno_nombre' => 'Joseph Alexander',
-            'alumno_apellidos' => 'Martinez Cortes',
-            'alumno_edad' => 20,
-            'carrera' => 'Ingeniería en Sistemas',
-            'semestre' => 8,
-            'id_seguimiento' => 1,
-            'inscrito' => true,
+            'matricula_alumno' => '21240551',
+            'nombre_alumno' => 'Joseph Alexander',
+            'apellidos_alumno' => 'Martínez Cortés',
+            'edad_alumno' => 20,
+            'sexo_alumno' => 'Masculino',
+            'carrera_alumno' => 'Ingeniería en Sistemas',
+            'semestre_alumno' => 8,
+            'kardex_alumno' => [
+                [
+                    'materia' => 'Nivel 1',
+                    'calificacion' => 90,
+                    'periodo' => '2024-2'
+                ],
+                [
+                    'materia' => 'Nivel 2',
+                    'calificacion' => 88,
+                    'periodo' => '2024-2'
+                ]
+            ],
+            'inscrito' => false,
             'acredita' => false
         ]);
 
@@ -169,9 +181,10 @@ class UserSeeder extends Seeder
         ]);
 
         Docente::create([
-            'id_docente' => 11921,
             'id_usuario' => $docenteUser->id,
-            'docente_nombre' => 'Ana',
+
+            'docente_clave' => '1123456',
+            'docente_nombre' => 'Ana Fernanda',
             'docente_apellidos' => 'González Pérez',
             'docente_edad' => 25
         ]);

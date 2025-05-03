@@ -9,20 +9,29 @@ class Alumno extends Model
 {
     use HasFactory;
 
-    protected $table = 'alumnos'; // Nombre de la tabla en la BD
-
-    protected $primaryKey = 'id_alumno'; // Clave primaria
-
-    public $timestamps = true; // Habilita created_at y updated_at
+    protected $table = 'alumnos';
+    protected $primaryKey = 'id_alumno';
+    public $timestamps = true;
 
     protected $fillable = [
-        'id_alumno', 'id_usuario', 'alumno_edad', 'alumno_nombre',
-        'alumno_apellidos', 'carrera', 'semestre',
-        'id_seguimiento', 'inscrito', 'acredita',
+        'id_usuario',
+        'matricula_alumno',
+        'nombre_alumno',
+        'apellidos_alumno',
+        'edad_alumno',
+        'sexo_alumno',
+        'carrera_alumno',
+        'semestre_alumno',
+        'kardex_alumno',
+        'inscrito',
+        'acredita'
     ];
 
-    // Relación con User (un alumno es un usuario)
-    public function user()
+    protected $casts = [
+        'kardex_alumno' => 'array', // convierte el JSON a array automáticamente
+    ];
+
+    public function usuario()
     {
         return $this->belongsTo(User::class, 'id_usuario');
     }
