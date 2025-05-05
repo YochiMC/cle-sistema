@@ -27,14 +27,22 @@ class CrudController extends Controller
             case 'alumno':
 
                 Alumno::query()->create([
-                    'id_alumno' => $request->numero_control,
                     'id_usuario' => $newUser->id,
+                    'matricula_alumno' => $request->numero_control,
                     'alumno_nombre' => $request->nombre,
                     'alumno_apellidos' => $request->apellidos,
                     'alumno_edad' => $request->edad,
+                    'sexo_alumno' => $request->sexo,
                     'carrera' => $request->carrera,
                     'semestre' => $request->semestre,
                     'id_seguimiento' => 1,
+                    'kardex_alumno' => [
+                        [
+                            'materia' => '---',
+                            'calificacion' => 0,
+                            'periodo' => '-'
+                        ]
+                    ],
                     'inscrito' => false,
                     'acredita' => false
                 ]);
@@ -45,8 +53,8 @@ class CrudController extends Controller
             case 'docente':
 
                 Docente::create([
-                    'id_docente' => $request->numero_trabajador,
                     'id_usuario' => $newUser->id,
+                    'docente_clave' => $request->numero_trabajador,
                     'docente_nombre' => $request->nombre,
                     'docente_apellidos' => $request->apellidos,
                     'docente_edad' => $request->edad
