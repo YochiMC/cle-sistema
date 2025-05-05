@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('docente_clave', 20)->unique();
             $table->string('docente_nombre', 100);
             $table->string('docente_apellidos', 100);
+            $table->string('docente_sexo', 10);
             $table->integer('docente_edad');
             $table->timestamps();
         });

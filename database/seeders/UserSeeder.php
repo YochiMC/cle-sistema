@@ -124,6 +124,7 @@ class UserSeeder extends Seeder
         $adminUser = User::query()->create([
             'name' => 'Coordinador',
             'email' => 'coordinacion@coordinacion.com',
+            'phonenumber' => '4772941234',
             'password' => bcrypt('coordinacion123'),
             'email_verified_at' => now(),
         ]);
@@ -133,6 +134,7 @@ class UserSeeder extends Seeder
         $adminUser = User::query()->create([
             'name' => 'admin_chido',
             'email' => 'admin@admin.com',
+            'phonenumber' => '4772954125',
             'password' => bcrypt('admin123'),
             'email_verified_at' => now(),
         ]);
@@ -142,6 +144,7 @@ class UserSeeder extends Seeder
         $alumnoUser = User::query()->create([
             'name' => 'alumno',
             'email' => 'alumno@alumno.com',
+            'phonenumber' => '4772942057',
             'password' => bcrypt('alumno123'),
             'email_verified_at' => now(),
         ]);
@@ -153,7 +156,7 @@ class UserSeeder extends Seeder
             'apellidos_alumno' => 'Martínez Cortés',
             'edad_alumno' => 20,
             'sexo_alumno' => 'Masculino',
-            'carrera_alumno' => 'Ingeniería en Sistemas',
+            'carrera_alumno' => 'Ingeniería en Sistemas Computacionales',
             'semestre_alumno' => 8,
             'kardex_alumno' => [
                 [
@@ -176,16 +179,17 @@ class UserSeeder extends Seeder
         $docenteUser = User::query()->create([
             'name' => 'docente',
             'email' => 'docente@docente.com',
+            'phonenumber' => '4772941237',
             'password' => bcrypt('docente123'),
             'email_verified_at' => now(),
         ]);
 
         Docente::create([
             'id_usuario' => $docenteUser->id,
-
             'docente_clave' => '1123456',
             'docente_nombre' => 'Ana Fernanda',
             'docente_apellidos' => 'González Pérez',
+            'docente_sexo' => 'Femenino',
             'docente_edad' => 25
         ]);
 
