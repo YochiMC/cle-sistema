@@ -10,6 +10,7 @@
             <form action="{{ route('admin.update_alumno', ['tipo', 'id_alumno' => $data_alumno->id_alumno]) }}"
                 method="POST">
                 @csrf
+                @method('PUT')
                 <h3>Datos de usuario</h3>
                 <label for="nombre">Nombre de usuario:</label>
                 <input type="text" name="nombre" value="{{ $usuario->name }}" placeholder="Nombre de usuario">
@@ -80,6 +81,7 @@
             <form action="{{ route('admin.update_docente', ['tipo', 'id_docente' => $data_docente->id_docente]) }}"
                 method="POST">
                 @csrf
+                @method('PUT')
                 <h3>Datos de usuario</h3>
                 <label for="nombre">Nombre de usuario:</label>
                 <input type="text" name="nombre" value="{{ $usuario->name }}" placeholder="Nombre de usuario">

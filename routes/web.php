@@ -32,15 +32,18 @@ Route::prefix('alumno')->name('alumno.')->middleware('auth')->group(function () 
 // Grupo para ADMINISTRADORES (también con middleware 'auth')
 Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     // Crud Usuarios - completo
-    Route::post('>/registrar-usuario', [CrudController::class, 'create'])->name('registrar-usuario');
+    Route::post('/registrar-usuario', [CrudController::class, 'create'])->name('registrar-usuario');
     Route::delete('/borrar_usuarios/{id}', [CrudController::class, 'delete'])->name('usuarios.delete');
     Route::get('/registro', [CrudController::class, 'read'])->name('registro');
     Route::get('/actualiza_usuario/{id}', [CrudController::class, 'update'])->name('actualiza_usuario');
-    Route::post('/update_alumno/{tipo}/{id_alumno}', [CrudController::class, 'update_alumno'])->name('update_alumno');
-    Route::post('/update_docente/{tipo}/{id_docente}', [CrudController::class, 'update_docente'])->name('update_docente');
+    Route::put('/update_alumno/{tipo}/{id_alumno}', [CrudController::class, 'update_alumno'])->name('update_alumno');
+    Route::put('/update_docente/{tipo}/{id_docente}', [CrudController::class, 'update_docente'])->name('update_docente');
     //Crud Cursos - completo
-    Route::get('/registro_cursos', [CrudCursosController::class, 'read'])->name('registro_cursos');
     Route::post('/registrar-curso', [CrudCursosController::class, 'create'])->name('registrar-curso');
+    Route::delete('/borrar_curso/{id}', [CrudCursosController::class, 'delete'])->name('cursos.delete');
+    Route::get('/registro_cursos', [CrudCursosController::class, 'read'])->name('registro_cursos');
+    Route::get('/actualiza_curso/{id}', [CrudCursosController::class, 'update'])->name('actualiza_curso');
+    Route::put('/update_curso/{id}', [CrudCursosController::class, 'update_curso'])->name('update_curso');
 });
 
 // Grupo para Vistas Generales con auttenticación
