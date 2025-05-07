@@ -88,7 +88,7 @@ html, body {
     justify-content: center;
     height: 100%;
     padding: 30px 20px 100px 20px; /* Ajustado el padding para moverlo más abajo */
-    backdrop-filter: blur(3px);
+
     overflow: hidden;
 }
 
