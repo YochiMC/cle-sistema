@@ -50,6 +50,17 @@
                                             d="M8.086 2.207a2 2 0 0 1 2.828 0l3.879 3.879a2 2 0 0 1 0 2.828l-5.5 5.5A2 2 0 0 1 7.879 15H5.12a2 2 0 0 1-1.414-.586l-2.5-2.5a2 2 0 0 1 0-2.828zm2.121.707a1 1 0 0 0-1.414 0L4.16 7.547l5.293 5.293 4.633-4.633a1 1 0 0 0 0-1.414zM8.746 13.547 3.453 8.254 1.914 9.793a1 1 0 0 0 0 1.414l2.5 2.5a1 1 0 0 0 .707.293H7.88a1 1 0 0 0 .707-.293z" />
                                     </svg></button>
                             </form>
+                            <form action="{{ route('admin.inscribir', $grupo->id_curso) }}"
+                                method="GET" style="display:inline;">
+                                @csrf
+                                <button type="submit" class="btn btn-primary btn-sm"><svg
+                                        xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                        fill="currentColor" class="bi bi-person-plus-fill" viewBox="0 0 16 16">
+                                        <path
+                                            d="M10.5 3a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0zM8 9a4.978 4.978 0 0 1-3.464-1.343A4.978 4.978 0 0 1 .5 4a4.978 4.978 0 0 1 .343-3.464A4.978 4.978 0 0 1 4 .5a4.978 4.978 0 0 1 3.464-.343A4.978 4.978 0 0 1 .5-.343A4.978 4.978 0 0 1 .343-3.464A4.978 4.978 0 0 1 .5-8a4.978
+                                            -8a2a2a2a2a2a2a2a2a2a2a2a2a2zM8 .5V7h6v6h-6v6H7V7H1V1h6V7z" />
+                                    </svg></button>
+                            </form>
                         </div>
                     </div>
                 @endforeach

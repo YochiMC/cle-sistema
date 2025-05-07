@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\CrudController;
 use App\Http\Controllers\CrudCursosController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\InscripcionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,6 +45,8 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     Route::get('/registro_cursos', [CrudCursosController::class, 'read'])->name('registro_cursos');
     Route::get('/actualiza_curso/{id}', [CrudCursosController::class, 'update'])->name('actualiza_curso');
     Route::put('/update_curso/{id}', [CrudCursosController::class, 'update_curso'])->name('update_curso');
+    //Inscripciones - completo
+    Route::get('/inscripciones/{id}', [InscripcionController::class, 'inscribirAdministrativo'])->name('inscribir');
 });
 
 // Grupo para Vistas Generales con auttenticación
