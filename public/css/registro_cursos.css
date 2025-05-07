@@ -188,7 +188,7 @@ h3:before {
 /* Estilos para el modal */
 .modal {
     width: 90%;
-    max-width: 1000px;
+    max-width: 800px;
     padding: 0;
     border: none;
     border-radius: 8px;
@@ -247,7 +247,12 @@ h3:before {
     overflow-y: auto;
 }
 
+<<<<<<< HEAD
 .form-agregar>div {
+=======
+  /* Sección de selección de modalidad */
+  .form-agregar > div:first-of-type {
+>>>>>>> 3685cf204395d0b8cdff1590a607e8e8e135268f
     margin-bottom: 20px;
     padding: 15px;
     border-radius: var(--border-radius);
@@ -255,6 +260,7 @@ h3:before {
     border-left: 3px solid var(--naranja);
 }
 
+<<<<<<< HEAD
 .form-agregar h3 {
     border-bottom: 1px solid #ddd;
     padding-bottom: 8px;
@@ -263,6 +269,35 @@ h3:before {
     display: flex;
     align-items: center;
 }
+=======
+  .form-agregar > div:first-of-type h3 {
+    margin-top: 0;
+    margin-bottom: 15px;
+  }
+
+  .form-agregar > div:first-of-type select {
+    width: 100%;
+    max-width: 300px;
+  }
+
+  /* Contenedor de información general */
+  .contenedor-info-general {
+    background-color: #f8f9fa;
+    border-radius: var(--border-radius);
+    padding: 20px;
+    margin-bottom: 20px;
+    border-left: 3px solid var(--naranja);
+  }
+
+  .contenedor-info-general h3 {
+    grid-column: 1 / -1;
+    margin-top: 0;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    width: 100%;
+  }
+>>>>>>> 3685cf204395d0b8cdff1590a607e8e8e135268f
 
 /* Iconos para los encabezados de sección */
 .form-agregar h3::before {
@@ -282,8 +317,36 @@ h3:before {
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%231B396A' viewBox='0 0 16 16'%3E%3Cpath d='M1 2.828c.885-.37 2.154-.769 3.388-.893 1.33-.134 2.458.063 3.112.752v9.746c-.935-.53-2.12-.603-3.213-.493-1.18.12-2.37.461-3.287.811zm7.5-.141c.654-.689 1.782-.886 3.112-.752 1.234.124 2.503.523 3.388.893v9.923c-.918-.35-2.107-.692-3.287-.81-1.094-.111-2.278-.039-3.213.492zM8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783'/%3E%3C/svg%3E");
 }
 
+<<<<<<< HEAD
 /* Estilos para los campos del formulario */
 .form-agregar label {
+=======
+  /* Estructura del formulario en grid */
+  .contenedor-info-general {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  @media (min-width: 768px) {
+    .contenedor-info-general {
+      grid-template-columns: repeat(2, 1fr);
+      column-gap: 20px;
+    }
+
+    .contenedor-info-general h3 {
+      grid-column: 1 / -1;
+    }
+
+    /* Crear grupos de campo-etiqueta */
+    .contenedor-info-general .form-group {
+      margin-bottom: 15px;
+    }
+  }
+
+  /* Estilos para los campos del formulario */
+  .form-agregar label {
+>>>>>>> 3685cf204395d0b8cdff1590a607e8e8e135268f
     display: block;
     margin-bottom: 5px;
     font-weight: 500;
@@ -298,7 +361,12 @@ h3:before {
     border: 1px solid #ddd;
     border-radius: var(--border-radius);
     font-size: 14px;
+<<<<<<< HEAD
 }
+=======
+    box-sizing: border-box;
+  }
+>>>>>>> 3685cf204395d0b8cdff1590a607e8e8e135268f
 
 .form-agregar input:focus,
 .form-agregar select:focus {
@@ -307,6 +375,7 @@ h3:before {
     box-shadow: 0 0 0 2px rgba(241, 155, 38, 0.2);
 }
 
+<<<<<<< HEAD
 /* Diseño de grid para campos del formulario */
 .contenedor-info-general {
     display: grid;
@@ -323,6 +392,12 @@ h3:before {
         grid-column: 1 / -1;
     }
 }
+=======
+  /* Eliminar el <br> del formulario */
+  .form-agregar br {
+    display: none;
+  }
+>>>>>>> 3685cf204395d0b8cdff1590a607e8e8e135268f
 
 /* Botón de enviar */
 .button_enviar {
@@ -400,7 +475,15 @@ input[type="number"]::-webkit-inner-spin-button {
         width: 20px;
         height: 20px;
     }
+<<<<<<< HEAD
 }
+=======
+
+    .contenedor-info-general {
+      grid-template-columns: 1fr;
+    }
+  }
+>>>>>>> 3685cf204395d0b8cdff1590a607e8e8e135268f
 
 /* Animaciones */
 @keyframes fadeIn {
