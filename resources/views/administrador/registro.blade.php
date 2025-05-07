@@ -65,6 +65,9 @@
                     <label for="usuario_correo">Correo Electrónico:</label>
                     <input type="email" id="email" name="email" required>
                     <br>
+                    <label for="usuario_telefono">Número de teléfono:</label>
+                    <input type="text" id="phonenumber" name="phonenumber" required>
+                    <br>
                     <label for="usuario_contraseña">Contraseña:</label>
                     <input type="password" id="password" name="password" required>
                     <br>
@@ -74,6 +77,11 @@
                     <label for="apellidos">Apellido(s):</label>
                     <input type="text" id="apellidos" name="apellidos">
                     <br>
+                    <label for="sexo">Sexo:</label>
+                    <select name="sexo" id="sexo" required>
+                        <option value="Masculino">Masculino</option>
+                        <option value="Femenino">Femenino</option>
+                    </select>
                     <label for="edad">Edad:</label>
                     <input type="number" id="edad" name="edad">
                 </div>
@@ -110,7 +118,10 @@
                 <thead class="table-dark">
                     <tr>
                         <th>Número de control</th>
-                        <th>Nombre Completo</th>
+                        <th>Carrera</th>
+                        <th>Semestre</th>
+                        <th>Nombre</th>
+                        <th>Sexo</th>
                         <th>Edad</th>
                         <th>Acciones</th>
                     </tr>
@@ -118,9 +129,12 @@
                 <tbody>
                     @foreach ($data as $alumno)
                         <tr>
-                            <td>{{ $alumno->id_alumno }}</td>
-                            <td>{{ $alumno->alumno_nombre }} {{ $alumno->alumno_apellidos }}</td>
-                            <td>{{ $alumno->alumno_edad }}</td>
+                            <td>{{ $alumno->matricula_alumno }}</td>
+                            <td>{{ $alumno->carrera_alumno }}</td>
+                            <td>{{ $alumno->semestre_alumno }}</td>
+                            <td>{{ $alumno->nombre_alumno }} {{ $alumno->apellidos_alumno }}</td>
+                            <td>{{ $alumno->sexo_alumno }}</td>
+                            <td>{{ $alumno->edad_alumno }}</td>
                             <td>
                                 <div class="gestionar">
                                     <form method="GET"
@@ -158,6 +172,7 @@
                     <tr>
                         <th>Número de trabajador</th>
                         <th>Nombre Completo</th>
+                        <th>Sexo</th>
                         <th>Edad</th>
                         <th>Acciones</th>
                     </tr>
@@ -165,8 +180,9 @@
                 <tbody>
                     @foreach ($data as $docente)
                         <tr>
-                            <td>{{ $docente->id_docente }}</td>
+                            <td>{{ $docente->docente_clave }}</td>
                             <td>{{ $docente->docente_nombre }} {{ $docente->docente_apellidos }}</td>
+                            <td>{{ $docente->docente_sexo }}</td>
                             <td>{{ $docente->docente_edad }}</td>
                             <td>
                                 <div class="gestionar">

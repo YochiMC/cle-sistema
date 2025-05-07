@@ -14,6 +14,7 @@ class CrudController extends Controller
         $newUser = User::query()->create([
             'name' => $request->name,
             'email' => $request->email,
+            'phonenumber' => $request->phonenumber,
             'password' => bcrypt($request->password),
             'email_verified_at' => now(),
         ]);
@@ -27,14 +28,21 @@ class CrudController extends Controller
             case 'alumno':
 
                 Alumno::query()->create([
-                    'id_alumno' => $request->numero_control,
                     'id_usuario' => $newUser->id,
-                    'alumno_nombre' => $request->nombre,
-                    'alumno_apellidos' => $request->apellidos,
-                    'alumno_edad' => $request->edad,
-                    'carrera' => $request->carrera,
-                    'semestre' => $request->semestre,
-                    'id_seguimiento' => 1,
+                    'matricula_alumno' => $request->numero_control,
+                    'nombre_alumno' => $request->nombre,
+                    'apellidos_alumno' => $request->apellidos,
+                    'edad_alumno' => $request->edad,
+                    'sexo_alumno' => $request->sexo,
+                    'carrera_alumno' => $request->carrera,
+                    'semestre_alumno' => $request->semestre,
+                    'kardex_alumno' => [
+                        [
+                            'materia' => 'Nivel',
+                            'calificacion' => 00,
+                            'periodo' => '---'
+                        ],
+                    ],
                     'inscrito' => false,
                     'acredita' => false
                 ]);
@@ -43,12 +51,12 @@ class CrudController extends Controller
 
                 break;
             case 'docente':
-
                 Docente::create([
-                    'id_docente' => $request->numero_trabajador,
                     'id_usuario' => $newUser->id,
+                    'docente_clave' => $request->numero_trabajador,
                     'docente_nombre' => $request->nombre,
                     'docente_apellidos' => $request->apellidos,
+                    'docente_sexo' => $request->sexo,
                     'docente_edad' => $request->edad
                 ]);
 
@@ -110,11 +118,16 @@ class CrudController extends Controller
         //Datos de usuario
         $usuario->name = $request->nombre;
         $usuario->email = $request->correo;
+        $usuario->phonenumber = $request->telefono;
 
         //Datos de alumno
-        $alumno->alumno_nombre = $request->nombre_alumno;
-        $alumno->alumno_apellidos = $request->apellidos_alumno;
-        $alumno->alumno_edad = $request->edad_alumno;
+        $alumno->matricula_alumno = $request->matricula_alumno;
+        $alumno->carrera_alumno = $request->carrera_alumno;
+        $alumno->semestre_alumno = $request->semestre_alumno;
+        $alumno->nombre_alumno = $request->nombre_alumno;
+        $alumno->apellidos_alumno = $request->apellidos_alumno;
+        $alumno->edad_alumno = $request->edad_alumno;
+        $alumno->sexo_alumno = $request->sexo_alumno;
 
         $usuario->save();
         $alumno->save();
@@ -130,11 +143,14 @@ class CrudController extends Controller
         //Datos de usuario
         $usuario->name = $request->nombre;
         $usuario->email = $request->correo;
+        $usuario->phonenumber = $request->telefono;
 
         //Datos de docente
+        $docente->docente_clave = $request->docente_clave;
         $docente->docente_nombre = $request->nombre_docente;
         $docente->docente_apellidos = $request->apellidos_docente;
         $docente->docente_edad = $request->edad_docente;
+        $docente->docente_sexo = $request->sexo_docente;
 
         $usuario->save();
         $docente->save();

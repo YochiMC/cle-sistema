@@ -124,6 +124,7 @@ class UserSeeder extends Seeder
         $adminUser = User::query()->create([
             'name' => 'Coordinador',
             'email' => 'coordinacion@coordinacion.com',
+            'phonenumber' => '4772941234',
             'password' => bcrypt('coordinacion123'),
             'email_verified_at' => now(),
         ]);
@@ -133,6 +134,7 @@ class UserSeeder extends Seeder
         $adminUser = User::query()->create([
             'name' => 'admin_chido',
             'email' => 'admin@admin.com',
+            'phonenumber' => '4772954125',
             'password' => bcrypt('admin123'),
             'email_verified_at' => now(),
         ]);
@@ -142,20 +144,33 @@ class UserSeeder extends Seeder
         $alumnoUser = User::query()->create([
             'name' => 'alumno',
             'email' => 'alumno@alumno.com',
+            'phonenumber' => '4772942057',
             'password' => bcrypt('alumno123'),
             'email_verified_at' => now(),
         ]);
 
-        Alumno::query()->create([
-            'id_alumno' => 21240551,
+        Alumno::create([
             'id_usuario' => $alumnoUser->id,
-            'alumno_nombre' => 'Joseph Alexander',
-            'alumno_apellidos' => 'Martinez Cortes',
-            'alumno_edad' => 20,
-            'carrera' => 'Ingeniería en Sistemas',
-            'semestre' => 8,
-            'id_seguimiento' => 1,
-            'inscrito' => true,
+            'matricula_alumno' => '21240551',
+            'nombre_alumno' => 'Joseph Alexander',
+            'apellidos_alumno' => 'Martínez Cortés',
+            'edad_alumno' => 20,
+            'sexo_alumno' => 'Masculino',
+            'carrera_alumno' => 'Ingeniería en Sistemas Computacionales',
+            'semestre_alumno' => 8,
+            'kardex_alumno' => [
+                [
+                    'materia' => 'Nivel 1',
+                    'calificacion' => 90,
+                    'periodo' => '2024-2'
+                ],
+                [
+                    'materia' => 'Nivel 2',
+                    'calificacion' => 88,
+                    'periodo' => '2024-2'
+                ]
+            ],
+            'inscrito' => false,
             'acredita' => false
         ]);
 
@@ -164,15 +179,17 @@ class UserSeeder extends Seeder
         $docenteUser = User::query()->create([
             'name' => 'docente',
             'email' => 'docente@docente.com',
+            'phonenumber' => '4772941237',
             'password' => bcrypt('docente123'),
             'email_verified_at' => now(),
         ]);
 
         Docente::create([
-            'id_docente' => 11921,
             'id_usuario' => $docenteUser->id,
-            'docente_nombre' => 'Ana',
+            'docente_clave' => '1123456',
+            'docente_nombre' => 'Ana Fernanda',
             'docente_apellidos' => 'González Pérez',
+            'docente_sexo' => 'Femenino',
             'docente_edad' => 25
         ]);
 
