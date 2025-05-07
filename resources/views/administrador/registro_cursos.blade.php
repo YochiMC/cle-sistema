@@ -22,14 +22,14 @@
                         <p>Docente:
                             {{ optional($docentes->firstWhere('id_docente', $grupo->id_docente))->docente_nombre ?? 'No encontrado' }}
                         </p>
-                        <p>TMS: {{ $grupo->nombre_tms_curso }}</p>
-                        <p>Modelo del curso: {{ $grupo->modelo_curso }}</p>
-                        <p>Módulo del curso: {{ $grupo->modulo_curso }}</p>
-                        <p>Días del curso: {{ $grupo->dias_curso }}</p>
-                        <p>Horarios del curso: {{ $grupo->horario_curso }}</p>
+                        <p>Modalidad: {{ $grupo->modalidad_curso }}</p>
+                        <p>Fecha de inicio: {{ $grupo->hora_inicio_curso }}</p>
+                        <p>Fecha de fin: {{ $grupo->hora_fin_curso }}</p>
+                        <p>Dias del curso: {{ $grupo->dias_curso }}</p>
+                        <p>Cupo del curso: {{ $grupo->cupo_curso }}</p>
                         <div class="gestionar">
                             <form method="GET"
-                                action="{{ route('admin.actualiza_curso', $grupo->id_curso) }}">
+                                action="">
                                 @csrf
                                 <button type="submit" class="btn btn-warning btn-sm"><svg
                                         xmlns="http://www.w3.org/2000/svg" width="16" height="16"
@@ -38,7 +38,7 @@
                                             d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.5.5 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11z" />
                                     </svg></button>
                             </form>
-                            <form action="{{ route('admin.cursos.delete', $grupo->id_curso) }}"
+                            <form action=""
                                 method="POST" style="display:inline;">
                                 @csrf
                                 @method('DELETE')
@@ -48,17 +48,6 @@
                                         fill="currentColor" class="bi bi-eraser" viewBox="0 0 16 16">
                                         <path
                                             d="M8.086 2.207a2 2 0 0 1 2.828 0l3.879 3.879a2 2 0 0 1 0 2.828l-5.5 5.5A2 2 0 0 1 7.879 15H5.12a2 2 0 0 1-1.414-.586l-2.5-2.5a2 2 0 0 1 0-2.828zm2.121.707a1 1 0 0 0-1.414 0L4.16 7.547l5.293 5.293 4.633-4.633a1 1 0 0 0 0-1.414zM8.746 13.547 3.453 8.254 1.914 9.793a1 1 0 0 0 0 1.414l2.5 2.5a1 1 0 0 0 .707.293H7.88a1 1 0 0 0 .707-.293z" />
-                                    </svg></button>
-                            </form>
-                            <form action="{{ route('admin.inscribir', $grupo->id_curso) }}"
-                                method="GET" style="display:inline;">
-                                @csrf
-                                <button type="submit" class="btn btn-primary btn-sm"><svg
-                                        xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                        fill="currentColor" class="bi bi-person-plus-fill" viewBox="0 0 16 16">
-                                        <path
-                                            d="M10.5 3a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0zM8 9a4.978 4.978 0 0 1-3.464-1.343A4.978 4.978 0 0 1 .5 4a4.978 4.978 0 0 1 .343-3.464A4.978 4.978 0 0 1 4 .5a4.978 4.978 0 0 1 3.464-.343A4.978 4.978 0 0 1 .5-.343A4.978 4.978 0 0 1 .343-3.464A4.978 4.978 0 0 1 .5-8a4.978
-                                            -8a2a2a2a2a2a2a2a2a2a2a2a2a2zM8 .5V7h6v6h-6v6H7V7H1V1h6V7z" />
                                     </svg></button>
                             </form>
                         </div>
@@ -77,17 +66,17 @@
                 @csrf
                 <div>
                     <h3>Modalidad:</h3>
-                    <select id="tipo_curso" name="tipo_curso" required>
+                    <select id="modalidad_curso" name="modalidad_curso" required>
                         <option value="" selected>...</option>
                         <option value="Presencial">Presencial</option>
-                        <option value="Virtual">Online</option>
+                        <option value="Virtual">Virtual</option>
                     </select>
                 </div>
 
                 <div id="datos_generales" class="contenedor-info-general">
                     <h3>Datos Generales del curso</h3>
-                    <label for="modelo_solucion_curso">Modelo de solución del curso:</label>
-                    <input type="text" id="modelo_solucion_curso" name="modelo_solucion_curso" required>
+                    <label for="nivel_curso">Nivel del curso:</label>
+                    <input type="text" id="nivel_curso" name="nivel_curso" required>
                     <br>
                     <label for="docente_curso">Docente :</label>
                     <select id="docente_curso" name="docente_curso">
@@ -97,45 +86,17 @@
                         @endforeach
                     </select>
                     <br>
-                    <label for="tecnm_curso">TENM Curso:</label>
-                    <input type="text" id="tecnm_curso" name="tecnm_curso" required>
+                    <label for="hora_inicio_curso">Fecha de inicio:</label>
+                    <input type="text" id="hora_inicio_curso" name="hora_inicio_curso" required>
                     <br>
-                    <label for="modelo_curso">Modelo del curso:</label>
-                    <input type="text" id="modelo_curso" name="modelo_curso" required>
+                    <label for="hora_fin_curso">Fecha de fin:</label>
+                    <input type="text" id="hora_fin_curso" name="hora_fin_curso">
                     <br>
-                    <label for="modulo_curso">Módulo del curso:</label>
-                    <input type="text" id="modulo_curso" name="modulo_curso" required>
-                    <br>
-                    <label for="nombre_tms_curso">Nombre TMS del curso:</label>
-                    <input type="text" id="nombre_tms_curso" name="nombre_tms_curso" required>
-                    <br>
-                    <label for="inicio_curso">Fecha de inicio del curso:</label>
-                    <input type="date" id="inicio_curso" name="inicio_curso" required>
-                    <br>
-                    <label for="fin_curso">Fecha de fin del curso:</label>
-                    <input type="date" id="fin_curso" name="fin_curso" required>
-                    <br>
-                    <label for="dias_curso">Dias del curso:</label>
+                    <label for="apellidos">Dias del curso:</label>
                     <input type="text" id="dias_curso" name="dias_curso">
                     <br>
-                    <label for="horario_curso">Horario del curso:</label>
-                    <input type="text" id="horario_curso" name="horario_curso">
-                    <br>
-                    <label for="cupo_curso">Cupo del curso:</label>
+                    <label for="edad">Cupo del curso:</label>
                     <input type="number" id="cupo_curso" name="cupo_curso">
-                    <br>
-                    <label for="clases_via_curso">Clases vía curso:</label>
-                    <input type="text" id="clases_via_curso" name="clases_via_curso">
-                    <br>
-                    <label for="acceso_plataforma_curso">Acceso a la plataforma:</label>
-                    <input type="text" id="acceso_plataforma_curso" name="acceso_plataforma_curso">
-                    <br>
-                    <label for="acceso_plataforma_curso">Acceso a teams del curso:</label>
-                    <input type="text" id="acceso_teams_curso" name="acceso_teams_curso">
-                    <br>
-                    <label for="link_clase_curso">Link de la clase:</label>
-                    <input type="text" id="link_clase_curso" name="link_clase_curso">
-                    <br>
                 </div>
                 <button type="submit" id="button_enviar" class="button_enviar">Agregar</button>
             </form>
