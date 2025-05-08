@@ -28,29 +28,36 @@
                         <p>Días del curso: {{ $grupo->dias_curso }}</p>
                         <p>Horarios del curso: {{ $grupo->horario_curso }}</p>
                         <div class="gestionar">
-                            <form method="GET"
-                                action="{{ route('admin.actualiza_curso', $grupo->id_curso) }}">
+                            <form method="GET" action="{{ route('admin.actualiza_curso', $grupo->id_curso) }}">
                                 @csrf
-                                <button type="submit" class="btn btn-warning btn-sm"><svg
-                                        xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                        fill="currentColor" class="bi bi-pencil-fill" viewBox="0 0 16 16">
+                                <button type="submit" class="btn btn-warning btn-sm"><svg xmlns="http://www.w3.org/2000/svg"
+                                        width="16" height="16" fill="currentColor" class="bi bi-pencil-fill"
+                                        viewBox="0 0 16 16">
                                         <path
                                             d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.5.5 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11z" />
                                     </svg></button>
                             </form>
-                            <form action="{{ route('admin.cursos.delete', $grupo->id_curso) }}"
-                                method="POST" style="display:inline;">
+                            <form action="{{ route('admin.cursos.delete', $grupo->id_curso) }}" method="POST"
+                                style="display:inline;">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger btn-sm"
-                                    onclick="return confirm('¿Estás seguro?')"><svg
-                                        xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                        fill="currentColor" class="bi bi-eraser" viewBox="0 0 16 16">
+                                    onclick="return confirm('¿Estás seguro?')"><svg xmlns="http://www.w3.org/2000/svg"
+                                        width="16" height="16" fill="currentColor" class="bi bi-eraser"
+                                        viewBox="0 0 16 16">
                                         <path
                                             d="M8.086 2.207a2 2 0 0 1 2.828 0l3.879 3.879a2 2 0 0 1 0 2.828l-5.5 5.5A2 2 0 0 1 7.879 15H5.12a2 2 0 0 1-1.414-.586l-2.5-2.5a2 2 0 0 1 0-2.828zm2.121.707a1 1 0 0 0-1.414 0L4.16 7.547l5.293 5.293 4.633-4.633a1 1 0 0 0 0-1.414zM8.746 13.547 3.453 8.254 1.914 9.793a1 1 0 0 0 0 1.414l2.5 2.5a1 1 0 0 0 .707.293H7.88a1 1 0 0 0 .707-.293z" />
                                     </svg></button>
                             </form>
-
+                            <form action='{{ route('admin.inscribir', $grupo->id_curso) }}' method="GET">
+                                @csrf
+                                <button type="submit" class="btn btn-primary btn-sm"><svg xmlns="http://www.w3.org/2000/svg"
+                                        width="16" height="16" fill="currentColor" class="bi bi-people-fill"
+                                        viewBox="0 0 16 16">
+                                        <path
+                                            d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6m-5.784 6A2.24 2.24 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.3 6.3 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1zM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5" />
+                                    </svg></button>
+                            </form>
                         </div>
                     </div>
                 @endforeach
