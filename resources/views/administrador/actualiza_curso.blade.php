@@ -1,7 +1,7 @@
 @extends('layouts.layout_prin')
 @section('title', 'Actualizar Curso')
 @section('estilos')
-    <link rel="stylesheet" href="{{ asset('css/registro_cursos.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/actualiza_grupo.css') }}">
 @endsection
 @section('contenido')
     <div class="container-">

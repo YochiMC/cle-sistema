@@ -1,7 +1,7 @@
 @extends('layouts.layout_prin')
 @section('title', 'Usuarios')
 @section('estilos')
-    <link rel="stylesheet" href="{{ asset('css/registro.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/actualiza_usuario.css') }}">
 @endsection
 @section('contenido')
     <div class="container-">

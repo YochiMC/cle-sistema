@@ -129,12 +129,12 @@
                 <tbody>
                     @foreach ($data as $alumno)
                         <tr>
-                            <td>{{ $alumno->matricula_alumno }}</td>
-                            <td>{{ $alumno->carrera_alumno }}</td>
-                            <td>{{ $alumno->semestre_alumno }}</td>
-                            <td>{{ $alumno->nombre_alumno }} {{ $alumno->apellidos_alumno }}</td>
-                            <td>{{ $alumno->sexo_alumno }}</td>
-                            <td>{{ $alumno->edad_alumno }}</td>
+                            <td class="infor">{{ $alumno->matricula_alumno }}</td>
+                            <td class="infor">{{ $alumno->carrera_alumno }}</td>
+                            <td class="infor">{{ $alumno->semestre_alumno }}</td>
+                            <td class="infor">{{ $alumno->nombre_alumno }} {{ $alumno->apellidos_alumno }}</td>
+                            <td class="infor">{{ $alumno->sexo_alumno }}</td>
+                            <td class="infor">{{ $alumno->edad_alumno }}</td>
                             <td>
                                 <div class="gestionar">
                                     <form method="GET"
@@ -180,11 +180,11 @@
                 <tbody>
                     @foreach ($data as $docente)
                         <tr>
-                            <td>{{ $docente->docente_clave }}</td>
-                            <td>{{ $docente->docente_nombre }} {{ $docente->docente_apellidos }}</td>
-                            <td>{{ $docente->docente_sexo }}</td>
-                            <td>{{ $docente->docente_edad }}</td>
-                            <td>
+                            <td class="infor">{{ $docente->docente_clave }}</td>
+                            <td class="infor">{{ $docente->docente_nombre }} {{ $docente->docente_apellidos }}</td>
+                            <td class="infor">{{ $docente->docente_sexo }}</td>
+                            <td class="infor">{{ $docente->docente_edad }}</td>
+                            <td class="infor">
                                 <div class="gestionar">
                                     <form method="GET"
                                         action="{{ route('admin.actualiza_usuario', $docente->id_usuario) }}">
