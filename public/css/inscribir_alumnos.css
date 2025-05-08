@@ -1,0 +1,337 @@
+/* Estilos generales */
+:root {
+    --azul: #1B396A;
+    --azul-secundario: #25477d;
+    --naranja: #f19b26;
+    --fondo-claro: linear-gradient(to bottom, #f0f4f8, #d9e2ec);
+    --texto-oscuro: #2c3e50; /* Color oscuro para texto */
+    
+    /* Colores derivados para el sistema */
+    --primary-color: var(--azul);
+    --secondary-color: var(--azul-secundario);
+    --accent-color: var(--naranja);
+    --success-color: #2ecc71;
+    --danger-color: #e74c3c;
+    --warning-color: #f39c12;
+    --dark-color: var(--azul);
+    --light-color: #ecf0f1;
+    --border-radius: 4px;
+    --box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  body {
+    background: var(--fondo-claro);
+    color: var(--texto-oscuro);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+  }
+  
+  .container- {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  h2 {
+    color: var(--azul);
+    margin-bottom: 25px;
+    border-bottom: 2px solid var(--naranja);
+    padding-bottom: 10px;
+    font-size: 1.8rem;
+    text-align: center;
+  }
+  
+  h3 {
+    color: var(--azul);
+    margin: 25px 0 15px;
+    font-size: 1.3rem;
+    position: relative;
+    padding-left: 15px;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 8px;
+  }
+  
+  h3:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 4px;
+    background-color: var(--naranja);
+    border-radius: 2px;
+  }
+  
+  /* Estilos para la información del curso */
+  .info-curso {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: var(--box-shadow);
+    padding: 20px;
+    margin-bottom: 25px;
+    border-left: 4px solid var(--naranja);
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .info-curso .info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .info-curso label {
+    font-weight: 600;
+    color: var(--azul);
+    margin: 0;
+    min-width: 200px;
+  }
+  
+  .info-curso p {
+    margin: 0;
+    font-size: 1.1rem;
+    color: var(--texto-oscuro);
+    font-weight: 500;
+    background-color: #f8f9fa;
+    padding: 8px 15px;
+    border-radius: var(--border-radius);
+    border-left: 3px solid var(--azul);
+  }
+  
+  /* Estilos para las tablas */
+  table, .table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+    box-shadow: var(--box-shadow);
+    background-color: white;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  
+  .table-bordered {
+    border: 1px solid #dee2e6;
+  }
+  
+  .text-center {
+    text-align: center;
+  }
+  
+  .table-dark {
+    background-color: var(--azul);
+  }
+  
+  table th, .table th {
+    background-color: var(--azul);
+    color: white;
+    padding: 12px 15px;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
+    border: none;
+    text-align: center;
+  }
+  
+  table td, .table td {
+    padding: 12px 15px;
+    border: 1px solid #dee2e6;
+    vertical-align: middle;
+    color: var(--texto-oscuro);
+  }
+  
+  table tr:nth-child(even), .table tr:nth-child(even) {
+    background-color: #f8f9fa;
+  }
+  
+  table tr:hover, .table tr:hover {
+    background-color: #f1f1f1;
+  }
+  
+  /* Estilo específico para las celdas con clase "infor" */
+  .infor {
+    color: var(--texto-oscuro);
+    font-weight: 500;
+    text-align: center;
+  }
+  
+  /* Estilos para los badges */
+  .badge {
+    display: inline-block;
+    padding: 6px 10px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    border-radius: 30px;
+    text-align: center;
+    white-space: nowrap;
+    min-width: 100px;
+  }
+  
+  .bg-success {
+    background-color: var(--success-color);
+    color: white;
+  }
+  
+  .bg-danger {
+    background-color: var(--danger-color);
+    color: white;
+  }
+  
+  .bg-warning {
+    background-color: var(--warning-color);
+    color: white;
+  }
+  
+  /* Estilos para los botones de acción */
+  .gestionar {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+  }
+  
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-weight: 500;
+  }
+  
+  .btn-sm {
+    padding: 6px;
+    width: 36px;
+    height: 36px;
+  }
+  
+  .btn-warning {
+    background-color: var(--naranja);
+    color: white;
+  }
+  
+  .btn-warning:hover {
+    background-color: #e08b16; /* Versión más oscura del naranja */
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .btn svg {
+    width: 16px;
+    height: 16px;
+  }
+  
+  /* Estilos responsivos */
+  @media (min-width: 768px) {
+    .info-curso {
+      flex-direction: row;
+      justify-content: space-around;
+      align-items: center;
+    }
+    
+    .info-curso .info {
+      flex: 1;
+    }
+    
+    .info-curso label {
+      min-width: auto;
+    }
+  }
+  
+  @media (max-width: 992px) {
+    table, .table {
+      display: block;
+      overflow-x: auto;
+      white-space: nowrap;
+    }
+    
+    table th, .table th, 
+    table td, .table td {
+      padding: 10px;
+    }
+    
+    .info-curso label {
+      font-size: 0.9rem;
+    }
+    
+    .info-curso p {
+      font-size: 1rem;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    h2 {
+      font-size: 1.5rem;
+    }
+    
+    h3 {
+      font-size: 1.2rem;
+      margin: 20px 0 10px;
+    }
+    
+    .badge {
+      font-size: 0.75rem;
+      padding: 5px 8px;
+    }
+    
+    .btn-sm {
+      width: 32px;
+      height: 32px;
+    }
+    
+    .info-curso {
+      padding: 15px;
+    }
+  }
+  
+  /* Animaciones */
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  .info-curso, table, .table {
+    animation: fadeIn 0.3s ease-out;
+  }
+  
+  /* Estilo para el botón de inscripción */
+  .btn-warning svg {
+    transition: transform 0.3s ease;
+  }
+  
+  .btn-warning:hover svg {
+    transform: scale(1.2);
+  }
+  
+  /* Estilo para resaltar la fila al pasar el cursor */
+  table tbody tr, .table tbody tr {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  
+  table tbody tr:hover, .table tbody tr:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    position: relative;
+    z-index: 1;
+  }
+  
+  /* Estilo para la tabla de alumnos inscritos */
+  .info-curso table {
+    margin-top: 10px;
+    width: 100%;
+  }
+  
+  .info-curso > label {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 1.1rem;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 5px;
+  }
+  
+  /* Estilo para cuando no hay botón de inscripción */
+  .gestionar[style*="display: none"] + td {
+    color: #999;
+  }

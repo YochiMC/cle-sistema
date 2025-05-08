@@ -47,6 +47,7 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     Route::put('/update_curso/{id}', [CrudCursosController::class, 'update_curso'])->name('update_curso');
     //Inscripciones - completo
     Route::get('/inscripciones/{id}', [InscripcionController::class, 'inscribirAdministrativo'])->name('inscribir');
+    Route::post('/inscripciones/{id_alumno}/{id_curso}', [InscripcionController::class, 'create'])->name('inscripciones.create');
 });
 
 // Grupo para Vistas Generales con auttenticación
