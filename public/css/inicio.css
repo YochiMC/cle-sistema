@@ -17,6 +17,7 @@ header h1 {
 /* Asegurar que la container esté alineada sin margen extra */
 .container-contenido {
     width: 100%; /* Asegura que el contenedor ocupe el 100% del ancho disponible */
+    height: 100%;
     max-width: 1200px; /* Limita el ancho máximo */
     margin: 0 auto; /* Centra el contenedor */
     padding: 20px;
