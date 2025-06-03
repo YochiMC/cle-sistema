@@ -1,0 +1,323 @@
+/* Estilos generales */
+:root {
+  --azul: #1B396A;
+  --azul-secundario: #25477d;
+  --naranja: #f19b26;
+  --fondo-claro: linear-gradient(to bottom, #f0f4f8, #d9e2ec);
+  --texto-oscuro: #2c3e50; /* Color oscuro para texto */
+
+  /* Colores derivados para el sistema */
+  --primary-color: var(--azul);
+  --secondary-color: var(--azul-secundario);
+  --accent-color: var(--naranja);
+  --success-color: #2ecc71;
+  --danger-color: #e74c3c;
+  --warning-color: var(--naranja);
+  --dark-color: var(--azul);
+  --light-color: #ecf0f1;
+  --border-radius: 4px;
+  --box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+body {
+  background: var(--fondo-claro);
+  color: var(--texto-oscuro);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+}
+
+.container- {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+h2 {
+  color: var(--azul);
+  margin-bottom: 25px;
+  border-bottom: 2px solid var(--naranja);
+  padding-bottom: 10px;
+  font-size: 1.8rem;
+  text-align: center;
+}
+
+h3 {
+  color: var(--azul);
+  margin: 25px 0 15px;
+  font-size: 1.3rem;
+  position: relative;
+  padding-left: 15px;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 8px;
+}
+
+h3:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 4px;
+  background-color: var(--naranja);
+  border-radius: 2px;
+}
+
+/* Estilos para el formulario */
+form {
+  background-color: white;
+  padding: 25px;
+  border-radius: 8px;
+  box-shadow: var(--box-shadow);
+  margin-bottom: 30px;
+  border-top: 4px solid var(--naranja);
+}
+
+/* Sección de información del alumno */
+.info-alumno {
+  background-color: #f8f9fa;
+  padding: 20px;
+  border-radius: var(--border-radius);
+  margin-bottom: 25px;
+  border-left: 3px solid var(--azul);
+}
+
+label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 600;
+  color: var(--azul);
+}
+
+/* Campos de información del alumno (deshabilitados) */
+input[disabled] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: var(--border-radius);
+  font-size: 14px;
+  color: var(--texto-oscuro);
+  background-color: #f8f9fa;
+  cursor: not-allowed;
+  box-sizing: border-box;
+}
+
+/* Eliminar los <br> del formulario */
+br {
+  display: none;
+}
+
+/* Estilos para la tabla de kardex */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
+  box-shadow: var(--box-shadow);
+  background-color: white;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+table th {
+  background-color: var(--azul);
+  color: white;
+  padding: 12px 15px;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  letter-spacing: 0.5px;
+  border: none;
+  text-align: center;
+}
+
+table td {
+  padding: 8px;
+  border: 1px solid #dee2e6;
+  vertical-align: middle;
+  background-color: white;
+}
+
+table tr:nth-child(even) {
+  background-color: #f8f9fa;
+}
+
+table tr:hover {
+  background-color: #f1f1f1;
+}
+
+/* Inputs dentro de la tabla */
+table input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: var(--border-radius);
+  font-size: 14px;
+  color: var(--texto-oscuro);
+  box-sizing: border-box;
+  background-color: white;
+}
+
+table input:focus {
+  outline: none;
+  border-color: var(--naranja);
+  box-shadow: 0 0 0 2px rgba(241, 155, 38, 0.2);
+}
+
+/* Estilo específico para inputs de número (calificaciones) */
+table input[type="number"] {
+  text-align: center;
+  font-weight: 600;
+}
+
+table input[type="number"]:focus {
+  background-color: #fff8f0;
+}
+
+/* Validación visual para calificaciones */
+table input[type="number"]:valid {
+  border-color: var(--success-color);
+}
+
+table input[type="number"]:invalid {
+  border-color: var(--danger-color);
+}
+
+/* Botón de guardar cambios */
+button[type="submit"] {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  background-color: var(--naranja);
+  color: white;
+  border: none;
+  border-radius: var(--border-radius);
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 25px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+button[type="submit"]:hover {
+  background-color: #e08b16; /* Versión más oscura del naranja */
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Diseño de grid para información del alumno */
+@media (min-width: 768px) {
+  .info-alumno {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  .info-alumno h3 {
+    grid-column: 1 / -1;
+  }
+}
+
+/* Estilos responsivos */
+@media (max-width: 992px) {
+  table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  table th, table td {
+    padding: 10px;
+  }
+}
+
+@media (max-width: 768px) {
+  .container- {
+    padding: 15px;
+  }
+
+  form {
+    padding: 15px;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  h3 {
+    font-size: 1.2rem;
+  }
+
+  table input {
+    font-size: 16px; /* Evita el zoom en dispositivos móviles */
+  }
+
+  button[type="submit"] {
+    font-size: 18px;
+    padding: 15px;
+  }
+}
+
+/* Animaciones */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+form, table {
+  animation: fadeIn 0.3s ease-out;
+}
+
+/* Efectos de transición para las filas de la tabla */
+table tbody tr {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+table tbody tr:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+  position: relative;
+  z-index: 1;
+}
+
+/* Estilo para indicar campos editables */
+table input:not([disabled]) {
+  border-left: 3px solid var(--naranja);
+}
+
+/* Estilo para mensajes de validación */
+.validation-message {
+  font-size: 0.8rem;
+  margin-top: 5px;
+  padding: 5px;
+  border-radius: var(--border-radius);
+}
+
+.validation-message.error {
+  color: var(--danger-color);
+  background-color: #f8d7da;
+  border: 1px solid #f5c6cb;
+}
+
+.validation-message.success {
+  color: var(--success-color);
+  background-color: #d4edda;
+  border: 1px solid #c3e6cb;
+}
+
+/* Estilo para el encabezado de la tabla */
+table thead {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+/* Mejora visual para campos de calificación */
+table td:nth-child(2) {
+  background-color: #fff8f0;
+}
+
+table td:nth-child(2) input {
+  font-weight: bold;
+  color: var(--azul);
+}

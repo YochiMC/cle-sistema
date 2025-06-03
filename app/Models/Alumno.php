@@ -22,17 +22,17 @@ class Alumno extends Model
         'sexo_alumno',
         'carrera_alumno',
         'semestre_alumno',
-        'kardex_alumno',
         'inscrito',
         'acredita'
-    ];
-
-    protected $casts = [
-        'kardex_alumno' => 'array', // convierte el JSON a array automáticamente
     ];
 
     public function usuario()
     {
         return $this->belongsTo(User::class, 'id_usuario');
+    }
+
+    public function kardex()
+    {
+        return $this->hasMany(Kardex::class, 'id_alumno', 'id_alumno');
     }
 }

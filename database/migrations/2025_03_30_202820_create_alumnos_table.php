@@ -14,9 +14,7 @@ return new class extends Migration {
     {
         Schema::create('alumnos', function (Blueprint $table) {
             $table->id('id_alumno');
-
             $table->foreignId('id_usuario')->constrained('users')->cascadeOnDelete();
-
             $table->string('matricula_alumno', 20)->unique();
             $table->string('nombre_alumno', 100);
             $table->string('apellidos_alumno', 100);
@@ -24,15 +22,10 @@ return new class extends Migration {
             $table->string('sexo_alumno', 100);
             $table->string('carrera_alumno', 100);
             $table->unsignedTinyInteger('semestre_alumno');
-
-            $table->json('kardex_alumno')->nullable();
-
             $table->boolean('inscrito')->default(false);
             $table->boolean('acredita')->default(false);
-
             $table->timestamps();
         });
-
     }
 
     /**

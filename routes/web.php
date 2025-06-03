@@ -6,6 +6,7 @@ use App\Http\Controllers\CrudController;
 use App\Http\Controllers\CrudCursosController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\InscripcionController;
+use App\Http\Controllers\KardexController;
 
 /*
 |--------------------------------------------------------------------------
@@ -46,8 +47,12 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     Route::get('/actualiza_curso/{id}', [CrudCursosController::class, 'update'])->name('actualiza_curso');
     Route::put('/update_curso/{id}', [CrudCursosController::class, 'update_curso'])->name('update_curso');
     //Inscripciones - completo
-    Route::get('/inscripciones/{id}', [InscripcionController::class, 'inscribirAdministrativo'])->name('inscribir');
     Route::post('/inscripciones/{id_alumno}/{id_curso}', [InscripcionController::class, 'create'])->name('inscripciones.create');
+    Route::delete('/inscripciones/{id_alumno}/{id_curso}', [InscripcionController::class, 'delete'])->name('inscripciones.delete');
+    Route::get('/inscripciones/{id}', [InscripcionController::class, 'inscribirAdministrativo'])->name('inscribir');
+    //Calificaciones - incompleto
+    Route::get('/calificaciones/{id_alumno}', [KardexController::class, 'show'])->name('calificaciones.show');
+    Route::put('/calificaciones/{id_alumno}', [KardexController::class, 'update'])->name('calificaciones.update');
 });
 
 // Grupo para Vistas Generales con auttenticación

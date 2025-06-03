@@ -38,6 +38,27 @@ class InscripcionController extends Controller
         return redirect()->back()->with('success', 'Inscripción exitosa.');
     }
 
+    public function delete($id_alumno, $id_curso)
+    {
+        $inscripcion = Inscripcion::where('id_alumno', $id_alumno)->where('id_curso', $id_curso)->first();
+
+        if (!$inscripcion) {
+            return redirect()->back()->with('error', 'Inscripción no encontrada.');
+        }
+
+        $inscripcion->delete();
+
+        $alumno = Alumno::find($id_alumno);
+        $alumno->inscrito = false;
+        $alumno->save();
+
+        $curso = Curso::find($id_curso);
+        $curso->decrement('alumnos_actuales_curso');
+        $curso->save();
+
+        return redirect()->back()->with('success', 'Inscripción eliminada exitosamente.');
+    }
+
     public function inscribirAdministrativo($id)
     {
         $grupo = Curso::find($id);

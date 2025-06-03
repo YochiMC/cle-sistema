@@ -149,7 +149,7 @@ class UserSeeder extends Seeder
             'email_verified_at' => now(),
         ]);
 
-        Alumno::create([
+        $alumno = Alumno::create([
             'id_usuario' => $alumnoUser->id,
             'matricula_alumno' => '21240551',
             'nombre_alumno' => 'Joseph Alexander',
@@ -158,20 +158,13 @@ class UserSeeder extends Seeder
             'sexo_alumno' => 'Masculino',
             'carrera_alumno' => 'Ingeniería en Sistemas Computacionales',
             'semestre_alumno' => 8,
-            'kardex_alumno' => [
-                [
-                    'materia' => 'Nivel 1',
-                    'calificacion' => 90,
-                    'periodo' => '2024-2'
-                ],
-                [
-                    'materia' => 'Nivel 2',
-                    'calificacion' => 88,
-                    'periodo' => '2024-2'
-                ]
-            ],
             'inscrito' => false,
-            'acredita' => false
+            'acredita' => false,
+        ]);
+
+        $alumno->kardex()->createMany([
+            ['materia' => 'Nivel 1', 'calificacion' => 90, 'periodo' => '2024-2'],
+            ['materia' => 'Nivel 2', 'calificacion' => 88, 'periodo' => '2024-2'],
         ]);
 
         $alumnoUser->assignRole($roleAlumno);
