@@ -15,16 +15,17 @@ class Alumno extends Model
 
     protected $fillable = [
         'id_usuario',
+        'id_carrera',
         'matricula_alumno',
         'nombre_alumno',
         'apellidos_alumno',
         'edad_alumno',
         'sexo_alumno',
-        'carrera_alumno',
         'semestre_alumno',
         'inscrito',
         'acredita'
     ];
+
 
     public function usuario()
     {
@@ -35,4 +36,10 @@ class Alumno extends Model
     {
         return $this->hasMany(Kardex::class, 'id_alumno', 'id_alumno');
     }
+
+    public function carrera()
+    {
+        return $this->belongsTo(Carrera::class, 'id_carrera');
+    }
+
 }

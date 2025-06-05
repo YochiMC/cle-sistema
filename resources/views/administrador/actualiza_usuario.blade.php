@@ -22,9 +22,9 @@
                 <input type="text" name="telefono" value="{{ $usuario->phonenumber }}" placeholder="Correo de usuario">
                 <br>
                 <!--<label for="contraseña">Contraseña:</label>
-                        <input type="password" name="contraseña" value="{{ $usuario->password }}" placeholder="Contraseña">
-                        <label for="comfirma">Confirma contraseña:</label>
-                        <input type="password" name="confirma" placeholder="Contraseña">-->
+                            <input type="password" name="contraseña" value="{{ $usuario->password }}" placeholder="Contraseña">
+                            <label for="comfirma">Confirma contraseña:</label>
+                            <input type="password" name="confirma" placeholder="Contraseña">-->
                 <br>
                 <h3>Datos del alumno</h3>
                 <label for="matricula_alumno">Matrícula:</label>
@@ -32,8 +32,8 @@
                     placeholder="Matrícula del alumno">
                 <br>
                 <label for="carrera_alumno">Carrera:</label>
-                <input type="text" name="carrera_alumno" value="{{ $data_alumno->carrera_alumno }}"
-                    placeholder="Carrera del alumno">
+                <input type="text" name="carrera_alumno" value="{{ $data_alumno->carrera->nombre }}"
+                    placeholder="Carrera del alumno" disabled>
                 <br>
                 <label for="semestre_alumno">Semestre:</label>
                 <input type="text" name="semestre_alumno" value="{{ $data_alumno->semestre_alumno }}"
@@ -93,9 +93,9 @@
                 <input type="text" name="telefono" value="{{ $usuario->phonenumber }}" placeholder="Correo de usuario">
                 <br>
                 <!--<label for="contraseña">Contraseña:</label>
-                        <input type="password" name="contraseña" value="{{ $usuario->password }}" placeholder="Contraseña">
-                        <label for="comfirma">Confirma contraseña:</label>
-                        <input type="password" name="confirma" placeholder="Contraseña">-->
+                            <input type="password" name="contraseña" value="{{ $usuario->password }}" placeholder="Contraseña">
+                            <label for="comfirma">Confirma contraseña:</label>
+                            <input type="password" name="confirma" placeholder="Contraseña">-->
                 <br>
                 <h3>Datos del Docente</h3>
                 <label for="docente_clave">Clave del docente:</label>

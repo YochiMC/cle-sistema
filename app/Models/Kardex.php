@@ -13,7 +13,7 @@ class Kardex extends Model
     public $timestamps = true;
 
     protected $fillable = [
-        'alumno_id',
+        'id_alumno',
         'materia',
         'calificacion',
         'periodo',
@@ -21,7 +21,7 @@ class Kardex extends Model
 
     public function alumno()
     {
-        return $this->belongsTo(Alumno::class, 'alumno_id', 'id_alumno');
+        return $this->belongsTo(Alumno::class, 'id_alumno', 'id_alumno');
     }
 
     public function kardex()

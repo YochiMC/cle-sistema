@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Alumno;
 use App\Models\Docente;
+use App\Models\Carrera;
+use App\Models\Kardex;
 
 class CrudController extends Controller
 {
@@ -29,20 +31,13 @@ class CrudController extends Controller
 
                 Alumno::query()->create([
                     'id_usuario' => $newUser->id,
+                    'id_carrera' => $request->carrera,
                     'matricula_alumno' => $request->numero_control,
                     'nombre_alumno' => $request->nombre,
                     'apellidos_alumno' => $request->apellidos,
                     'edad_alumno' => $request->edad,
                     'sexo_alumno' => $request->sexo,
-                    'carrera_alumno' => $request->carrera,
                     'semestre_alumno' => $request->semestre,
-                    'kardex_alumno' => [
-                        [
-                            'materia' => 'Nivel',
-                            'calificacion' => 00,
-                            'periodo' => '---'
-                        ],
-                    ],
                     'inscrito' => false,
                     'acredita' => false
                 ]);
@@ -76,7 +71,7 @@ class CrudController extends Controller
 
         switch ($tipo) {
             case 'alumnos':
-                $data = Alumno::paginate(5);
+                $data = Alumno::with('carrera')->paginate(5);
                 break;
             case 'docentes':
                 $data = Docente::paginate(5);
@@ -85,7 +80,10 @@ class CrudController extends Controller
                 $data = Alumno::paginate(5);
                 break;
         }
-        return view('administrador.registro', compact('tipo', 'data'));
+
+        $carreras = Carrera::all();
+
+        return view('administrador.registro', compact('tipo', 'data', 'carreras'));
     }
 
     public function update($id)
@@ -100,14 +98,16 @@ class CrudController extends Controller
 
         // Verificamos el rol del usuario y eliminamos los datos correspondientes
         if ($usuario->hasRole('alumno')) {
-            $data_alumno = Alumno::where('id_usuario', $usuario->id)->first();
+           $data_alumno = Alumno::with('carrera')->where('id_usuario', $usuario->id)->first();
             $tipo = 'alumno';
         } elseif ($usuario->hasRole('docente')) {
             $data_docente = Docente::where('id_usuario', $usuario->id)->first();
             $tipo = 'docente';
         }
 
-        return view('administrador.actualiza_usuario', compact('usuario', 'tipo', 'data_alumno', 'data_docente'));
+        $carreras = Carrera::all();
+
+        return view('administrador.actualiza_usuario', compact('usuario', 'tipo', 'data_alumno', 'data_docente', 'carreras'));
     }
 
     public function update_alumno(Request $request, $tipo, $id_alumno)
@@ -122,7 +122,6 @@ class CrudController extends Controller
 
         //Datos de alumno
         $alumno->matricula_alumno = $request->matricula_alumno;
-        $alumno->carrera_alumno = $request->carrera_alumno;
         $alumno->semestre_alumno = $request->semestre_alumno;
         $alumno->nombre_alumno = $request->nombre_alumno;
         $alumno->apellidos_alumno = $request->apellidos_alumno;

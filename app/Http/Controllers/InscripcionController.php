@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Inscripcion;
 use App\Models\Curso;
 use App\Models\Alumno;
+use App\Models\Kardex;
 
 class InscripcionController extends Controller
 {
@@ -35,6 +36,13 @@ class InscripcionController extends Controller
         $curso->increment('alumnos_actuales_curso');
         $curso->save();
 
+        Kardex::create([
+            'id_alumno' => $id_alumno,
+            'materia' => $curso->modulo_curso,
+            'calificacion' => 0,
+            'periodo' => $curso->inicio_curso . ' - ' . $curso->fin_curso,
+        ]);
+
         return redirect()->back()->with('success', 'Inscripción exitosa.');
     }
 
@@ -55,6 +63,14 @@ class InscripcionController extends Controller
         $curso = Curso::find($id_curso);
         $curso->decrement('alumnos_actuales_curso');
         $curso->save();
+
+        $kardex = Kardex::where('id_alumno', $id_alumno)
+            ->orderBy('created_at', 'desc')
+            ->first();
+
+        if ($kardex) {
+            $kardex->delete();
+        }
 
         return redirect()->back()->with('success', 'Inscripción eliminada exitosamente.');
     }

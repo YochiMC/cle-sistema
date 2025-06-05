@@ -52,7 +52,7 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     Route::get('/inscripciones/{id}', [InscripcionController::class, 'inscribirAdministrativo'])->name('inscribir');
     //Calificaciones - incompleto
     Route::get('/calificaciones/{id_alumno}', [KardexController::class, 'show'])->name('calificaciones.show');
-    Route::put('/calificaciones/{id_alumno}', [KardexController::class, 'update'])->name('calificaciones.update');
+    Route::put('/calificaciones/{id_kardex}', [KardexController::class, 'update'])->name('calificaciones.update');
 });
 
 // Grupo para Vistas Generales con auttenticación

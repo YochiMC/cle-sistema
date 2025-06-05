@@ -182,29 +182,6 @@ table input[type="number"]:invalid {
   border-color: var(--danger-color);
 }
 
-/* Botón de guardar cambios */
-button[type="submit"] {
-  display: block;
-  width: 100%;
-  padding: 12px;
-  background-color: var(--naranja);
-  color: white;
-  border: none;
-  border-radius: var(--border-radius);
-  font-size: 16px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  margin-top: 25px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-button[type="submit"]:hover {
-  background-color: #e08b16; /* Versión más oscura del naranja */
-  transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-}
-
 /* Diseño de grid para información del alumno */
 @media (min-width: 768px) {
   .info-alumno {
@@ -320,4 +297,25 @@ table td:nth-child(2) {
 table td:nth-child(2) input {
   font-weight: bold;
   color: var(--azul);
+}
+
+/* Estilos para los botones de acción en la tabla */
+.gestionar {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.gestionar button {
+    padding: 6px 10px;
+    border: none;
+    border-radius: var(--border-radius);
+    color: white;
+    background-color: var(--azul);
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.gestionar button:hover {
+    transform: translateY(-2px);
 }

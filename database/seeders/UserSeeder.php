@@ -2,9 +2,10 @@
 
 namespace Database\Seeders;
 
-use App\Models\Docente;
 use App\Models\User;
+use App\Models\Docente;
 use App\Models\Alumno;
+use App\Models\Carrera;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Role;
@@ -121,6 +122,23 @@ class UserSeeder extends Seeder
             'ver grupos'
         ]);
 
+        $carreras = [
+            'Ingeniería en Sistemas Computacionales',
+            'Ingeniería Industrial',
+            'Ingeniería en Tecnologías de la Información y Comunicaciones',
+            'Ingeniería en Gestión Empresarial',
+            'Ingeniería Electrónica',
+            'Ingeniería Electromecánica',
+            'Ingenierría Mecatrónica',
+            'Ingeniería en Logística',
+            'Maestría en Ciencias de la Computación',
+            'Maestría en Ciencias de la Ingeniería',
+        ];
+
+        foreach ($carreras as $nombre) {
+            Carrera::create(['nombre' => $nombre]);
+        }
+
         $adminUser = User::query()->create([
             'name' => 'Coordinador',
             'email' => 'coordinacion@coordinacion.com',
@@ -151,20 +169,15 @@ class UserSeeder extends Seeder
 
         $alumno = Alumno::create([
             'id_usuario' => $alumnoUser->id,
+            'id_carrera' => 1,
             'matricula_alumno' => '21240551',
             'nombre_alumno' => 'Joseph Alexander',
             'apellidos_alumno' => 'Martínez Cortés',
             'edad_alumno' => 20,
             'sexo_alumno' => 'Masculino',
-            'carrera_alumno' => 'Ingeniería en Sistemas Computacionales',
             'semestre_alumno' => 8,
             'inscrito' => false,
             'acredita' => false,
-        ]);
-
-        $alumno->kardex()->createMany([
-            ['materia' => 'Nivel 1', 'calificacion' => 90, 'periodo' => '2024-2'],
-            ['materia' => 'Nivel 2', 'calificacion' => 88, 'periodo' => '2024-2'],
         ]);
 
         $alumnoUser->assignRole($roleAlumno);
