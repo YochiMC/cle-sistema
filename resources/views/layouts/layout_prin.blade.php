@@ -7,6 +7,7 @@
     <title>@yield('title')</title>
     <link rel="stylesheet" href={{ asset('css/layout_prin.css') }}>
     <link rel="stylesheet" href="{{ asset('css/modal.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     @yield('estilos')
 </head>
 
@@ -125,6 +126,7 @@
             @yield('contenido')
         </div>
     </div>
+    @yield('scripts')
 </body>
 
 </html>

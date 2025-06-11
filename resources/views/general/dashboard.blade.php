@@ -49,3 +49,15 @@
             @endrole
         </div>
     @endsection
+    @section('scripts')
+        <script>
+            @if(session('success'))
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Éxito',
+                    text: '{{ session('success') }}',
+                    confirmButtonText: 'Aceptar'
+                });
+            @endif
+        </script>
+    @endsection

@@ -12,8 +12,14 @@ class LoginController extends Controller
     {
         // Validación de los datos
         $request->validate([
-            'email' => 'required|email',
-            'password' => 'required|min:6',
+            'email' => 'required|email|exists:users,email',
+            'password' => 'required|min:8',
+        ], [
+            'email.required' => 'Por favor, ingresa tu correo electrónico.',
+            'email.email' => 'El formato del correo no es válido.',
+            'email.exists' => 'El correo ingresado no está registrado.',
+            'password.required' => 'La contraseña es obligatoria.',
+            'password.min' => 'La contraseña debe tener al menos :min caracteres.',
         ]);
 
         // Credenciales para autenticación
@@ -23,10 +29,12 @@ class LoginController extends Controller
 
         if (Auth::attempt($credentials, $remember)) {
             $request->session()->regenerate();
-            return redirect()->intended(route('general.dashboard'));
+            return redirect()->intended(route('general.dashboard'))->with('success', 'Has iniciado sesión correctamente.');
         }
 
-        return redirect()->route('general.inicio_sesion');
+        return redirect()->route('general.inicio_sesion')
+            ->with('error', 'Contraseña incorrecta, vuelva a intentarlo.')
+            ->withInput($request->only('email', 'remember'));
     }
 
 
@@ -37,6 +45,6 @@ class LoginController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect(route('general.inicio_sesion'));
+        return redirect(route('general.inicio_sesion'))->with('success', 'Has cerrado sesión correctamente.');
     }
 }
