@@ -244,12 +244,5 @@
         <script src="{{ asset('js/crud_usuarios.js') }}"></script>
     @endsection
     @section('scripts')
-        <script>
-            Swal.fire({
-                title: 'Error!',
-                text: 'Do you want to continue',
-                icon: 'error',
-                confirmButtonText: 'Cool'
-            })
-        </script>
+
     @endsection

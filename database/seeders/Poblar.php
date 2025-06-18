@@ -71,7 +71,7 @@ class Poblar extends Seeder
                 'clases_via_curso' => 'Teams LEON',
                 'tipo_curso' => 'Online',
                 'acceso_plataforma_curso' => 'Google Meet',
-                'acceso_teams_curso' => null,
+                'acceso_teams_curso' => 'OK',
                 'link_clase_curso' => 'https://meet.google.com/nzk-zvzs-wuz',
             ],
             [
@@ -90,7 +90,7 @@ class Poblar extends Seeder
                 'clases_via_curso' => 'Teams LEON',
                 'tipo_curso' => 'Online',
                 'acceso_plataforma_curso' => 'Google Meet',
-                'acceso_teams_curso' => null,
+                'acceso_teams_curso' => 'OK',
                 'link_clase_curso' => 'https://meet.google.com/nzk-zvzs-wuz',
             ],
             [
