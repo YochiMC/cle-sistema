@@ -13,49 +13,87 @@ class CrudController extends Controller
 {
     public function create(Request $request)
     {
+        switch ($request->tipo_usuario) {
+            case 'admin':
+                //aqui van más validaciones si es necesario
+                break;
+            case 'alumno':
+                $request->validate(
+                    [
+                        'name' => 'required|string|max:255',
+                        'email' => 'required|email|unique:users,email',
+                        'phonenumber' => 'required|nullable|string|max:15',
+                        'password' => 'required|string|min:8',
+                        'nombre' => 'required|string|max:255|regex:/^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+$/u',
+                        'apellidos' => 'required|string|max:255|regex:/^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+$/u',
+                        'edad' => 'required|integer|min:1|max:120',
+                        'sexo' => 'required',
+                        'numero_control' => 'required|string|max:20|unique:alumnos,matricula_alumno|regex:/^[A-Z0-9]+$/',
+                        'carrera' => 'required|exists:carreras,id',
+                        'semestre' => 'required|integer|min:1|max:13',
+                    ],
+                    [
+                        'name.required' => 'El nombre es obligatorio.',
+                        'email.required' => 'El correo electrónico es obligatorio.',
+                        'email.email' => 'El formato del correo electrónico no es válido.',
+                        'email.unique' => 'El correo electrónico ya está en uso.',
+                        'phonenumber.required' => 'El número de teléfono es obligatorio.',
+                        'phonenumber.max' => 'El número de teléfono no puede exceder los 15 caracteres.',
+                        'password.required' => 'La contraseña es obligatoria.',
+                        'password.min' => 'La contraseña debe tener al menos 8 caracteres.',
+                        'nombre.required' => 'El nombre(s) es obligatorio.',
+                        'apellidos.required' => 'Los apellidos son obligatorios.',
+                        'edad.required' => 'La edad es obligatoria.',
+                        'sexo.required' => 'El sexo es obligatorio.',
+                        'numero_control.required' => 'El número de control es obligatorio.',
+                        'numero_control.unique' => 'El número de control ya está en uso.',
+                        'carrera.required' => 'La carrera es obligatoria.',
+                        'semestre.required' => 'El semestre es obligatorio.',
+                        'semestre.min' => 'El semestre debe ser al menos 1.',
+                        'semestre.max' => 'El semestre no puede ser mayor a 13.',
+                        'nombre.regex' => 'El nombre solo puede contener letras y espacios.',
+                        'apellidos.regex' => 'Los apellidos solo pueden contener letras y espacios.',
+                    ]
+                );
+                break;
+            case 'docente':
+                $request->validate(
+                    [
+                        'name' => 'required|string|max:255',
+                        'email' => 'required|email|unique:users,email',
+                        'phonenumber' => 'required|nullable|string|max:15',
+                        'password' => 'required|string|min:8',
+                        'nombre' => 'required|string|max:255|regex:/^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+$/u',
+                        'apellidos' => 'required|string|max:255|regex:/^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+$/u',
+                        'edad' => 'required|integer|min:1|max:120',
+                        'sexo' => 'required',
+                        'numero_trabajador' => 'required|string|max:20|unique:docentes,docente_clave',
+                    ],
+                    [
+                        'name.required' => 'El nombre es obligatorio.',
+                        'email.required' => 'El correo electrónico es obligatorio.',
+                        'email.email' => 'El formato del correo electrónico no es válido.',
+                        'email.unique' => 'El correo electrónico ya está en uso.',
+                        'phonenumber.required' => 'El número de teléfono es obligatorio.',
+                        'phonenumber.max' => 'El número de teléfono no puede exceder los 15 caracteres.',
+                        'password.required' => 'La contraseña es obligatoria.',
+                        'password.min' => 'La contraseña debe tener al menos 8 caracteres.',
+                        'nombre.required' => 'El nombre(s) es obligatorio.',
+                        'apellidos.required' => 'Los apellidos son obligatorios.',
+                        'edad.required' => 'La edad es obligatoria.',
+                        'sexo.required' => 'El sexo es obligatorio.',
+                        'numero_trabajador.required' => 'El número de trabajador es obligatorio.',
+                        'numero_trabajador.unique' => 'El número de trabajador ya está en uso.',
+                        'nombre.regex' => 'El nombre solo puede contener letras y espacios.',
+                        'apellidos.regex' => 'Los apellidos solo pueden contener letras y espacios.',
+                        'numero_control.regex' => 'El número de control solo debe contener letras mayúsculas y números.',
+                    ]
+                );
+                break;
+            default:
+                return redirect()->back()->with('error', 'Tipo de usuario no válido.');
+        }
 
-
-        $request->validate(
-            [
-                'name' => 'required|string|max:255',
-                'email' => 'required|email|unique:users,email',
-                'phonenumber' => 'required|nullable|string|max:15',
-                'password' => 'required|string|min:8',
-                'numero_control' => 'required|string|max:20|unique:alumnos,matricula_alumno|regex:/^[A-Z0-9]+$/|unique:alumnos,matricula_alumno',
-                'carrera' => 'required|exists:carreras,id',
-                'nombre' => 'required|string|max:255|regex:/^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+$/u',
-                'apellidos' => 'required|string|max:255|regex:/^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+$/u',
-                'edad' => 'required|integer|min:1|max:120',
-                'sexo' => 'required',
-                'semestre' => 'required|integer|min:1|max:13',
-                'numero_trabajador' => 'required|string|max:20|unique:docentes,docente_clave',
-            ],
-            [
-                'name.required' => 'El nombre es obligatorio.',
-                'email.required' => 'El correo electrónico es obligatorio.',
-                'email.email' => 'El formato del correo electrónico no es válido.',
-                'email.unique' => 'El correo electrónico ya está en uso.',
-                'phonenumber.required' => 'El número de teléfono es obligatorio.',
-                'phonenumber.max' => 'El número de teléfono no puede exceder los 15 caracteres.',
-                'password.required' => 'La contraseña es obligatoria.',
-                'password.min' => 'La contraseña debe tener al menos 8 caracteres.',
-                'numero_control.required' => 'El número de control es obligatorio.',
-                'numero_control.unique' => 'El número de control ya está en uso.',
-                'carrera.required' => 'La carrera es obligatoria.',
-                'nombre.required' => 'El nombre(s) es obligatorio.',
-                'apellidos.required' => 'Los apellidos son obligatorios.',
-                'edad.required' => 'La edad es obligatoria.',
-                'sexo.required' => 'El sexo es obligatorio.',
-                'semestre.required' => 'El semestre es obligatorio.',
-                'semestre.min' => 'El semestre debe ser al menos 1.',
-                'semestre.max' => 'El semestre no puede ser mayor a 13.',
-                'numero_trabajador.required' => 'El número de trabajador es obligatorio.',
-                'numero_trabajador.unique' => 'El número de trabajador ya está en uso.',
-                'nombre.regex' => 'El nombre solo puede contener letras y espacios.',
-                'apellidos.regex' => 'Los apellidos solo pueden contener letras y espacios.',
-                'numero_control.regex' => 'El número de control solo debe contener letras mayúsculas y números.',
-            ]
-        );
 
         $newUser = User::query()->create([
             'name' => $request->name,
@@ -72,7 +110,6 @@ class CrudController extends Controller
 
                 break;
             case 'alumno':
-
                 Alumno::query()->create([
                     'id_usuario' => $newUser->id,
                     'id_carrera' => $request->carrera,
@@ -119,10 +156,10 @@ class CrudController extends Controller
                 $data = Alumno::with('carrera')->paginate(15);
                 break;
             case 'docentes':
-                $data = Docente::paginate(5);
+                $data = Docente::paginate(15);
                 break;
             default:
-                $data = Alumno::paginate(5);
+                $data = Alumno::paginate(15);
                 break;
         }
 

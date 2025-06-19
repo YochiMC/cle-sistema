@@ -10,15 +10,6 @@ class CrudCursosController extends Controller
 {
     public function create(Request $request)
     {
-        $request->validate([
-            'docente_curso' => 'required|exists:docentes,id_docente',
-            'nivel_curso' => 'required|string|max:100',
-            'modalidad_curso' => 'required|string|max:100',
-            'hora_inicio_curso' => 'required|string|max:5',
-            'hora_fin_curso' => 'required|string|max:5',
-            'dias_curso' => 'required|string|max:100',
-            'cupo_curso' => 'required|integer|min:1'
-        ]);
 
         Curso::create([
             'id_docente' => $request->docente_curso,
