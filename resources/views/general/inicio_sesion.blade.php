@@ -40,7 +40,7 @@
                         </svg>
                     </label>
                     <input id="correo" class="inInicio" type="email" name="email" value="{{ old('email') }}"
-                        placeholder="Escribe tu correo" required>
+                        placeholder="Escribe tu correo">
                 </div>
                 <div class="renglonSesion">
                     <label for="contrasena">
@@ -51,7 +51,7 @@
                         </svg>
                     </label>
                     <input id="contrasena" class="inInicio" type="password" name="password"
-                        placeholder="Escribe tu contraseña" required>
+                        placeholder="Escribe tu contraseña">
                 </div>
                 <div class="boton">
                     <button type="submit" class="navegar"><svg xmlns="http://www.w3.org/2000/svg" width="16"
@@ -78,7 +78,7 @@
                 title: '¡Error!',
                 text: '{{ session('error') }}',
                 icon: 'error',
-                confirmButtonText: 'Ok'
+                confirmButtonText: 'Aceptar'
             });
         @endif
         @if(session('success'))

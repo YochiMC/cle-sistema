@@ -40,7 +40,7 @@ class CrudCursosController extends Controller
             'link_clase_curso' => $request->link_clase_curso,
         ]);
 
-        return redirect(route('admin.registro_cursos'));
+        return redirect(route('admin.registro_cursos'))->with('success', 'Curso registrado correctamente');
     }
     public function read(Request $request)
     {
@@ -85,7 +85,7 @@ class CrudCursosController extends Controller
                 'link_clase_curso' => $request->link_clase_curso,
             ]);
 
-            return redirect(route('admin.registro_cursos'));
+            return redirect(route('admin.registro_cursos'))->with('success', 'Curso actualizado correctamente');
         } else {
             return redirect(route('admin.registro_cursos'))->with('error', 'Curso no encontrado');
         }
@@ -97,7 +97,7 @@ class CrudCursosController extends Controller
 
         if ($grupo) {
             $grupo->delete();
-            return redirect(route('admin.registro_cursos'));
+            return redirect(route('admin.registro_cursos'))->with('success', 'Curso eliminado correctamente');
         } else {
             return redirect(route('admin.registro_cursos'))->with('error', 'Curso no encontrado');
         }

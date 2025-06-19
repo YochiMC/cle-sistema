@@ -43,7 +43,7 @@
                 @csrf
                 <div>
                     <h3>Tipo de usuario:</h3>
-                    <select id="tipo_usuario" name="tipo_usuario" onchange="mostrarFormulario()">
+                    <select id="tipo_usuario" name="tipo_usuario" onchange="mostrarFormulario()" value="{{ old('tipo_usuario') }}">
                         <option value="" selected>...</option>
                         @can('crear admins')
                             <option value="admin">Administrador</option>
@@ -60,45 +60,98 @@
                 <div id="datos_generales" style="display:none" class="contenedor-info-general">
                     <h3>Datos Generales</h3>
                     <label for="usuario_nombre">Nombre de usuario:</label>
-                    <input type="text" id="name" name="name" required>
+                    <input type="text" id="name" name="name" value="{{ old('name') }}"
+                        placeholder="Escribe el nombre de usuario">
                     <br>
+                    @error('name')
+                        <span class="error">{{ $message }}</span>
+                        <br>
+                    @enderror
                     <label for="usuario_correo">Correo Electrónico:</label>
-                    <input type="email" id="email" name="email" required>
+                    <input type="email" id="email" name="email" value="{{ old('email') }}"
+                        placeholder="Escribe el correo electrónico">
                     <br>
+                    @error('email')
+                        <span class="error">{{ $message }}</span>
+                        <br>
+                    @enderror
                     <label for="usuario_telefono">Número de teléfono:</label>
-                    <input type="text" id="phonenumber" name="phonenumber" required>
+                    <input type="number" id="phonenumber" name="phonenumber" value="{{ old('phonenumber') }}"
+                        placeholder="Escribe el número de teléfono">
                     <br>
+                    @error('phonenumber')
+                        <span class="error">{{ $message }}</span>
+                        <br>
+                    @enderror
                     <label for="usuario_contraseña">Contraseña:</label>
-                    <input type="password" id="password" name="password" required>
+                    <input type="password" id="password" name="password" placeholder="Escribe la contraseña">
                     <br>
+                    @error('password')
+                        <span class="error">{{ $message }}</span>
+                        <br>
+                    @enderror
                     <label for="nombre">Nombre(s):</label>
-                    <input type="text" id="nombre" name="nombre">
+                    <input type="text" id="nombre" name="nombre" value="{{ old('nombre') }}"
+                        placeholder="Escribe el nombre(s)">
                     <br>
+                    @error('nombre')
+                        <span class="error">{{ $message }}</span>
+                        <br>
+                    @enderror
                     <label for="apellidos">Apellido(s):</label>
-                    <input type="text" id="apellidos" name="apellidos">
+                    <input type="text" id="apellidos" name="apellidos" value="{{ old('apellidos') }}" place
+                        holder="Escribe el apellido(s)">
                     <br>
+                    @error('apellidos')
+                        <span class="error">{{ $message }}</span>
+                        <br>
+                    @enderror
                     <label for="sexo">Sexo:</label>
-                    <select name="sexo" id="sexo" required>
+                    <select name="sexo" id="sexo" value="{{ old('sexo') }}">
                         <option value="Masculino">Masculino</option>
                         <option value="Femenino">Femenino</option>
                     </select>
+                    @error('sexo')
+                        <span class="error">{{ $message }}</span>
+                        <br>
+                    @enderror
                     <label for="edad">Edad:</label>
-                    <input type="number" id="edad" name="edad">
+                    <input type="number" id="edad" name="edad" value="{{ old('edad') }}"
+                        placeholder="Escribe la edad">
+                    <br>
+                    @error('edad')
+                        <span class="error">{{ $message }}</span>
+                        <br>
+                    @enderror
                 </div>
                 <div id="alumnoForm" style="display:none" class="contenedor-info-alumno">
                     <h3>Alumno Datos</h3>
                     <label for="numero_control">Numero de control:</label>
-                    <input type="text" id="numero_control" name="numero_control">
+                    <input type="text" id="numero_control" name="numero_control" value="{{ old('numero_control') }}"
+                        placeholder="Escribe el número de control">
                     <br>
+                    @error('numero_control')
+                        <span class="error">{{ $message }}</span>
+                        <br>
+                    @enderror
                     <label for="semestre">Semestre:</label>
-                    <input type="number" id="semestre" name="semestre">
+                    <input type="number" id="semestre" name="semestre" value="{{ old('semestre') }}"
+                        placeholder="Escribe el semestre">
                     <br>
+                    @error('semestre')
+                        <span class="error">{{ $message }}</span>
+                        <br>
+                    @enderror
                     <label for="caarrera">Carrera: </label>
-                    <select name="carrera" id="carrera" required>
+                    <select name="carrera" id="carrera" value="{{ old('carrera') }}">
                         @foreach ($carreras as $carrera)
                             <option value="{{ $carrera->id }}">{{ $carrera->nombre }}</option>
                         @endforeach
                     </select>
+                    @error('carrera')
+                        <span class="error">{{ $message }}</span>
+                        <br>
+                    @enderror
                 </div>
 
                 <div id="adminForm" style="display:none">
@@ -107,7 +160,12 @@
                 <div id="maestroForm" style="display:none" class="contenedor-info-docente">
                     <h3>Docente Datos</h3>
                     <label for="numero_trabajador">Numero de trabajador:</label>
-                    <input type="text" id="numero_trabajador" name="numero_trabajador">
+                    <input type="text" id="numero_trabajador" name="numero_trabajador"
+                        value="{{ old('numero_trabajador') }}" placeholder="Escribe el número de trabajador">
+                    @error('numero_control')
+                        <span class="error">{{ $message }}</span>
+                        <br>
+                    @enderror
                 </div>
                 <button type="submit" id="button_enviar" style="display:none" class="button_enviar">Agregar</button>
             </form>
@@ -160,7 +218,7 @@
                                             </svg></button>
                                     </form>
                                     <form method="GET"
-                                        action="{{ route('admin.calificaciones.show', $alumno->id_alumno) }}" >
+                                        action="{{ route('admin.calificaciones.show', $alumno->id_alumno) }}">
                                         @csrf
                                         <button type="submit" class="btn btn-danger btn-sm">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"

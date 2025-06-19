@@ -126,24 +126,25 @@
             @yield('contenido')
         </div>
     </div>
-    @yield('scripts')
     <script>
         @if (session('error'))
             Swal.fire({
                 title: '¡Error!',
                 text: '{{ session('error') }}',
                 icon: 'error',
-                confirmButtonText: 'Ok'
+                confirmButtonText: 'Aceptar'
             });
         @endif
-        @if(session('success'))
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Éxito',
-                    text: '{{ session('success') }}',
-                    confirmButtonText: 'Aceptar'
-                });
-            @endif
+        @if (session('success'))
+            Swal.fire({
+                icon: 'success',
+                title: 'Éxito',
+                text: '{{ session('success') }}',
+                confirmButtonText: 'Aceptar'
+            });
+        @endif
+
+        @yield('title')
     </script>
 </body>
 

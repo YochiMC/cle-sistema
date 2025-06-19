@@ -109,6 +109,13 @@ h3 {
     color: white;
 }
 
+.error {
+    color: red;
+    font-size: 0.9em;
+    margin-top: 0.2em;
+    display: block;
+}
+
 /* Estilos para el modal */
 .modal {
     width: 90%;
