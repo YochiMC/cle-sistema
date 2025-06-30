@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Docente;
 use App\Models\Alumno;
 use App\Models\Carrera;
+use App\Models\Gestion;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Role;
@@ -200,5 +201,20 @@ class UserSeeder extends Seeder
         ]);
 
         $docenteUser->assignRole($roleDocente);
+
+        Gestion::create([
+            'nombre_accion' => 'Inscripciones',
+            'estado' => false,
+        ]);
+
+        Gestion::create([
+            'nombre_accion' => 'Calificar alumnos',
+            'estado' => false,
+        ]);
+
+        Gestion::create([
+            'nombre_accion' => 'Calificar docentes',
+            'estado' => false,
+        ]);
     }
 }

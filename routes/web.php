@@ -7,6 +7,7 @@ use App\Http\Controllers\CrudCursosController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\InscripcionController;
 use App\Http\Controllers\KardexController;
+use App\Http\Controllers\GestionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -53,6 +54,9 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     //Calificaciones - incompleto
     Route::get('/calificaciones/{id_alumno}', [KardexController::class, 'show'])->name('calificaciones.show');
     Route::put('/calificaciones/{id_kardex}', [KardexController::class, 'update'])->name('calificaciones.update');
+    //Gestión de los cursos
+    Route::get('/gestion', [GestionController::class, 'read'])->name('gestion');
+    Route::put('/update_gestion/{id}', [GestionController::class, 'update'])->name('gestion.update');
 });
 
 // Grupo para Vistas Generales con auttenticación
