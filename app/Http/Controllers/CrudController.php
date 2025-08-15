@@ -8,6 +8,7 @@ use App\Models\Alumno;
 use App\Models\Docente;
 use App\Models\Carrera;
 use App\Models\Kardex;
+use App\Models\Archivo;
 
 class CrudController extends Controller
 {
@@ -188,8 +189,9 @@ class CrudController extends Controller
         }
 
         $carreras = Carrera::all();
+        $archivos = Archivo::all();
 
-        return view('administrador.actualiza_usuario', compact('usuario', 'tipo', 'data_alumno', 'data_docente', 'carreras'));
+        return view('administrador.actualiza_usuario', compact('usuario', 'tipo', 'data_alumno', 'data_docente', 'carreras', 'archivos'));
     }
 
     public function update_alumno(Request $request, $tipo, $id_alumno)

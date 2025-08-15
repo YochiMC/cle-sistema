@@ -7,8 +7,7 @@
     <div class="container-">
         <h2>Información del usuario</h2>
         @if ($tipo == 'alumno')
-            <form action="{{ route('admin.update_alumno', ['tipo', 'id_alumno' => $data_alumno->id_alumno]) }}"
-                method="POST">
+            <form action="{{ route('admin.update_alumno', ['tipo', 'id_alumno' => $data_alumno->id_alumno]) }}" method="POST">
                 @csrf
                 @method('PUT')
                 <h3>Datos de usuario</h3>
@@ -22,9 +21,9 @@
                 <input type="text" name="telefono" value="{{ $usuario->phonenumber }}" placeholder="Correo de usuario">
                 <br>
                 <!--<label for="contraseña">Contraseña:</label>
-                            <input type="password" name="contraseña" value="{{ $usuario->password }}" placeholder="Contraseña">
-                            <label for="comfirma">Confirma contraseña:</label>
-                            <input type="password" name="confirma" placeholder="Contraseña">-->
+                                                            <input type="password" name="contraseña" value="{{ $usuario->password }}" placeholder="Contraseña">
+                                                            <label for="comfirma">Confirma contraseña:</label>
+                                                            <input type="password" name="confirma" placeholder="Contraseña">-->
                 <br>
                 <h3>Datos del alumno</h3>
                 <label for="matricula_alumno">Matrícula:</label>
@@ -48,8 +47,7 @@
                     placeholder="Apellidos del alumno">
                 <br>
                 <label for="edad_alumno">Edad:</label>
-                <input type="number" name="edad_alumno" value="{{ $data_alumno->edad_alumno }}"
-                    placeholder="Edad del alumno">
+                <input type="number" name="edad_alumno" value="{{ $data_alumno->edad_alumno }}" placeholder="Edad del alumno">
                 <br>
                 <label for="sexo_alumno">Sexo:</label>
                 <select name="sexo_alumno" id="sexo_alumno">
@@ -77,6 +75,26 @@
                 <br>
                 <button type="submit">Actualizar datos</button>
             </form>
+            <div>
+                <form action="{{route('admin.subir-archivo', ['id_alumno' => $data_alumno->id_alumno])}}" method="POST"
+                    enctype="multipart/form-data">
+                    @csrf
+                    <label for="archivo">Selecciona un archivo (imagen o PDF):</label>
+                    <input type="file" name="archivo" required>
+                    <button type="submit">Subir</button>
+                </form>
+            </div>
+            <div>
+                @foreach ($archivos as $archivo)
+                    @if ($archivo->tipo === 'imagen')
+                        <img src="{{ asset('storage/' . $archivo->ruta) }}" width="150">
+                    @else
+                        <a href="{{ asset('storage/' . $archivo->ruta) }}" target="_blank">
+                            Ver PDF: {{ $archivo->nombre_original }}
+                        </a>
+                    @endif
+                @endforeach
+            </div>
         @elseif($tipo == 'docente')
             <form action="{{ route('admin.update_docente', ['tipo', 'id_docente' => $data_docente->id_docente]) }}"
                 method="POST">
@@ -93,9 +111,9 @@
                 <input type="text" name="telefono" value="{{ $usuario->phonenumber }}" placeholder="Correo de usuario">
                 <br>
                 <!--<label for="contraseña">Contraseña:</label>
-                            <input type="password" name="contraseña" value="{{ $usuario->password }}" placeholder="Contraseña">
-                            <label for="comfirma">Confirma contraseña:</label>
-                            <input type="password" name="confirma" placeholder="Contraseña">-->
+                                                            <input type="password" name="contraseña" value="{{ $usuario->password }}" placeholder="Contraseña">
+                                                            <label for="comfirma">Confirma contraseña:</label>
+                                                            <input type="password" name="confirma" placeholder="Contraseña">-->
                 <br>
                 <h3>Datos del Docente</h3>
                 <label for="docente_clave">Clave del docente:</label>
