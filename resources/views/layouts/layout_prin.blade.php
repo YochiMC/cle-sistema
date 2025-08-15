@@ -95,7 +95,7 @@
                     <span class="menu-text">Usuarios</span>
                 </div>
             @endcan
-            @can('crud grupos')
+            @can('ver grupos')
                 <div class="menu-item" onclick="window.location.href='{{ route('admin.registro_cursos') }}'">
                     <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="white"
                         class="bi bi-journal-bookmark" viewBox="0 0 16 16">
