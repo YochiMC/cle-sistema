@@ -154,13 +154,13 @@ class CrudController extends Controller
 
         switch ($tipo) {
             case 'alumnos':
-                $data = Alumno::with('carrera')->paginate(15);
+                $data = Alumno::with('carrera')->paginate(5);
                 break;
             case 'docentes':
-                $data = Docente::paginate(15);
+                $data = Docente::paginate(5);
                 break;
             default:
-                $data = Alumno::paginate(15);
+                $data = Alumno::paginate(5);
                 break;
         }
 

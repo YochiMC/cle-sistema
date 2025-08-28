@@ -288,9 +288,7 @@
         @endif
 
         <!-- Paginación -->
-        <div class="mt-3">
-            {{ $data->appends(['tipo' => $tipo])->links() }}
-        </div>
+        {{ $data->appends(['tipo' => $tipo])->links('vendor.pagination.tailwind') }}
 
         <script src="{{ asset('js/modal.js') }}"></script>
         <script>
