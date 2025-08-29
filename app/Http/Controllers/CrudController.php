@@ -150,14 +150,31 @@ class CrudController extends Controller
     public function read(Request $request)
     {
 
-        $tipo = $request->input('tipo', 'alumnos'); // default: usuarios
+        $tipo = $request->input('tipo', 'alumnos');
+        $search = $request->input('search'); // <-- aquí recojo el texto de búsqueda
 
         switch ($tipo) {
             case 'alumnos':
-                $data = Alumno::with('carrera')->paginate(5);
+                $query = Alumno::with('carrera');
+                if ($search) {
+                    $query->where(function ($q) use ($search) {
+                        $q->where('matricula_alumno', 'like', "%{$search}%")
+                            ->orWhere('nombre_alumno', 'like', "%{$search}%")
+                            ->orWhere('apellidos_alumno', 'like', "%{$search}%");
+                    });
+                }
+                $data = $query->paginate(5);
                 break;
             case 'docentes':
-                $data = Docente::paginate(5);
+                $query = Docente::query();
+                if ($search) {
+                    $query->where(function ($q) use ($search) {
+                        $q->where('docente_clave', 'like', "%{$search}%")
+                            ->orWhere('docente_nombre', 'like', "%{$search}%")
+                            ->orWhere('docente_apellidos', 'like', "%{$search}%");
+                    });
+                }
+                $data = $query->paginate(5);
                 break;
             default:
                 $data = Alumno::paginate(5);
@@ -166,7 +183,7 @@ class CrudController extends Controller
 
         $carreras = Carrera::all();
 
-        return view('administrador.registro', compact('tipo', 'data', 'carreras'));
+        return view('administrador.registro', compact('tipo', 'data', 'carreras', 'search'));
     }
 
     public function update($id)
