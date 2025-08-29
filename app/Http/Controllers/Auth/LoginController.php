@@ -8,6 +8,11 @@ use App\Http\Controllers\Controller;
 
 class LoginController extends Controller
 {
+    /*
+    El método login es el que permite que el usuario pueda iniciar sesión, se compone de validaciones de
+    entrada para evitar errores, después viene la validación de las credenciales y por ultimo la toma de decisiones
+    en base al resultado de la validación.
+    */
     public function login(Request $request)
     {
         // Validación de los datos
@@ -25,19 +30,24 @@ class LoginController extends Controller
         // Credenciales para autenticación
         $credentials = $request->only('email', 'password');
 
+        // Guarda las credenciales (básicamente una cookie para las sesiones)
         $remember = $request->has('remember');
 
+        // Aquí se hace las validación de las credenciales y las "cookies"
         if (Auth::attempt($credentials, $remember)) {
             $request->session()->regenerate();
             return redirect()->intended(route('general.dashboard'))->with('success', 'Has iniciado sesión correctamente.');
         }
 
+        // Se redirecciona de acuerdo a los resultados de la validación y además se agrega un mensaje
         return redirect()->route('general.inicio_sesion')
             ->with('error', 'Contraseña incorrecta, vuelva a intentarlo.')
             ->withInput($request->only('email', 'remember'));
     }
 
-
+    /*
+    Método logout cierra la sesión del usuario
+    */
     public function logout(Request $request)
     {
         Auth::logout();

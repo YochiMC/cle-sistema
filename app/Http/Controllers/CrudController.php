@@ -12,13 +12,21 @@ use App\Models\Archivo;
 
 class CrudController extends Controller
 {
+    /*
+    Esta es la función create que se encarga de crear un usuario, por el momento se tiene para crear alumnos
+    y docentes. Hay que respetar los atributos de los modelos y además de validar esto siempre que se pueda.
+    */
     public function create(Request $request)
     {
+        /*
+        Este primer switch cumple la misión de hacer las validaciones y dar paso al siguiente switch que se encarga
+        de crear el usuario de tipo alumno o docente.
+        */
         switch ($request->tipo_usuario) {
             case 'admin':
-                //aqui van más validaciones si es necesario
+                // aqui van más validaciones si es necesario
                 break;
-            case 'alumno':
+            case 'alumno': // En caso de que se quiera crear un alumno
                 $request->validate(
                     [
                         'name' => 'required|string|max:255',
@@ -57,7 +65,7 @@ class CrudController extends Controller
                     ]
                 );
                 break;
-            case 'docente':
+            case 'docente': // En caso de crear un docente
                 $request->validate(
                     [
                         'name' => 'required|string|max:255',
@@ -91,11 +99,11 @@ class CrudController extends Controller
                     ]
                 );
                 break;
-            default:
+            default: // En caso default se redirecciona a dicha página
                 return redirect()->back()->with('error', 'Tipo de usuario no válido.');
         }
 
-
+        // Aquí se crea el usuario
         $newUser = User::query()->create([
             'name' => $request->name,
             'email' => $request->email,
@@ -104,13 +112,18 @@ class CrudController extends Controller
             'email_verified_at' => now(),
         ]);
 
+        /*
+        En este switch se decide el tipo de usuario a crear y por ende se crea el objeto y se guarda en su
+        respectiva tabla de la base de datos y además se le asigna un rol al usuario que es $newUser (esto se respeta por las propiedades de laravel para funcionar bien).
+        Hay que usar los atributos de los modelos (Alumno y Docente).
+        */
         switch ($request->tipo_usuario) {
-            case 'admin':
+            case 'admin': // En caso de ser admin (aún hay que ver lo que falta)
 
                 $newUser->assignRole('admin');
 
                 break;
-            case 'alumno':
+            case 'alumno': // En caso de ser alumno
                 Alumno::query()->create([
                     'id_usuario' => $newUser->id,
                     'id_carrera' => $request->carrera,
@@ -127,7 +140,7 @@ class CrudController extends Controller
                 $newUser->assignRole('alumno');
 
                 break;
-            case 'docente':
+            case 'docente': // En caso de ser docente
 
                 Docente::create([
                     'id_usuario' => $newUser->id,
@@ -147,59 +160,65 @@ class CrudController extends Controller
 
     }
 
+    /*
+    El método read se encarga de regresarnos la vista y refresacarla, en este caso aquí se hace uso de
+    de los propios métodos de laravel usando 'like' en el query y así poder filtrar datos
+    */
     public function read(Request $request)
     {
 
-        $tipo = $request->input('tipo', 'alumnos');
-        $search = $request->input('search');
+        $tipo = $request->input('tipo', 'alumnos'); // Esta variable ayuda a decidir que tabla mostrar
+        $search = $request->input('search'); // Esta variable es el valor de la barra de búsqueda
 
         switch ($tipo) {
-            case 'alumnos':
+            /*
+            La lógica de este switch recae en mostrar una tabla, en cuanto a las búsquedas, primero
+            se verifica si existe dicha búsqueda, si existe procede a realizar la acción en base
+            a los parametros especificados en el Modelo de la entidad (revisar modelos Alumno y Docente).
+            Al final se retorna el resultado de la query con una paginación
+            */
+            case 'alumnos': // Caso para mostrar tabla de alumnos
                 $query = Alumno::with('carrera');
                 if ($search) {
-                    $query->where(function ($q) use ($search) {
-                        $q->where('matricula_alumno', 'like', "%{$search}%")
-                            ->orWhere('nombre_alumno', 'like', "%{$search}%")
-                            ->orWhere('apellidos_alumno', 'like', "%{$search}%")
-                            ->orWhereHas('carrera', function ($q) use ($search) {
-                                $q->where('nombre', 'like', "%{$search}%");
-                            });
-                    });
+                    $query = Alumno::search($search);
                 }
                 $data = $query->paginate(5);
                 break;
-            case 'docentes':
+            case 'docentes': // Caso para mostrar tabla de alumnos
                 $query = Docente::query();
                 if ($search) {
-                    $query->where(function ($q) use ($search) {
-                        $q->where('docente_clave', 'like', "%{$search}%")
-                            ->orWhere('docente_nombre', 'like', "%{$search}%")
-                            ->orWhere('docente_apellidos', 'like', "%{$search}%");
-                    });
+                    $query = Docente::search($search);
                 }
                 $data = $query->paginate(5);
                 break;
-            default:
+            default: // Caso default, solamente se regresa la vista con la tabla de alumnos
                 $data = Alumno::paginate(5);
                 break;
         }
 
-        $carreras = Carrera::all();
+        $carreras = Carrera::all(); // Carreras se retorna solamente para presentar dichos valores en la vista
 
         return view('administrador.registro', compact('tipo', 'data', 'carreras', 'search'));
     }
 
+    /*
+    El método update es para llevar a la vista de información personal del usuario seleccionado, pasa
+    los atributos a la vista para poder visualizarlos y editarlos.
+    */
     public function update($id)
     {
-        $usuario = User::find($id);
+        $usuario = User::find($id); // Buscamos al usuario
         $data_docente = null;
         $data_alumno = null;
 
-        if (!$usuario) {
+        if (!$usuario) { // Si el usuario no existe, se redirige rapidamente a la vista de usuarios
             return redirect()->back()->with('error', 'Usuario no encontrado.');
         }
 
-        // Verificamos el rol del usuario y eliminamos los datos correspondientes
+        /*
+        Se hace una verificación del rol del usuario para tomar la decisión de que datos tiene que enviar a la vista,
+        en este caso con los roles alumno y docente (al final se tiene que enviar un tipo para la vista destino).
+        */
         if ($usuario->hasRole('alumno')) {
             $data_alumno = Alumno::with('carrera')->where('id_usuario', $usuario->id)->first();
             $tipo = 'alumno';
@@ -208,12 +227,17 @@ class CrudController extends Controller
             $tipo = 'docente';
         }
 
+        // Estos dos son iportantes para la vista destino
         $carreras = Carrera::all();
-        $archivos = Archivo::all();
+        $archivos = Archivo::all(); // Estos son para manipularse (Hay que revisarlo)
 
         return view('administrador.actualiza_usuario', compact('usuario', 'tipo', 'data_alumno', 'data_docente', 'carreras', 'archivos'));
     }
 
+    /*
+    Estas dos funciones se encargan de actualizar los atributos del usuario seleccionado, se hiceron dos diferntes debido
+    a que es necesario por la vista creada y las limitaciones de los formularios.
+    */
     public function update_alumno(Request $request, $tipo, $id_alumno)
     {
         $alumno = Alumno::find($id_alumno);
@@ -261,11 +285,15 @@ class CrudController extends Controller
         return redirect()->back()->with('success', 'Usuario actualizado correctamente.');
     }
 
+    /*
+    El método delete es lo suficientemente directo para eliminar a un usuario y en base a su rol borrar dicha información
+    de la base de datos.
+    */
     public function delete($id)
     {
-        $usuario = User::find($id);
+        $usuario = User::find($id); // Se busca al usuario
 
-        if (!$usuario) {
+        if (!$usuario) { // Si el usuario no existe, se redirige a la vista
             return redirect()->back()->with('error', 'Usuario no encontrado.');
         }
 

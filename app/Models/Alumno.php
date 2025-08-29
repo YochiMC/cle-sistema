@@ -26,7 +26,19 @@ class Alumno extends Model
         'acredita'
     ];
 
-
+    public function scopeSearch($query, $term)
+    {
+        if ($term) {
+            $query->where(function ($q) use ($term) {
+                $q->where('nombre_alumno', 'like', "%{$term}%")
+                    ->orWhere('apellidos_alumno', 'like', "%{$term}%")
+                    ->orWhere('matricula_alumno', 'like', "%{$term}%")
+                    ->orWhereHas('carrera', function ($q) use ($term) {
+                        $q->where('nombre', 'like', "%{$term}%");
+                    });
+            });
+        }
+    }
     public function usuario()
     {
         return $this->belongsTo(User::class, 'id_usuario');

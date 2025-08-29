@@ -16,11 +16,25 @@ class Docente extends Model
     public $timestamps = true;
 
     protected $fillable = [
-        'id_docente', 'id_usuario', 'docente_clave', 'docente_nombre', 'docente_apellidos',
-        'docente_sexo','docente_edad'
+        'id_docente',
+        'id_usuario',
+        'docente_clave',
+        'docente_nombre',
+        'docente_apellidos',
+        'docente_sexo',
+        'docente_edad'
     ];
 
-    // Relación con User (un docente es un usuario)
+    public function scopeSearch($query, $term)
+    {
+        if ($term) {
+            $query->where(function ($q) use ($term) {
+                $q->where('docente_clave', 'like', "%{$term}%")
+                    ->orWhere('docente_nombre', 'like', "%{$term}%")
+                    ->orWhere('docente_apellidos', 'like', "%{$term}%");
+            });
+        }
+    }
     public function user()
     {
         return $this->belongsTo(User::class, 'id_usuario');
