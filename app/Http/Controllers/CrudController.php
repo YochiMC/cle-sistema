@@ -151,7 +151,7 @@ class CrudController extends Controller
     {
 
         $tipo = $request->input('tipo', 'alumnos');
-        $search = $request->input('search'); // <-- aquí recojo el texto de búsqueda
+        $search = $request->input('search');
 
         switch ($tipo) {
             case 'alumnos':
@@ -160,7 +160,10 @@ class CrudController extends Controller
                     $query->where(function ($q) use ($search) {
                         $q->where('matricula_alumno', 'like', "%{$search}%")
                             ->orWhere('nombre_alumno', 'like', "%{$search}%")
-                            ->orWhere('apellidos_alumno', 'like', "%{$search}%");
+                            ->orWhere('apellidos_alumno', 'like', "%{$search}%")
+                            ->orWhereHas('carrera', function ($q) use ($search) {
+                                $q->where('nombre', 'like', "%{$search}%");
+                            });
                     });
                 }
                 $data = $query->paginate(5);
