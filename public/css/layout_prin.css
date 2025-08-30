@@ -206,4 +206,23 @@ header {
     }
 }
 
+.graficos {
+  display: grid;
+  /* Definimos 2 columnas de igual tamaño */
+  grid-template-columns: 1fr 1fr;
+  /* Definimos un espacio de 20px entre las celdas */
+  gap: 20px;
+}
+
+.graficos h2{
+    color:#1B396A;
+}
+
+/* Estilo para los elementos dentro del grid (los 'hijos') */
+.graficos > div {
+  background-color: #f0f0f0;
+  padding: 20px;
+  border: 1px solid #ccc;
+  text-align: center;
+}
 

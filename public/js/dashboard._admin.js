@@ -1,9 +1,9 @@
 
-        // Función para cargar el contenido en el iframe
-        function loadContent(page) {
-            document.getElementById("content-frame").src = page;
-        }
-    
+// Función para cargar el contenido en el iframe
+function loadContent(page) {
+    document.getElementById("content-frame").src = page;
+}
+
 function mostrarContenido(page) {
     // Ocultar todas las páginas
     const pages = document.querySelectorAll('.content-page');

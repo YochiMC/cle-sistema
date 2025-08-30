@@ -26,17 +26,23 @@ class UserController extends Controller
             $edad = $alumno ? $alumno->alumno_edad : null;
             $nombre = $alumno ? $alumno->alumno_nombre : null;
             $apellidos = $alumno ? $alumno->alumno_apellidos : null;
+            return view('general.dashboard', compact('usuario', 'edad', 'nombre', 'apellidos'));
         } elseif ($roles->contains('docente')) {
             $docente = Docente::where('id_usuario', $usuario->id)->first();
             $edad = $docente ? $docente->docente_edad : null;
             $nombre = $docente ? $docente->docente_nombre : null;
             $apellidos = $docente ? $docente->docente_apellidos : null;
+            return view('general.dashboard', compact('usuario', 'edad', 'nombre', 'apellidos'));
         } elseif ($roles->contains('admin') || $roles->contains('coordinador')){
-            $edad = null;
-            $nombre = null;
-            $apellidos = null;
+            /*
+            Hay que asegurarnos de mandar datos necesarios para los datos estadisticos, en este caso
+            hay muy poco que mandar, así que por mi parte creo que podemos mandar directamente toda la
+            tabla.
+            */
+            $alumnos = Alumno::All();
+            $docentes = Docente::All();
+            $admin =  $usuario;
+            return view('administrador.dashboard', compact('admin', 'alumnos', 'docentes'));
         }
-
-        return view('general.dashboard', compact('usuario', 'edad', 'nombre', 'apellidos'));
     }
 }

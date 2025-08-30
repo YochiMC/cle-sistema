@@ -4,10 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {{-- @vite('resources/css/app.css') --}}
     <title>@yield('title')</title>
     <link rel="stylesheet" href={{ asset('css/layout_prin.css') }}>
     <link rel="stylesheet" href="{{ asset('css/modal.css') }}">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     @yield('estilos')
 </head>
 
@@ -33,8 +35,8 @@
                 <path
                     d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2M8 1.918l-.797.161A4 4 0 0 0 4 6c0 .628-.134 2.197-.459 3.742-.16.767-.376 1.566-.663 2.258h10.244c-.287-.692-.502-1.49-.663-2.258C12.134 8.197 12 6.628 12 6a4 4 0 0 0-3.203-3.92zM14.22 12c.223.447.481.801.78 1H1c.299-.199.557-.553.78-1C2.68 10.2 3 6.88 3 6c0-2.42 1.72-4.44 4.005-4.901a1 1 0 1 1 1.99 0A5 5 0 0 1 13 6c0 .88.32 4.2 1.22 6" />
             </svg> <!-- Notificaciones -->
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="White"
-                class="bi bi-person-circle" viewBox="0 0 16 16">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="White" class="bi bi-person-circle"
+                viewBox="0 0 16 16">
                 <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
                 <path fill-rule="evenodd"
                     d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1" />
@@ -51,7 +53,12 @@
     <div class="container">
         <!-- Contenedor izquierdo para los iconos -->
         <div class="menu-icons">
-            <div class="menu-item" onclick="window.location.href='{{ route('general.dashboard') }}'">
+            @php
+                $ruta = auth()->user()->hasAnyRole(['admin', 'coordinador'])
+                    ? route('admin.dashboard')
+                    : route('general.dashboard');
+            @endphp
+            <div class="menu-item" onclick="window.location.href='{{ $ruta }}'">
                 <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="white" class="bi bi-house"
                     viewBox="0 0 16 16">
                     <path
@@ -87,8 +94,8 @@
             @endcan
             @can('crud usuarios')
                 <div class="menu-item" onclick="window.location.href='{{ route('admin.registro') }}'">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="white"
-                        class="bi bi-people" viewBox="0 0 16 16">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="white" class="bi bi-people"
+                        viewBox="0 0 16 16">
                         <path
                             d="M15 14s1 0 1-1-1-4-5-4-5 3-5 4 1 1 1 1zm-7.978-1L7 12.996c.001-.264.167-1.03.76-1.72C8.312 10.629 9.282 10 11 10c1.717 0 2.687.63 3.24 1.276.593.69.758 1.457.76 1.72l-.008.002-.014.002zM11 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4m3-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0M6.936 9.28a6 6 0 0 0-1.23-.247A7 7 0 0 0 5 9c-4 0-5 3-5 4q0 1 1 1h4.216A2.24 2.24 0 0 1 5 13c0-1.01.377-2.042 1.09-2.904.243-.294.526-.569.846-.816M4.92 10A5.5 5.5 0 0 0 4 13H1c0-.26.164-1.03.76-1.724.545-.636 1.492-1.256 3.16-1.275ZM1.5 5.5a3 3 0 1 1 6 0 3 3 0 0 1-6 0m3-2a2 2 0 1 0 0 4 2 2 0 0 0 0-4" />
                     </svg>
@@ -111,8 +118,8 @@
             @endcan
             @can('crud grupos')
                 <div class="menu-item" onclick="window.location.href='#'">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="white"
-                        class="bi bi-wallet" viewBox="0 0 16 16">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="white" class="bi bi-wallet"
+                        viewBox="0 0 16 16">
                         <path
                             d="M0 3a2 2 0 0 1 2-2h13.5a.5.5 0 0 1 0 1H15v2a1 1 0 0 1 1 1v8.5a1.5 1.5 0 0 1-1.5 1.5h-12A2.5 2.5 0 0 1 0 12.5zm1 1.732V12.5A1.5 1.5 0 0 0 2.5 14h12a.5.5 0 0 0 .5-.5V5H2a2 2 0 0 1-1-.268M1 3a1 1 0 0 0 1 1h12V2H2a1 1 0 0 0-1 1" />
                     </svg>
@@ -121,8 +128,8 @@
             @endcan
             @can('crud grupos')
                 <div class="menu-item" onclick="window.location.href='{{ route('admin.gestion') }}'">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="white"
-                        class="bi bi-gear" viewBox="0 0 16 16">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="white" class="bi bi-gear"
+                        viewBox="0 0 16 16">
                         <path
                             d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492M5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0" />
                         <path
@@ -132,8 +139,8 @@
                 </div>
             @endcan
             <div class="menu-item" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="white"
-                    class="bi bi-door-open" viewBox="0 0 16 16">
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="white" class="bi bi-door-open"
+                    viewBox="0 0 16 16">
                     <path d="M8.5 10c-.276 0-.5-.448-.5-1s.224-1 .5-1 .5.448.5 1-.224 1-.5 1" />
                     <path
                         d="M10.828.122A.5.5 0 0 1 11 .5V1h.5A1.5 1.5 0 0 1 13 2.5V15h1.5a.5.5 0 0 1 0 1h-13a.5.5 0 0 1 0-1H3V1.5a.5.5 0 0 1 .43-.495l7-1a.5.5 0 0 1 .398.117M11.5 2H11v13h1V2.5a.5.5 0 0 0-.5-.5M4 1.934V15h6V1.077z" />

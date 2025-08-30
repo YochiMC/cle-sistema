@@ -38,15 +38,6 @@
                     @endrole
                 </div>
             @endrole
-
-            @role('admin|coordinador')
-                <div class="profile-details">
-                    <div class="profile-card">
-                        <h3>{{ $usuario->name ? 'Bienvenid@ ' . $usuario->name : 'Error' }}</h3>
-                        <p>Proximamente más información, disfruta de los módulos del menú izquierdo...</p>
-                    </div>
-                </div>
-            @endrole
         </div>
     @endsection
     @section('scripts')

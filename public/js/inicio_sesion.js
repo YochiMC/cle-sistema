@@ -11,10 +11,10 @@ const AUTO_SLIDE_INTERVAL = 8000; // 8 segundos
 function showImage(index) {
     if (isAnimating) return;
     isAnimating = true;
-    
+
     // Ocultamos todas las imágenes
     items.forEach(item => item.style.display = 'none');
-    
+
     // Mostramos la imagen correspondiente
     items[index].style.display = 'block';
 
@@ -22,7 +22,7 @@ function showImage(index) {
     const dots = document.querySelectorAll('.dot');
     dots.forEach(dot => dot.classList.remove('active'));
     dots[index].classList.add('active');
-    
+
     // Resetear la bandera después de un pequeño retraso
     setTimeout(() => {
         isAnimating = false;
@@ -106,7 +106,7 @@ function initCarousel() {
         createIndicators();
         showImage(currentIndex);
         startAutoSlide();
-        
+
         // Pausar/reanudar con el ratón
         const carruselContainer = document.querySelector('.carrusel-container');
         if (carruselContainer) {

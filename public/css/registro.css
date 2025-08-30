@@ -347,14 +347,14 @@ h3:before {
 
 .mi-paginacion li a {
   padding: 6px 12px;
-  background: #3490dc;
+  background: var(--naranja);
   color: #fff;
   border-radius: 6px;
   text-decoration: none;
 }
 
 .mi-paginacion li.active span {
-  background: #1d4ed8;
+  background: var(--azul);
   color: #fff;
   padding: 6px 12px;
   border-radius: 6px;
@@ -363,5 +363,59 @@ h3:before {
 .mi-paginacion li.disabled span {
   color: #aaa;
   padding: 6px 12px;
+}
+
+/* Contenedor de la barra de búsqueda */
+.search-bar {
+  display: flex;
+  background-color: white;
+  color: black;
+  border-radius: 8px;
+  box-shadow: var(--box-shadow);
+  overflow: hidden;
+  max-width: 400px;
+  width: 800px  ;
+}
+
+/* Input de búsqueda */
+.search-bar input[type="text"] {
+  flex: 1;
+  border: none;
+  outline: none;
+  padding: 12px 15px;
+  font-size: 14px;
+  color: var(--texto-oscuro);
+}
+
+.search-bar input[type="text"]:focus {
+  background-color: #f8f9fa;
+}
+
+.search-bar input[type="text"]::placeholder {
+  color: #999;
+}
+
+/* Botón de búsqueda */
+.search-bar .button {
+  padding: 12px 15px;
+  background-color: var(--azul);
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+  .search-bar {
+    max-width: 100%;
+  }
+
+  .search-bar input[type="text"] {
+    font-size: 16px; /* Evita zoom en móviles */
+  }
 }
 

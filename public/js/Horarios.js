@@ -1,4 +1,4 @@
-document.getElementById("search").addEventListener("input", function() {
+document.getElementById("search").addEventListener("input", function () {
     const filter = this.value.toLowerCase();
     const cards = document.querySelectorAll(".course-card");
 

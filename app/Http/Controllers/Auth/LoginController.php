@@ -36,7 +36,13 @@ class LoginController extends Controller
         // Aquí se hace las validación de las credenciales y las "cookies"
         if (Auth::attempt($credentials, $remember)) {
             $request->session()->regenerate();
-            return redirect()->intended(route('general.dashboard'))->with('success', 'Has iniciado sesión correctamente.');
+            $usuario = Auth::user();
+            $roles = $usuario->getRoleNames();
+            if($roles->contains('admin') || $roles->contains('coordinador')){
+                return redirect()->intended(route('admin.dashboard'))->with('success', 'Has iniciado sesión correctamente.');
+            }else{
+                return redirect()->intended(route('general.dashboard'))->with('success', 'Has iniciado sesión correctamente.');
+            }
         }
 
         // Se redirecciona de acuerdo a los resultados de la validación y además se agrega un mensaje
