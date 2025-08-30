@@ -61,7 +61,8 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     Route::get('/gestion', [GestionController::class, 'read'])->name('gestion');
     Route::put('/update_gestion/{id}', [GestionController::class, 'update'])->name('gestion.update');
     //Archivos - incompleto (revisar después y complementar)
-    Route::post('/subir-archivo/{id_alumno}', [ArchivosController::class, 'store'])->name('subir-archivo');
+    Route::get('/archivos/{id}/download', [ArchivosController::class, 'download'])->name('descargar-archivo');
+    Route::post('/subir-archivo/{id_usuario}', [ArchivosController::class, 'store'])->name('subir-archivo');
 });
 
 // Grupo para Vistas Generales con auttenticación

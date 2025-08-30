@@ -21,9 +21,9 @@
                 <input type="text" name="telefono" value="{{ $usuario->phonenumber }}" placeholder="Correo de usuario">
                 <br>
                 <!--<label for="contraseña">Contraseña:</label>
-                                                            <input type="password" name="contraseña" value="{{ $usuario->password }}" placeholder="Contraseña">
-                                                            <label for="comfirma">Confirma contraseña:</label>
-                                                            <input type="password" name="confirma" placeholder="Contraseña">-->
+                                                                                            <input type="password" name="contraseña" value="{{ $usuario->password }}" placeholder="Contraseña">
+                                                                                            <label for="comfirma">Confirma contraseña:</label>
+                                                                                            <input type="password" name="confirma" placeholder="Contraseña">-->
                 <br>
                 <h3>Datos del alumno</h3>
                 <label for="matricula_alumno">Matrícula:</label>
@@ -75,25 +75,36 @@
                 <br>
                 <button type="submit">Actualizar datos</button>
             </form>
-            <div>
-                <form action="{{route('admin.subir-archivo', ['id_alumno' => $data_alumno->id_alumno])}}" method="POST"
-                    enctype="multipart/form-data">
-                    @csrf
-                    <label for="archivo">Selecciona un archivo (imagen o PDF):</label>
-                    <input type="file" name="archivo" required>
-                    <button type="submit">Subir</button>
-                </form>
-            </div>
-            <div>
-                @foreach ($archivos as $archivo)
-                    @if ($archivo->tipo === 'imagen')
-                        <img src="{{ asset('storage/' . $archivo->ruta) }}" width="150">
-                    @else
-                        <a href="{{ asset('storage/' . $archivo->ruta) }}" target="_blank">
-                            Ver PDF: {{ $archivo->nombre_original }}
-                        </a>
-                    @endif
-                @endforeach
+            <div class="documentos">
+                <h2>Portafolio del alumno</h2>
+                <div>
+                    <form action="{{route('admin.subir-archivo', ['id_usuario' => $usuario->id])}}" method="POST"
+                        enctype="multipart/form-data">
+                        @csrf
+                        <label for="archivo">Selecciona un archivo (imagen o PDF):</label>
+                        <input type="file" name="archivo" required>
+                        <button type="submit">Subir</button>
+                    </form>
+                </div>
+                <div>
+                    @foreach($archivos as $archivo)
+                        <div style="margin-bottom: 20px;">
+                            <p>{{ $archivo->nombre }}</p>
+                            @if(Str::startsWith($archivo->tipo, 'image/'))
+                                <!-- Vista previa de imagen -->
+                                <img src="{{ asset('storage/' . $archivo->ruta) }}" alt="Vista previa" width="200">
+                                <a href="{{ route('admin.descargar-archivo', $archivo->id) }}" target="_blank">Descargar</a>
+                            @elseif($archivo->tipo === 'application/pdf')
+                                <!-- Vista previa PDF -->
+                                <iframe src="{{ asset('storage/' . $archivo->ruta) }}" width="auto" height="auto"></iframe>
+                                <a href="{{ route('admin.descargar-archivo', $archivo->id) }}" target="_blank">Descargar</a>
+                            @else
+                                <!-- Otros archivos solo descarga -->
+                                <a href="{{ route('admin.descargar-archivo', $archivo->id) }}" target="_blank">Descargar</a>
+                            @endif
+                        </div>
+                    @endforeach
+                </div>
             </div>
         @elseif($tipo == 'docente')
             <form action="{{ route('admin.update_docente', ['tipo', 'id_docente' => $data_docente->id_docente]) }}"
@@ -111,9 +122,9 @@
                 <input type="text" name="telefono" value="{{ $usuario->phonenumber }}" placeholder="Correo de usuario">
                 <br>
                 <!--<label for="contraseña">Contraseña:</label>
-                                                            <input type="password" name="contraseña" value="{{ $usuario->password }}" placeholder="Contraseña">
-                                                            <label for="comfirma">Confirma contraseña:</label>
-                                                            <input type="password" name="confirma" placeholder="Contraseña">-->
+                                                                                            <input type="password" name="contraseña" value="{{ $usuario->password }}" placeholder="Contraseña">
+                                                                                            <label for="comfirma">Confirma contraseña:</label>
+                                                                                            <input type="password" name="confirma" placeholder="Contraseña">-->
                 <br>
                 <h3>Datos del Docente</h3>
                 <label for="docente_clave">Clave del docente:</label>

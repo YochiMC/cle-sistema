@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('archivos', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('id_alumno')->references('id_alumno')->on('alumnos')->onDelete('cascade');
+            $table->foreignId('id_usuario')->references('id')->on('users')->onDelete('cascade');
             $table->String('nombre', 100);
             $table->string('ruta', 255)->unique();
             $table->string('tipo', 50);

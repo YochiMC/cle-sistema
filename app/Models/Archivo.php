@@ -14,14 +14,14 @@ class Archivo extends Model
 
     public $timestamps = true;
     protected $fillable = [
-        'id_alumno',
+        'id_usuario',
         'nombre',
         'ruta',
         'tipo',
     ];
 
-    public function alumno()
+    public function user()
     {
-        return $this->belongsTo(Alumno::class, 'id_alumno');
+        return $this->belongsTo(User::class, 'id_usuario');
     }
 }
