@@ -43,6 +43,8 @@ class InscripcionController extends Controller
             'id_nivel' => $curso->nivel->id,
             'calificacion' => 0,
             'periodo' => $curso->inicio_curso . ' - ' . $curso->fin_curso,
+            'estado' => 'cursando',
+            'evaluado' => false
         ]);
 
         return redirect()->back()->with('success', 'Inscripción exitosa.');

@@ -22,6 +22,7 @@
                     <th>Materia</th>
                     <th>Calificación</th>
                     <th>Periodo</th>
+                    <th>Estado</th>
                     <th>Acciones</th>
                 </tr>
             </thead>
@@ -33,18 +34,21 @@
                             @csrf
                             @method('PUT')
                             <td>
-                                <input type="text" name="materia" value="{{ $registro->nivel->nombre_nivel }}" disabled>
+                                <p>{{ $registro->nivel->nombre_nivel }}</p>
                             </td>
                             <td>
                                 <input type="number" name="calificacion" value="{{ $registro->calificacion }}"
-                                    min="0" max="100" required @disabled($calificar->estado == false || $alumno->id_nivel != $registro->id_nivel)>
+                                    min="0" max="100" required @disabled($calificar->estado == false || $alumno->id_nivel != $registro->id_nivel || $registro->evaluado == true)>
                             </td>
                             <td>
-                                <input type="text" name="periodo" value="{{ $registro->periodo }}" disabled>
+                                <p>{{ $registro->periodo }}</p>
+                            </td>
+                            <td>
+                                <p>{{ $registro->estado }}</p>
                             </td>
                             <td>
                                 <div class="gestionar">
-                                    @if($alumno->id_nivel == $registro->id_nivel)
+                                    @if($alumno->id_nivel == $registro->id_nivel && $registro->evaluado == false)
                                     <button type="submit" class="btn btn-primary" {{ $calificar->estado == false ? 'disabled' : '' }}>
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                             fill="currentColor" class="bi bi-floppy" viewBox="0 0 16 16">

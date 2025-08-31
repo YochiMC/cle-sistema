@@ -24,7 +24,7 @@ class KardexController extends Controller
     {
 
         $request->validate([
-            'calificacion' => 'required|numeric|min:0|max:100', 
+            'calificacion' => 'required|numeric|min:0|max:100',
         ]);
 
         $kardex = Kardex::find($id_kardex);
@@ -35,11 +35,14 @@ class KardexController extends Controller
 
         if($request->calificacion >= 70){
             $kardex->alumno->acredita = true;
+            $kardex->estado = 'aprobado';
         }else{
             $kardex->alumno->acredita = false;
+            $kardex->estado = 'reprobado';
         }
 
         $kardex->calificacion = $request->calificacion;
+        $kardex->estado =
 
         $kardex->save();
         $kardex->alumno->save();

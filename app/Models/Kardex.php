@@ -17,6 +17,8 @@ class Kardex extends Model
         'id_nivel',
         'calificacion',
         'periodo',
+        'estado',
+        'evaluado'
     ];
 
     public function alumno()
