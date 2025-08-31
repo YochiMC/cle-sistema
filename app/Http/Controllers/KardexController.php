@@ -24,7 +24,7 @@ class KardexController extends Controller
     {
 
         $request->validate([
-            'calificacion' => 'required|numeric|min:0|max:100',
+            'calificacion' => 'required|numeric|min:0|max:100', 
         ]);
 
         $kardex = Kardex::find($id_kardex);

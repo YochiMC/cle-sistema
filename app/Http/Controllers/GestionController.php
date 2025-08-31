@@ -28,7 +28,14 @@ class GestionController extends Controller
                     $promovidos = Alumno::where('acredita', true)
                         ->update([
                             'id_nivel' => DB::raw('id_nivel + 1'),
+                            'inscrito' => false,
                             'acredita' => false,
+                            'updated_at' => now()
+                        ]);
+
+                        $no_promovidos = Alumno::where('acredita', false)
+                        ->update([
+                            'inscrito' => false,
                             'updated_at' => now()
                         ]);
 
