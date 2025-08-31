@@ -73,7 +73,7 @@
                 </label>
                 <br>
                 <label for="acredita">Status de acreditación:
-                    @if ($data_alumno->inscrito == 1)
+                    @if ($data_alumno->acredita == 1)
                         <p>Acrédita</p>
                     @else
                         <p>No acrédita</p>

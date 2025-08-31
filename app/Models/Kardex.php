@@ -14,19 +14,19 @@ class Kardex extends Model
 
     protected $fillable = [
         'id_alumno',
-        'materia',
+        'id_nivel',
         'calificacion',
         'periodo',
     ];
 
     public function alumno()
     {
-        return $this->belongsTo(Alumno::class, 'id_alumno', 'id_alumno');
+        return $this->belongsTo(Alumno::class, 'id_alumno');
     }
 
-    public function kardex()
+    public function nivel()
     {
-        return $this->hasMany(Kardex::class, 'id_alumno');
+        return $this->belongsTo(Nivel::class, 'id_nivel');
     }
 
 }

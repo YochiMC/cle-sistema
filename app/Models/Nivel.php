@@ -27,5 +27,9 @@ class Nivel extends Model
     {
         return $this->hasMany(Curso::class, 'id_nivel');
     }
+    public function kardex()
+    {
+        return $this->hasMany(Kardex::class,'id_nivel');
+    }
 
 }

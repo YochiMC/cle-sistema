@@ -1,11 +1,11 @@
  @extends('layouts.layout_prin')
- @section('title', 'Inscribir Alumnos')
+ @section('title', 'Cursos')
  @section('estilos')
      <link rel="stylesheet" href="{{ asset('css/inscribir_alumnos.css') }}">
  @endsection
  @section('contenido')
      <div class="container-">
-         <h2>Inscribir Alumnos</h2>
+         <h2>Monitoreo de curso</h2>
          <h3>Información del curso</h3>
          <div class="info-curso">
              <div class="info">
@@ -18,13 +18,13 @@
              </div>
          </div>
          <div class="info-curso">
-
              <label for="">Lista de alumnos inscritos:</label>
              <table class="table-bordered text-center">
                  <thead class="table-dark">
                      <tr>
                          <th>Número de control</th>
                          <th>Nombre</th>
+                         <th>Kardex</th>
                      </tr>
                  </thead>
                  <tbody>
@@ -32,12 +32,27 @@
                          <tr>
                              <td class="infor">{{ $alumno->matricula_alumno }}</td>
                              <td class="infor">{{ $alumno->nombre_alumno }} {{ $alumno->apellidos_alumno }}</td>
+                             <td class="infor">
+                                <form method="GET" action="{{ route('admin.calificaciones.show', $alumno->id_alumno) }}">
+                                     @csrf
+                                     <button type="submit" class="btn btn-danger btn-sm">
+                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                             fill="currentColor" class="bi bi-journal" viewBox="0 0 16 16">
+                                             <path
+                                                 d="M3 0h10a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-1h1v1a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v1H1V2a2 2 0 0 1 2-2" />
+                                             <path
+                                                 d="M1 5v-.5a.5.5 0 0 1 1 0V5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1zm0 3v-.5a.5.5 0 0 1 1 0V8h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1zm0 3v-.5a.5.5 0 0 1 1 0v.5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1z" />
+                                         </svg>
+                                     </button>
+                                 </form>
+                             </td>
                          </tr>
                      @endforeach
                  </tbody>
              </table>
          </div>
-         <h3>Alumnos</h3>
+         @if($inscripcion->estado == true)
+         <h3>Alumnos en proceso de inscripción</h3>
          <table class="table table-bordered text-center">
              <thead class="table-dark">
                  <tr>
@@ -49,7 +64,7 @@
                  </tr>
              </thead>
              <tbody>
-                 @foreach ($data as $alumno)
+                 @foreach ($alumnos as $alumno)
                      <tr>
                          <td class="infor">{{ $alumno->matricula_alumno }}</td>
                          <td class="infor">{{ $alumno->nombre_alumno }} {{ $alumno->apellidos_alumno }}</td>
@@ -101,23 +116,14 @@
                                          </svg>
                                      </button>
                                  </form>
-                                 <form method="GET" action="{{ route('admin.calificaciones.show', $alumno->id_alumno) }}">
-                                     @csrf
-                                     <button type="submit" class="btn btn-danger btn-sm">
-                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                             fill="currentColor" class="bi bi-journal" viewBox="0 0 16 16">
-                                             <path
-                                                 d="M3 0h10a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-1h1v1a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v1H1V2a2 2 0 0 1 2-2" />
-                                             <path
-                                                 d="M1 5v-.5a.5.5 0 0 1 1 0V5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1zm0 3v-.5a.5.5 0 0 1 1 0V8h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1zm0 3v-.5a.5.5 0 0 1 1 0v.5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1z" />
-                                         </svg>
-                                     </button>
-                                 </form>
                              </div>
                          </td>
                      </tr>
                  @endforeach
              </tbody>
          </table>
+         @else
+         <h3>No se han habilitado las inscripciones</h3>
+         @endif
      </div>
  @endsection

@@ -47,7 +47,7 @@ class Poblar extends Seeder
                 'fin_curso' => '2025-05-28',
                 'dias_curso' => 'Lunes y Miércoles',
                 'horario_curso' => 'DE 18:00 A 21:00 hrs',
-                'alumnos_actuales_curso' => 20,
+                'alumnos_actuales_curso' => 0,
                 'cupo_curso' => 30,
                 'clases_via_curso' => 'Teams LEON',
                 'tipo_curso' => 'Online',

@@ -7,13 +7,14 @@ use App\Models\Inscripcion;
 use App\Models\Curso;
 use App\Models\Alumno;
 use App\Models\Kardex;
-
+use App\Models\Gestion;
 class InscripcionController extends Controller
 {
 
     public function show()
     {
         $inscripciones = Inscripcion::with(['alumno', 'curso'])->get();
+
         return view('administrador.inscribir_alumnos', compact('inscripciones'));
     }
 
@@ -31,6 +32,7 @@ class InscripcionController extends Controller
 
         $alumno = Alumno::find($id_alumno);
         $alumno->inscrito = true;
+        $alumno->acredita = false;
         $alumno->save();
         $curso = Curso::find($id_curso);
         $curso->increment('alumnos_actuales_curso');
@@ -38,7 +40,7 @@ class InscripcionController extends Controller
 
         Kardex::create([
             'id_alumno' => $id_alumno,
-            'materia' => $curso->modulo_curso,
+            'id_nivel' => $curso->nivel->id,
             'calificacion' => 0,
             'periodo' => $curso->inicio_curso . ' - ' . $curso->fin_curso,
         ]);
@@ -77,14 +79,25 @@ class InscripcionController extends Controller
 
     public function inscribirAdministrativo($id)
     {
+
         $grupo = Curso::find($id);
-        $data = Alumno::paginate(5);
+        $nivel_grupo = $grupo->nivel->id;
+
+        $alumnos = Alumno::with('nivel')->where(function ($query) use ($nivel_grupo) {
+            $query->where('acredita', true)
+                ->where('id_nivel', '<', $nivel_grupo);
+        })->orWhere(function ($query) use ($nivel_grupo) {
+            $query->where('acredita', false)
+                ->where('id_nivel', $nivel_grupo);
+        })->paginate(5);
 
         $ids_alumnos = Inscripcion::where('id_curso', $id)->pluck('id_alumno');
         $inscritos = Alumno::whereIn('id_alumno', $ids_alumnos)->paginate(5);
 
+        $inscripcion = Gestion::where('id', 1)->first();
+
         if ($grupo) {
-            return view('administrador.inscribir_alumnos', compact('grupo', 'data', 'inscritos'));
+            return view('administrador.inscribir_alumnos', compact('grupo', 'alumnos', 'inscritos', 'inscripcion'));
         } else {
             return redirect(route('admin.registro_cursos'))->with('error', 'Grupo no encontrado');
         }

@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use App\Models\Curso;
 use App\Models\Docente;
 use App\Models\Nivel;
-
 class CrudCursosController extends Controller
 {
     public function create(Request $request)

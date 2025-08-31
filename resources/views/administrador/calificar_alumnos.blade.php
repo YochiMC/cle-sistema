@@ -29,22 +29,22 @@
             <tbody>
                 @foreach ($alumno->kardex as $registro)
                     <tr>
-                        <form action="{{ route('admin.calificaciones.update', $registro->id) }}" method="POST">
+                        <form action="{{ route('admin.calificaciones.update', $registro->id) }}" method="POST" >
                             @csrf
                             @method('PUT')
                             <td>
-                                <input type="text" name="materia" value="{{ $registro->materia }}" disabled>
+                                <input type="text" name="materia" value="{{ $registro->nivel->nombre_nivel }}" disabled>
                             </td>
                             <td>
-                                <input type="number" name="calificacion" value="{{ $registro->calificacion }}"
-                                    min="0" max="100" required>
+                                <input type="number" name="calificacion" value="{{ $registro->calificacion }} "
+                                    min="0" max="100" required @if($calificar->estado == false) disabled @endif>
                             </td>
                             <td>
                                 <input type="text" name="periodo" value="{{ $registro->periodo }}" disabled>
                             </td>
                             <td>
                                 <div class="gestionar">
-                                    <button type="submit" class="btn btn-primary">
+                                    <button type="submit" class="btn btn-primary" @if($calificar->estado == false) disable @endif>
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                             fill="currentColor" class="bi bi-floppy" viewBox="0 0 16 16">
                                             <path d="M11 2H9v3h2z" />

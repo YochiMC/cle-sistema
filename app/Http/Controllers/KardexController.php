@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Alumno;
 use App\Models\Kardex;
+use App\Models\Gestion;
 
 class KardexController extends Controller
 {
@@ -13,8 +14,9 @@ class KardexController extends Controller
     {
         $alumno = Alumno::find($id_alumno);
         $kardex = $alumno->kardex;
+        $calificar = Gestion::find(2);
 
-        return view('administrador.calificar_alumnos', compact('alumno', 'kardex'));
+        return view('administrador.calificar_alumnos', compact('alumno', 'kardex', 'calificar'));
     }
 
     // Actualizar calificación
@@ -31,8 +33,16 @@ class KardexController extends Controller
             return redirect()->back()->with('error', 'Kardex no encontrado.');
         }
 
-        $kardex->calificacion = $request->input('calificacion');
+        if($request->calificacion >= 70){
+            $kardex->alumno->acredita = true;
+        }else{
+            $kardex->alumno->acredita = false;
+        }
+
+        $kardex->calificacion = $request->calificacion;
+
         $kardex->save();
+        $kardex->alumno->save();
 
         return redirect()->back()->with('success', 'Calificaciones actualizadas correctamente.');
     }

@@ -15,7 +15,7 @@ return new class extends Migration {
         Schema::create('kardex', function (Blueprint $table) {
             $table->id();
             $table->foreignId('id_alumno')->constrained('alumnos', 'id_alumno')->cascadeOnDelete();
-            $table->string('materia', 100);
+            $table->foreignId('id_nivel')->constrained('niveles');
             $table->unsignedTinyInteger('calificacion'); // 0 - 100
             $table->string('periodo', 100); // Ejemplo: 2024-2
             $table->timestamps();
