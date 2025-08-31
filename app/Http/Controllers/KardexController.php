@@ -35,11 +35,14 @@ class KardexController extends Controller
 
         if($request->calificacion >= 70){
             $kardex->alumno->acredita = true;
+            $kardex->estado = 'aprobado';
         }else{
             $kardex->alumno->acredita = false;
+            $kardex->estado = 'reprobado';
         }
 
         $kardex->calificacion = $request->calificacion;
+        $kardex->estado =
 
         $kardex->save();
         $kardex->alumno->save();

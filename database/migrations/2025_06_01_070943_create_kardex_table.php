@@ -18,6 +18,8 @@ return new class extends Migration {
             $table->foreignId('id_nivel')->constrained('niveles');
             $table->unsignedTinyInteger('calificacion'); // 0 - 100
             $table->string('periodo', 100); // Ejemplo: 2024-2
+            $table->string('estado', 100);
+            $table->boolean('evaluado')->default(false);
             $table->timestamps();
         });
 
