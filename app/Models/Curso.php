@@ -15,10 +15,10 @@ class Curso extends Model
 
     protected $fillable = [
         'id_docente',
+        'id_nivel',
         'modelo_solucion_curso',
         'tecnm_curso',
         'modelo_curso',
-        'modulo_curso',
         'nombre_tms_curso',
         'inicio_curso',
         'fin_curso',
@@ -37,5 +37,10 @@ class Curso extends Model
     public function docente()
     {
         return $this->belongsTo(Docente::class, 'id_docente');
+    }
+
+    public function nivel()
+    {
+        return $this->belongsTo(Nivel::class, 'id_nivel');
     }
 }

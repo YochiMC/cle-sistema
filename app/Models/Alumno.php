@@ -16,6 +16,7 @@ class Alumno extends Model
     protected $fillable = [
         'id_usuario',
         'id_carrera',
+        'id_nivel',
         'matricula_alumno',
         'nombre_alumno',
         'apellidos_alumno',
@@ -23,7 +24,8 @@ class Alumno extends Model
         'sexo_alumno',
         'semestre_alumno',
         'inscrito',
-        'acredita'
+        'acredita',
+        'liberado'
     ];
 
     public function scopeSearch($query, $term)
@@ -52,6 +54,11 @@ class Alumno extends Model
     public function carrera()
     {
         return $this->belongsTo(Carrera::class, 'id_carrera');
+    }
+
+    public function nivel()
+    {
+        return $this->belongsTo(Nivel::class, 'id_nivel');
     }
 
 }

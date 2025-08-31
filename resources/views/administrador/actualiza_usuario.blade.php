@@ -61,6 +61,9 @@
                     </option>
                 </select>
                 <br>
+                <label for="nivel">Nivel del alumno:
+                    <p>{{ $data_alumno->nivel->nombre_nivel }} ({{ $data_alumno->nivel->mcr_nivel }})</p>
+                </label>
                 <label for="inscrito">Status de inscripción:
                     @if ($data_alumno->inscrito == 1)
                         <p>Inscrito</p>

@@ -7,6 +7,7 @@ use App\Models\Docente;
 use App\Models\Alumno;
 use App\Models\Carrera;
 use App\Models\Gestion;
+use App\Models\Nivel;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Role;
@@ -173,6 +174,66 @@ class UserSeeder extends Seeder
             'plan_estudios_carrera' => '¿..?'
         ]);
 
+        Nivel::create([
+            'nombre_nivel' => 'Básico 1',
+            'mcr_nivel' => 'A1',
+            'horas_nivel' => 45
+        ]);
+
+        Nivel::create([
+            'nombre_nivel' => 'Básico 2',
+            'mcr_nivel' => 'A1',
+            'horas_nivel' => 45
+        ]);
+
+        Nivel::create([
+            'nombre_nivel' => 'Básico 3',
+            'mcr_nivel' => 'A1',
+            'horas_nivel' => 45
+        ]);
+
+        Nivel::create([
+            'nombre_nivel' => 'Básico 4',
+            'mcr_nivel' => 'A2',
+            'horas_nivel' => 45
+        ]);
+
+        Nivel::create([
+            'nombre_nivel' => 'Básico 5',
+            'mcr_nivel' => 'A2',
+            'horas_nivel' => 45
+        ]);
+
+        Nivel::create([
+            'nombre_nivel' => 'Intermedio 1',
+            'mcr_nivel' => 'B1',
+            'horas_nivel' => 45
+        ]);
+
+        Nivel::create([
+            'nombre_nivel' => 'Intermedio 2',
+            'mcr_nivel' => 'B1',
+            'horas_nivel' => 45
+        ]);
+
+        Nivel::create([
+            'nombre_nivel' => 'Intermedio 3',
+            'mcr_nivel' => 'B1',
+            'horas_nivel' => 45
+        ]);
+
+        Nivel::create([
+            'nombre_nivel' => 'Intermedio 4',
+            'mcr_nivel' => 'B1',
+            'horas_nivel' => 45
+        ]);
+
+        Nivel::create([
+            'nombre_nivel' => 'Intermedio 5',
+            'mcr_nivel' => 'B1',
+            'horas_nivel' => 45
+        ]);
+
         $adminUser = User::query()->create([
             'name' => 'Coordinador',
             'email' => 'coordinacion@coordinacion.com',
@@ -204,6 +265,7 @@ class UserSeeder extends Seeder
         $alumno = Alumno::create([
             'id_usuario' => $alumnoUser->id,
             'id_carrera' => 1,
+            'id_nivel' => 1,
             'matricula_alumno' => '21240551',
             'nombre_alumno' => 'Joseph Alexander',
             'apellidos_alumno' => 'Martínez Cortés',

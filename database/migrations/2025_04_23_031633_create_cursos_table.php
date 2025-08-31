@@ -18,11 +18,11 @@ return new class extends Migration {
             $table->foreignId('id_docente')
                 ->constrained('docentes', 'id_docente')
                 ->cascadeOnDelete();
+            $table->foreignId('id_nivel')->constrained('niveles');
 
             $table->string('modelo_solucion_curso', 50);
             $table->string('tecnm_curso', 50);
             $table->char('modelo_curso', 50);
-            $table->string('modulo_curso', 50);
             $table->char('nombre_tms_curso', 50);
 
             $table->date('inicio_curso');

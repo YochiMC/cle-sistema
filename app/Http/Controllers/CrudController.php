@@ -127,6 +127,7 @@ class CrudController extends Controller
                 Alumno::query()->create([
                     'id_usuario' => $newUser->id,
                     'id_carrera' => $request->carrera,
+                    'id_nivel' => 1,
                     'matricula_alumno' => $request->numero_control,
                     'nombre_alumno' => $request->nombre,
                     'apellidos_alumno' => $request->apellidos,

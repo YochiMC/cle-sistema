@@ -39,4 +39,9 @@ class Docente extends Model
     {
         return $this->belongsTo(User::class, 'id_usuario');
     }
+
+    public function cursos()
+    {
+        return $this->hasMany(Curso::class, 'id_docente');
+    }
 }

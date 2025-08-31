@@ -16,7 +16,7 @@ return new class extends Migration
             $table->timestamps();
             $table->String('nombre_nivel');
             $table->String('mcr_nivel');
-            $table->String('horas_nivel');
+            $table->Integer('horas_nivel');
         });
     }
 

@@ -5,18 +5,20 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Curso;
 use App\Models\Docente;
+use App\Models\Nivel;
 
 class CrudCursosController extends Controller
 {
     public function create(Request $request)
     {
+        //Favor de hacer una validación aquí
 
         Curso::create([
             'id_docente' => $request->docente_curso,
+            'id_nivel' => $request->modulo_curso,
             'modelo_solucion_curso' => $request->modelo_solucion_curso,
             'tecnm_curso' => $request->tecnm_curso,
             'modelo_curso' => $request->modelo_curso,
-            'modulo_curso' => $request->modulo_curso,
             'nombre_tms_curso' => $request->nombre_tms_curso,
             'inicio_curso' => $request->inicio_curso,
             'fin_curso' => $request->fin_curso,
@@ -37,16 +39,18 @@ class CrudCursosController extends Controller
     {
         $docentes = Docente::all();
         $cursos = Curso::all();
-        return view('administrador.registro_cursos', compact('docentes', 'cursos'));
+        $niveles = Nivel::all();
+        return view('administrador.registro_cursos', compact('docentes', 'cursos', 'niveles'));
     }
 
     public function update($id)
     {
         $curso = Curso::find($id);
         $docentes = Docente::all();
+        $niveles = Nivel::all();
 
         if ($curso) {
-            return view('administrador.actualiza_curso', compact('curso', 'docentes'));
+            return view('administrador.actualiza_curso', compact('curso', 'docentes','niveles'));
         } else {
             return redirect(route('admin.registro_cursos'))->with('error', 'Curso no encontrado');
         }

@@ -45,8 +45,12 @@
             </div>
             <div class="form-group">
                 <label for="modulo_curso">Módulo del curso:</label>
-                <input type="text" name="modulo_curso" id="modulo_curso" class="form-control"
-                    value="{{ $curso->modulo_curso }}" required>
+                    <select id="modulo_curso" name="modulo_curso">
+                        <option value="{{ $curso->nivel->id }}" selected>{{ $curso->nivel->nombre_nivel }} ({{ $curso->nivel->mcr_nivel }})</option>
+                        @foreach ($niveles as $nivel)
+                            <option value="{{ $nivel->id }}">{{ $nivel->nombre_nivel }} ({{ $nivel->mcr_nivel }})</option>
+                        @endforeach
+                    </select>
             </div>
             <div class="form-group">
                 <label for="nombre_tms_curso">Nombre TMS del curso:</label>

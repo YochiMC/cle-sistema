@@ -18,9 +18,14 @@ class Nivel extends Model
 
     public $timestamps = true;
 
-    public function alumnos()
+    public function alumno()
     {
-        return $this->hasMany(Alumno::class, 'id_carrera');
+        return $this->hasMany(Alumno::class, 'id_nivel');
+    }
+
+    public function cursos()
+    {
+        return $this->hasMany(Curso::class, 'id_nivel');
     }
 
 }
