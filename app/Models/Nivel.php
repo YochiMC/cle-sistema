@@ -5,15 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Carrera extends Model
+class Nivel extends Model
 {
     use HasFactory;
 
-    protected $table = 'carreras';
+    protected $table = 'niveles';
     protected $fillable = [
-        'nombre_carrera',
-        'plan_estudios_carrera'
+        'nombre_nivel',
+        'mcr_nivel',
+        'horas_nivel'
     ];
+
     public $timestamps = true;
 
     public function alumnos()

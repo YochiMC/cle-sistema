@@ -156,7 +156,7 @@
                     <label for="caarrera">Carrera: </label>
                     <select name="carrera" id="carrera" value="{{ old('carrera') }}">
                         @foreach ($carreras as $carrera)
-                            <option value="{{ $carrera->id }}">{{ $carrera->nombre }}</option>
+                            <option value="{{ $carrera->id }}">{{ $carrera->nombre_carrera }}</option>
                         @endforeach
                     </select>
                     @error('carrera')
@@ -199,7 +199,7 @@
                     @foreach ($data as $alumno)
                         <tr>
                             <td class="infor">{{ $alumno->matricula_alumno }}</td>
-                            <td class="infor">{{ $alumno->carrera->nombre ?? 'Sin carrera' }}</td>
+                            <td class="infor">{{ $alumno->carrera->nombre_carrera ?? 'Sin carrera' }}</td>
                             <td class="infor">{{ $alumno->semestre_alumno }}</td>
                             <td class="infor">{{ $alumno->nombre_alumno }} {{ $alumno->apellidos_alumno }}</td>
                             <td class="infor">{{ $alumno->sexo_alumno }}</td>

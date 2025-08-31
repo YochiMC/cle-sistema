@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Alumno;
 use App\Models\Docente;
+use App\Models\Gestion;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -41,8 +42,13 @@ class UserController extends Controller
             */
             $alumnos = Alumno::All();
             $docentes = Docente::All();
+            $gestion = Gestion::All();
             $admin =  $usuario;
-            return view('administrador.dashboard', compact('admin', 'alumnos', 'docentes'));
+
+            // Consulta para mostrar alumnos por sexo que esten cursando algún idioma
+            $alumnos_inscritos = $alumnos->where('inscrito', 1);
+
+            return view('administrador.dashboard', compact('admin', 'gestion', 'alumnos', 'docentes', 'alumnos_inscritos'));
         }
     }
 }

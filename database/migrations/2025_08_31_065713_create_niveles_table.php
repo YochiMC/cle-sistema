@@ -8,26 +8,23 @@ return new class extends Migration
 {
     /**
      * Run the migrations.
-     *
-     * @return void
      */
-    public function up()
+    public function up(): void
     {
-        Schema::create('carreras', function (Blueprint $table) {
+        Schema::create('niveles', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->string('nombre_carrera')->unique();
-            $table->string('plan_estudios_carrera')->unique();
+            $table->String('nombre_nivel');
+            $table->String('mcr_nivel');
+            $table->String('horas_nivel');
         });
     }
 
     /**
      * Reverse the migrations.
-     *
-     * @return void
      */
-    public function down()
+    public function down(): void
     {
-        Schema::dropIfExists('carreras');
+        Schema::dropIfExists('niveles');
     }
 };

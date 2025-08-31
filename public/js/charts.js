@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
     // Datos globales que vienen de Blade
     const alumnos = window.datosAlumnos || [];
+    const alumnos_inscritos = window.datosConsulta || [];
 
     // ================== GRÁFICO 1 ==================
     let conteoSemestre = {};
@@ -23,6 +24,11 @@ document.addEventListener("DOMContentLoaded", () => {
         options: {
             responsive: true,
             maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    display: false
+                }
+            },
             scales: {
                 y: {
                     beginAtZero: true,
@@ -45,7 +51,7 @@ document.addEventListener("DOMContentLoaded", () => {
             datasets: [{
                 label: 'Alumnos por sexo',
                 data: Object.values(conteoSexo),
-                backgroundColor: ['#1B396A', '#FF6384'], // Ejemplo M/F
+                backgroundColor: ['#1B396A', '#FF6384'],
                 borderColor: 'white',
                 borderWidth: 1
             }]
@@ -53,6 +59,46 @@ document.addEventListener("DOMContentLoaded", () => {
         options: {
             responsive: true,
             maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    display: false
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    ticks: { stepSize: 1, precision: 0 }
+                }
+            }
+        }
+    });
+
+    // ================== GRÁFICO 3 ==================
+    let conteoInscritos = {};
+    alumnos_inscritos.forEach(a => {
+        conteoInscritos[a.sexo_alumno] = (conteoInscritos[a.sexo_alumno] || 0) + 1;
+    });
+
+    new Chart(document.getElementById('alumnos_inscritos'), {
+        type: 'bar',
+        data: {
+            labels: Object.keys(conteoInscritos),
+            datasets: [{
+                label: 'Alumnos inscritos',
+                data: Object.values(conteoInscritos),
+                backgroundColor: ['#1B396A', '#FF6384'],
+                borderColor: 'white',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    display: false
+                }
+            },
             scales: {
                 y: {
                     beginAtZero: true,

@@ -123,22 +123,55 @@ class UserSeeder extends Seeder
             'ver grupos'
         ]);
 
-        $carreras = [
-            'Ingeniería en Sistemas Computacionales',
-            'Ingeniería Industrial',
-            'Ingeniería en Tecnologías de la Información y Comunicaciones',
-            'Ingeniería en Gestión Empresarial',
-            'Ingeniería Electrónica',
-            'Ingeniería Electromecánica',
-            'Ingenierría Mecatrónica',
-            'Ingeniería en Logística',
-            'Maestría en Ciencias de la Computación',
-            'Maestría en Ciencias de la Ingeniería',
-        ];
+        Carrera::create([
+            'nombre_carrera' => 'Ingeniería en Sistemas Computacionales',
+            'plan_estudios_carrera' => 'ISIC-2010-224'
+        ]);
 
-        foreach ($carreras as $nombre) {
-            Carrera::create(['nombre' => $nombre]);
-        }
+        Carrera::create([
+            'nombre_carrera' => 'Ingeniería Industrial',
+            'plan_estudios_carrera' => 'IIND-2010-227'
+        ]);
+
+        Carrera::create([
+            'nombre_carrera' => 'Ingeniería en Tecnologías de la Información y Comunicaciones',
+            'plan_estudios_carrera' => 'ITIC-2010-225'
+        ]);
+
+        Carrera::create([
+            'nombre_carrera' => 'Ingeniería en Gestión Empresarial',
+            'plan_estudios_carrera' => 'IGEM-2009-201'
+        ]);
+
+        Carrera::create([
+            'nombre_carrera' => 'Ingeniería Electrónica',
+            'plan_estudios_carrera' => 'IELC-2010-211'
+        ]);
+
+        Carrera::create([
+            'nombre_carrera' => 'Ingeniería Electromecánica',
+            'plan_estudios_carrera' => 'IEME-2010-210'
+        ]);
+
+        Carrera::create([
+            'nombre_carrera' => 'Ingenierría Mecatrónica',
+            'plan_estudios_carrera' => 'IMCT-2010-229'
+        ]);
+
+        Carrera::create([
+            'nombre_carrera' => 'Ingeniería en Logística',
+            'plan_estudios_carrera' => 'ILOG-2009-202'
+        ]);
+
+        Carrera::create([
+            'nombre_carrera' => 'Maestría en Ciencias de la Computación',
+            'plan_estudios_carrera' => '¿?'
+        ]);
+
+        Carrera::create([
+            'nombre_carrera' => 'Maestría en Ciencias de la Ingeniería',
+            'plan_estudios_carrera' => '¿..?'
+        ]);
 
         $adminUser = User::query()->create([
             'name' => 'Coordinador',

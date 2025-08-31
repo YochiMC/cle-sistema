@@ -229,7 +229,7 @@ class CrudController extends Controller
 
         // Estos dos son iportantes para la vista destino
         $carreras = Carrera::all();
-        $archivos = Archivo::all(); // Estos son para manipularse (Hay que revisarlo)
+        $archivos = $usuario->archivos; // Estos son para manipularse (Hay que revisarlo)
 
         return view('administrador.actualiza_usuario', compact('usuario', 'tipo', 'data_alumno', 'data_docente', 'carreras', 'archivos'));
     }

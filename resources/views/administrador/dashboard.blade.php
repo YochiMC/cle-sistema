@@ -19,18 +19,27 @@
         <div class="profile-details">
             <div class="profile-card">
                 <h3>{{ $admin->name ? 'Bienvenid@ ' . $admin->name : 'Error' }}</h3>
-                <p>Bienvenido, ahora aquí tienes tus gráficos, gracias por la espera</p>
+                <p>Seguimos mejorando las vistas :D</p>
             </div>
         </div>
+        {{--<div class="status"> Favor de acomodar el diseño del dashboard
+            <h2>Eventos</h2>
+            @foreach ($gestion as $a)
+                <p> {{ $a->nombre_accion }} : {{ $a->estado }}
+                <p>
+            @endforeach
+        </div>--}}
         <div class="graficos">
             <x-grafico id="alumnos_semestre" titulo="Alumnos por semestre" />
             <x-grafico id="alumnos_sexo" titulo="Alumnos por sexo" />
+            <x-grafico id="alumnos_inscritos" titulo="Alumnos inscritos" />
         </div>
     </div>
 @endsection
 @section('scripts')
     <script>
         window.datosAlumnos = @json($alumnos);
+        window.datosConsulta = @json($alumnos_inscritos);
     </script>
     <script src="{{ asset('js/charts.js') }}"></script>
 @endsection

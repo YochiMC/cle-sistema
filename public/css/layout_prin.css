@@ -226,3 +226,12 @@ header {
   text-align: center;
 }
 
+.status{
+    display: flex;
+    flex-direction: column;
+}
+
+.status h2, p{
+    color:#1B396A;
+}
+
