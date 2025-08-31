@@ -166,41 +166,38 @@ class CrudController extends Controller
     de los propios métodos de laravel usando 'like' en el query y así poder filtrar datos
     */
     public function read(Request $request)
-    {
+{
+    $tipo = $request->input('tipo', 'alumnos'); // Ayuda a decidir qué tabla mostrar
+    $search = $request->input('search'); // Valor del input de búsqueda
 
-        $tipo = $request->input('tipo', 'alumnos'); // Esta variable ayuda a decidir que tabla mostrar
-        $search = $request->input('search'); // Esta variable es el valor de la barra de búsqueda
+    switch ($tipo) {
+        case 'alumnos':
+            $query = Alumno::with('carrera'); // Trae relación con carrera
+            if ($search) {
+                $query = $query->where('nombre_alumno', 'like', "%{$search}%")
+                               ->orWhere('matricula_alumno', 'like', "%{$search}%");
+            }
+            $data = $query->paginate(5);
+            break;
 
-        switch ($tipo) {
-            /*
-            La lógica de este switch recae en mostrar una tabla, en cuanto a las búsquedas, primero
-            se verifica si existe dicha búsqueda, si existe procede a realizar la acción en base
-            a los parametros especificados en el Modelo de la entidad (revisar modelos Alumno y Docente).
-            Al final se retorna el resultado de la query con una paginación
-            */
-            case 'alumnos': // Caso para mostrar tabla de alumnos
-                $query = Alumno::with('carrera');
-                if ($search) {
-                    $query = Alumno::search($search);
-                }
-                $data = $query->paginate(5);
-                break;
-            case 'docentes': // Caso para mostrar tabla de alumnos
-                $query = Docente::query();
-                if ($search) {
-                    $query = Docente::search($search);
-                }
-                $data = $query->paginate(5);
-                break;
-            default: // Caso default, solamente se regresa la vista con la tabla de alumnos
-                $data = Alumno::paginate(5);
-                break;
-        }
+        case 'docentes':
+            $query = Docente::query();
+            if ($search) {
+                $query = $query->where('docente_nombre', 'like', "%{$search}%")
+                               ->orWhere('docente_clave', 'like', "%{$search}%");
+            }
+            $data = $query->paginate(5);
+            break;
 
-        $carreras = Carrera::all(); // Carreras se retorna solamente para presentar dichos valores en la vista
-
-        return view('administrador.registro', compact('tipo', 'data', 'carreras', 'search'));
+        default:
+            $data = Alumno::paginate(5);
+            break;
     }
+
+    $carreras = Carrera::all();
+
+    return view('administrador.registro', compact('tipo', 'data', 'carreras', 'search'));
+}
 
     /*
     El método update es para llevar a la vista de información personal del usuario seleccionado, pasa
