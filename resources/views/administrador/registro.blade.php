@@ -30,7 +30,7 @@
                     </select>
                     <div class="search-bar">
                         <input type="text" name="search" value="{{ request('search') }}"
-                            placeholder="Buscar por nombre, apellido o matrícula">
+                            placeholder="Buscar por nombre, apellido o matrícula" autocomplete="off">
                         <button type="submit" class="button">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-search"
                                 viewBox="0 0 16 16">
@@ -71,34 +71,11 @@
 
                 <div id="datos_generales" style="display:none" class="contenedor-info-general">
                     <h3>Datos Generales</h3>
-                    <label for="usuario_nombre">Nombre de usuario:</label>
-                    <input type="text" id="name" name="name" value="{{ old('name') }}"
-                        placeholder="Escribe el nombre de usuario">
-                    <br>
-                    @error('name')
-                        <span class="error">{{ $message }}</span>
-                        <br>
-                    @enderror
-                    <label for="usuario_correo">Correo Electrónico:</label>
-                    <input type="email" id="email" name="email" value="{{ old('email') }}"
-                        placeholder="Escribe el correo electrónico">
-                    <br>
-                    @error('email')
-                        <span class="error">{{ $message }}</span>
-                        <br>
-                    @enderror
                     <label for="usuario_telefono">Número de teléfono:</label>
                     <input type="number" id="phonenumber" name="phonenumber" value="{{ old('phonenumber') }}"
                         placeholder="Escribe el número de teléfono">
                     <br>
                     @error('phonenumber')
-                        <span class="error">{{ $message }}</span>
-                        <br>
-                    @enderror
-                    <label for="usuario_contraseña">Contraseña:</label>
-                    <input type="password" id="password" name="password" placeholder="Escribe la contraseña">
-                    <br>
-                    @error('password')
                         <span class="error">{{ $message }}</span>
                         <br>
                     @enderror
@@ -111,8 +88,8 @@
                         <br>
                     @enderror
                     <label for="apellidos">Apellido(s):</label>
-                    <input type="text" id="apellidos" name="apellidos" value="{{ old('apellidos') }}" place
-                        holder="Escribe el apellido(s)">
+                    <input type="text" id="apellidos" name="apellidos" value="{{ old('apellidos') }}"
+                    placeholder="Escribe el apellido(s)">
                     <br>
                     @error('apellidos')
                         <span class="error">{{ $message }}</span>
@@ -170,6 +147,13 @@
 
                 <div id="maestroForm" style="display:none" class="contenedor-info-docente">
                     <h3>Docente Datos</h3>
+                    <label for="email">Correo eletrónico:</label>
+                    <input type="text" id="email" name="email"
+                        value="{{ old('email') }}" placeholder="Escribe el email">
+                    @error('email')
+                        <span class="error">{{ $message }}</span>
+                        <br>
+                    @enderror
                     <label for="numero_trabajador">Numero de trabajador:</label>
                     <input type="text" id="numero_trabajador" name="numero_trabajador"
                         value="{{ old('numero_trabajador') }}" placeholder="Escribe el número de trabajador">

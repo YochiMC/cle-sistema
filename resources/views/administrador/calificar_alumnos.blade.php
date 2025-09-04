@@ -58,7 +58,7 @@
                                         </svg>
                                     </button>
                                     @endif
-                                </div>
+                                 </div>
                             </td>
                         </form>
                     </tr>

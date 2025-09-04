@@ -3,13 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 use App\Models\User;
 use App\Models\Alumno;
 use App\Models\Docente;
 use App\Models\Carrera;
 use App\Models\Kardex;
 use App\Models\Archivo;
-
 class CrudController extends Controller
 {
     /*
@@ -18,6 +18,7 @@ class CrudController extends Controller
     */
     public function create(Request $request)
     {
+        $newUser = null;
         /*
         Este primer switch cumple la misión de hacer las validaciones y dar paso al siguiente switch que se encarga
         de crear el usuario de tipo alumno o docente.
@@ -27,90 +28,110 @@ class CrudController extends Controller
                 // aqui van más validaciones si es necesario
                 break;
             case 'alumno': // En caso de que se quiera crear un alumno
-                $request->validate(
-                    [
-                        'name' => 'required|string|max:255',
-                        'email' => 'required|email|unique:users,email',
-                        'phonenumber' => 'required|nullable|string|max:15',
-                        'password' => 'required|string|min:8',
-                        'nombre' => 'required|string|max:255|regex:/^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+$/u',
-                        'apellidos' => 'required|string|max:255|regex:/^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+$/u',
-                        'edad' => 'required|integer|min:1|max:120',
-                        'sexo' => 'required',
-                        'numero_control' => 'required|string|max:20|unique:alumnos,matricula_alumno|regex:/^[A-Z0-9]+$/',
-                        'carrera' => 'required|exists:carreras,id',
-                        'semestre' => 'required|integer|min:1|max:13',
-                    ],
-                    [
-                        'name.required' => 'El nombre es obligatorio.',
-                        'email.required' => 'El correo electrónico es obligatorio.',
-                        'email.email' => 'El formato del correo electrónico no es válido.',
-                        'email.unique' => 'El correo electrónico ya está en uso.',
-                        'phonenumber.required' => 'El número de teléfono es obligatorio.',
-                        'phonenumber.max' => 'El número de teléfono no puede exceder los 15 caracteres.',
-                        'password.required' => 'La contraseña es obligatoria.',
-                        'password.min' => 'La contraseña debe tener al menos 8 caracteres.',
-                        'nombre.required' => 'El nombre(s) es obligatorio.',
-                        'apellidos.required' => 'Los apellidos son obligatorios.',
-                        'edad.required' => 'La edad es obligatoria.',
-                        'sexo.required' => 'El sexo es obligatorio.',
-                        'numero_control.required' => 'El número de control es obligatorio.',
-                        'numero_control.unique' => 'El número de control ya está en uso.',
-                        'carrera.required' => 'La carrera es obligatoria.',
-                        'semestre.required' => 'El semestre es obligatorio.',
-                        'semestre.min' => 'El semestre debe ser al menos 1.',
-                        'semestre.max' => 'El semestre no puede ser mayor a 13.',
-                        'nombre.regex' => 'El nombre solo puede contener letras y espacios.',
-                        'apellidos.regex' => 'Los apellidos solo pueden contener letras y espacios.',
-                    ]
-                );
+                $rules = [
+                    'phonenumber' => 'required|nullable|string|max:15',
+                    'nombre' => 'required|string|max:255|regex:/^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+$/u',
+                    'apellidos' => 'required|string|max:255|regex:/^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+$/u',
+                    'edad' => 'required|integer|min:17|max:60',
+                    'sexo' => 'required',
+                    'numero_control' => 'required|string|max:20|unique:alumnos,matricula_alumno|regex:/^[A-Z0-9]+$/',
+                    'carrera' => 'required|exists:carreras,id',
+                    'semestre' => 'required|integer|min:1|max:13',
+                ];
+
+                $messages = [
+                    'phonenumber.required' => 'El número de teléfono es obligatorio.',
+                    'phonenumber.max' => 'El número de teléfono no puede exceder los 15 caracteres.',
+                    'nombre.required' => 'El nombre(s) es obligatorio.',
+                    'apellidos.required' => 'Los apellidos son obligatorios.',
+                    'edad.required' => 'La edad es obligatoria.',
+                    'edad.max' => 'La edad pasa de los 60 años.',
+                    'edad.min' => 'La edad es menor a 17 años.',
+                    'sexo.required' => 'El sexo es obligatorio.',
+                    'numero_control.required' => 'El número de control es obligatorio.',
+                    'numero_control.unique' => 'El número de control ya está en uso.',
+                    'carrera.required' => 'La carrera es obligatoria.',
+                    'semestre.required' => 'El semestre es obligatorio.',
+                    'semestre.min' => 'El semestre debe ser al menos 1.',
+                    'semestre.max' => 'El semestre no puede ser mayor a 13.',
+                    'nombre.regex' => 'El nombre solo puede contener letras y espacios.',
+                    'apellidos.regex' => 'Los apellidos solo pueden contener letras y espacios.',
+                ];
+
+                $validator = Validator::make($request->all(), $rules, $messages);
+
+                if ($validator->fails()) {
+                    return redirect()->back()
+                        ->withErrors($validator)
+                        ->withInput()
+                        ->with('error', 'Revisa los campos del formulario.');
+                }
+
+                // Aquí se crea el usuario
+                $newUser = User::query()->create([
+                    'name' => $request->numero_control,
+                    'email' => $request->numero_control . "@leon.tecnm.mx",
+                    'phonenumber' => $request->phonenumber,
+                    'password' => bcrypt($request->numero_control),
+                    'email_verified_at' => now(),
+                ]);
+
                 break;
             case 'docente': // En caso de crear un docente
-                $request->validate(
-                    [
-                        'name' => 'required|string|max:255',
-                        'email' => 'required|email|unique:users,email',
-                        'phonenumber' => 'required|nullable|string|max:15',
-                        'password' => 'required|string|min:8',
-                        'nombre' => 'required|string|max:255|regex:/^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+$/u',
-                        'apellidos' => 'required|string|max:255|regex:/^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+$/u',
-                        'edad' => 'required|integer|min:1|max:120',
-                        'sexo' => 'required',
-                        'numero_trabajador' => 'required|string|max:20|unique:docentes,docente_clave',
-                    ],
-                    [
-                        'name.required' => 'El nombre es obligatorio.',
-                        'email.required' => 'El correo electrónico es obligatorio.',
-                        'email.email' => 'El formato del correo electrónico no es válido.',
-                        'email.unique' => 'El correo electrónico ya está en uso.',
-                        'phonenumber.required' => 'El número de teléfono es obligatorio.',
-                        'phonenumber.max' => 'El número de teléfono no puede exceder los 15 caracteres.',
-                        'password.required' => 'La contraseña es obligatoria.',
-                        'password.min' => 'La contraseña debe tener al menos 8 caracteres.',
-                        'nombre.required' => 'El nombre(s) es obligatorio.',
-                        'apellidos.required' => 'Los apellidos son obligatorios.',
-                        'edad.required' => 'La edad es obligatoria.',
-                        'sexo.required' => 'El sexo es obligatorio.',
-                        'numero_trabajador.required' => 'El número de trabajador es obligatorio.',
-                        'numero_trabajador.unique' => 'El número de trabajador ya está en uso.',
-                        'nombre.regex' => 'El nombre solo puede contener letras y espacios.',
-                        'apellidos.regex' => 'Los apellidos solo pueden contener letras y espacios.',
-                        'numero_control.regex' => 'El número de control solo debe contener letras mayúsculas y números.',
-                    ]
-                );
+
+                $rules = [
+                    'phonenumber' => 'required|nullable|string|max:15',
+                    'nombre' => 'required|string|max:255|regex:/^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+$/u',
+                    'apellidos' => 'required|string|max:255|regex:/^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+$/u',
+                    'edad' => 'required|integer|min:25|max:60',
+                    'sexo' => 'required',
+                    'email' => 'required|email|unique:users,email',
+                    'numero_trabajador' => 'required|string|max:20|unique:docentes,docente_clave',
+                ];
+
+                $messages = [
+                    'phonenumber.required' => 'El número de teléfono es obligatorio.',
+                    'phonenumber.max' => 'El número de teléfono no puede exceder los 15 caracteres.',
+                    'nombre.required' => 'El nombre(s) es obligatorio.',
+                    'apellidos.required' => 'Los apellidos son obligatorios.',
+                    'edad.required' => 'La edad es obligatoria.',
+                    'edad.max' => 'La edad pasa de los 60 años.',
+                    'edad.min' => 'La edad es menor a 17 años.',
+                    'sexo.required' => 'El sexo es obligatorio.',
+                    'email.required' => 'El correo electrónico es obligatorio.',
+                    'email.email' => 'El formato del correo electrónico no es válido.',
+                    'email.unique' => 'El correo electrónico ya está en uso.',
+                    'numero_trabajador.required' => 'El número de trabajador es obligatorio.',
+                    'numero_trabajador.unique' => 'El número de trabajador ya está en uso.',
+                    'nombre.regex' => 'El nombre solo puede contener letras y espacios.',
+                    'apellidos.regex' => 'Los apellidos solo pueden contener letras y espacios.',
+                    'numero_control.regex' => 'El número de control solo debe contener letras mayúsculas y números.',
+                ];
+
+                $validator = Validator::make($request->all(), $rules, $messages);
+
+                if ($validator->fails()) {
+                    return redirect()->back()
+                        ->withErrors($validator)
+                        ->withInput()
+                        ->with('error', 'Revisa los campos del formulario.');
+                }
+
+                // Aquí se crea el usuario
+                $newUser = User::query()->create([
+                    'name' => $request->numero_trabajador,
+                    'email' => $request->email,
+                    'phonenumber' => $request->phonenumber,
+                    'password' => bcrypt($request->numero_trabajador),
+                    'email_verified_at' => now(),
+                ]);
+
                 break;
             default: // En caso default se redirecciona a dicha página
                 return redirect()->back()->with('error', 'Tipo de usuario no válido.');
         }
 
-        // Aquí se crea el usuario
-        $newUser = User::query()->create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'phonenumber' => $request->phonenumber,
-            'password' => bcrypt($request->password),
-            'email_verified_at' => now(),
-        ]);
+
 
         /*
         En este switch se decide el tipo de usuario a crear y por ende se crea el objeto y se guarda en su
@@ -135,7 +156,8 @@ class CrudController extends Controller
                     'sexo_alumno' => $request->sexo,
                     'semestre_alumno' => $request->semestre,
                     'inscrito' => false,
-                    'acredita' => false
+                    'acredita' => false,
+                    'liberado' => false
                 ]);
 
                 $newUser->assignRole('alumno');
@@ -166,38 +188,38 @@ class CrudController extends Controller
     de los propios métodos de laravel usando 'like' en el query y así poder filtrar datos
     */
     public function read(Request $request)
-{
-    $tipo = $request->input('tipo', 'alumnos'); // Ayuda a decidir qué tabla mostrar
-    $search = $request->input('search'); // Valor del input de búsqueda
+    {
+        $tipo = $request->input('tipo', 'alumnos'); // Ayuda a decidir qué tabla mostrar
+        $search = $request->input('search'); // Valor del input de búsqueda
 
-    switch ($tipo) {
-        case 'alumnos':
-            $query = Alumno::with('carrera'); // Trae relación con carrera
-            if ($search) {
-                $query = $query->where('nombre_alumno', 'like', "%{$search}%")
-                               ->orWhere('matricula_alumno', 'like', "%{$search}%");
-            }
-            $data = $query->paginate(5);
-            break;
+        switch ($tipo) {
+            case 'alumnos':
+                $query = Alumno::with('carrera'); // Trae relación con carrera
+                if ($search) {
+                    $query = $query->where('nombre_alumno', 'like', "%{$search}%")
+                        ->orWhere('matricula_alumno', 'like', "%{$search}%");
+                }
+                $data = $query->paginate(5);
+                break;
 
-        case 'docentes':
-            $query = Docente::query();
-            if ($search) {
-                $query = $query->where('docente_nombre', 'like', "%{$search}%")
-                               ->orWhere('docente_clave', 'like', "%{$search}%");
-            }
-            $data = $query->paginate(5);
-            break;
+            case 'docentes':
+                $query = Docente::query();
+                if ($search) {
+                    $query = $query->where('docente_nombre', 'like', "%{$search}%")
+                        ->orWhere('docente_clave', 'like', "%{$search}%");
+                }
+                $data = $query->paginate(5);
+                break;
 
-        default:
-            $data = Alumno::paginate(5);
-            break;
+            default:
+                $data = Alumno::paginate(5);
+                break;
+        }
+
+        $carreras = Carrera::all();
+
+        return view('administrador.registro', compact('tipo', 'data', 'carreras', 'search'));
     }
-
-    $carreras = Carrera::all();
-
-    return view('administrador.registro', compact('tipo', 'data', 'carreras', 'search'));
-}
 
     /*
     El método update es para llevar a la vista de información personal del usuario seleccionado, pasa
