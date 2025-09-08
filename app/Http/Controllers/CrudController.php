@@ -196,23 +196,22 @@ class CrudController extends Controller
             case 'alumnos':
                 $query = Alumno::with('carrera'); // Trae relación con carrera
                 if ($search) {
-                    $query = $query->where('nombre_alumno', 'like', "%{$search}%")
-                        ->orWhere('matricula_alumno', 'like', "%{$search}%");
+                    $query -> search($search);
                 }
-                $data = $query->paginate(5);
+
+                $data = $query->paginate(10);
                 break;
 
             case 'docentes':
                 $query = Docente::query();
                 if ($search) {
-                    $query = $query->where('docente_nombre', 'like', "%{$search}%")
-                        ->orWhere('docente_clave', 'like', "%{$search}%");
+                    $query -> search($search);
                 }
-                $data = $query->paginate(5);
+                $data = $query->paginate(10);
                 break;
 
             default:
-                $data = Alumno::paginate(5);
+                $data = Alumno::paginate(10);
                 break;
         }
 
