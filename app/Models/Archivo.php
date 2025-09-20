@@ -10,9 +10,8 @@ class Archivo extends Model
     use HasFactory;
 
     protected $table = 'archivos';
-    protected $primaryKey = 'id';
-
-    public $timestamps = true;
+    protected $primaryKey = 'id_archivo';
+    public $timestamps = false;
     protected $fillable = [
         'id_usuario',
         'nombre',

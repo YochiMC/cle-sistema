@@ -12,17 +12,17 @@ class Docente extends Model
     protected $table = 'docentes';
 
     protected $primaryKey = 'id_docente';
-
-    public $timestamps = true;
+    public $timestamps = false;
 
     protected $fillable = [
         'id_docente',
         'id_usuario',
-        'docente_clave',
-        'docente_nombre',
-        'docente_apellidos',
-        'docente_sexo',
-        'docente_edad'
+        'rfc_docente',
+        'nombre_docente',
+        'apellido_paterno_docente',
+        'apellido_materno_docente',
+        'sexo_docente',
+        'edad_docente'
     ];
 
     public function scopeSearch($query, $term)

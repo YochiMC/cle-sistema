@@ -10,13 +10,13 @@ class Nivel extends Model
     use HasFactory;
 
     protected $table = 'niveles';
+    protected $primaryKey = 'id_nivel';
+    public $timestamps = false;
     protected $fillable = [
         'nombre_nivel',
         'mcr_nivel',
         'horas_nivel'
     ];
-
-    public $timestamps = true;
 
     public function alumno()
     {

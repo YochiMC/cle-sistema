@@ -12,12 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('archivos', function (Blueprint $table) {
-            $table->id();
+            $table->id('id_archivo');
             $table->foreignId('id_usuario')->references('id')->on('users')->onDelete('cascade');
-            $table->String('nombre', 100);
-            $table->string('ruta', 255)->unique();
-            $table->string('tipo', 50);
-            $table->timestamps();
+            $table->String('nombre_archivo', 100);
+            $table->string('ruta_archivo', 255)->unique();
+            $table->string('tipo_archivo', 50);
         });
     }
 

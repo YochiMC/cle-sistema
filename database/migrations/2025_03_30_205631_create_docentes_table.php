@@ -14,14 +14,14 @@ return new class extends Migration
     public function up()
     {
         Schema::create('docentes', function (Blueprint $table) {
-            $table->id('id_docente'); // Clave primaria
-            $table->foreignId('id_usuario')->constrained('users')->cascadeOnDelete(); // Clave foránea hacia users
-            $table->string('docente_clave', 20)->unique();
-            $table->string('docente_nombre', 100);
-            $table->string('docente_apellidos', 100);
-            $table->string('docente_sexo', 10);
-            $table->integer('docente_edad');
-            $table->timestamps();
+            $table->id('id_docente');
+            $table->foreignId('id_usuario')->constrained('users')->cascadeOnDelete();
+            $table->string('rfc_docente', 13)->unique();
+            $table->string('nombre_docente', 100);
+            $table->string('apellido_paterno_docente', 100);
+            $table->string('apellido_materno_docente', 100);
+            $table->string('sexo_docente', 10);
+            $table->integer('edad_docente');
         });
     }
 

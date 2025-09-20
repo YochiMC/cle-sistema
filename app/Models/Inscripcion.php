@@ -10,8 +10,8 @@ class Inscripcion extends Model
     use HasFactory;
 
     protected $table = 'inscripciones';
-    protected $primaryKey = 'id';
-    public $timestamps = true;
+    protected $primaryKey = 'id_inscripcion';
+    public $timestamps = false;
 
     protected $fillable = [
         'id_curso',

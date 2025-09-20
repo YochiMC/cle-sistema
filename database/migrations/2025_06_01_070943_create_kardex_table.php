@@ -13,14 +13,13 @@ return new class extends Migration {
     public function up()
     {
         Schema::create('kardex', function (Blueprint $table) {
-            $table->id();
+            $table->id('id_kardex');
             $table->foreignId('id_alumno')->constrained('alumnos', 'id_alumno')->cascadeOnDelete();
-            $table->foreignId('id_nivel')->constrained('niveles');
-            $table->unsignedTinyInteger('calificacion'); // 0 - 100
-            $table->string('periodo', 100); // Ejemplo: 2024-2
-            $table->string('estado', 100);
-            $table->boolean('evaluado')->default(false);
-            $table->timestamps();
+            $table->foreignId('id_nivel')->constrained('niveles', 'id_nivel');
+            $table->unsignedTinyInteger('calificacion_kardex');
+            $table->string('periodo_kardex', 100);
+            $table->string('estado_kardex', 100);
+            $table->boolean('evaluado_kardex')->default(false);
         });
 
     }

@@ -8,6 +8,7 @@ use App\Models\Alumno;
 use App\Models\Carrera;
 use App\Models\Gestion;
 use App\Models\Nivel;
+use App\Models\Salon;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Role;
@@ -268,12 +269,14 @@ class UserSeeder extends Seeder
             'id_nivel' => 1,
             'matricula_alumno' => '21240551',
             'nombre_alumno' => 'Joseph Alexander',
-            'apellidos_alumno' => 'Martínez Cortés',
+            'apellido_paterno_alumno' => 'Martínez',
+            'apellido_materno_alumno' => 'Cortés',
             'edad_alumno' => 20,
             'sexo_alumno' => 'Masculino',
             'semestre_alumno' => 8,
             'inscrito' => false,
             'acredita' => false,
+            'liberado' => false
         ]);
 
         $alumnoUser->assignRole($roleAlumno);
@@ -288,28 +291,43 @@ class UserSeeder extends Seeder
 
         Docente::create([
             'id_usuario' => $docenteUser->id,
-            'docente_clave' => '1123456',
-            'docente_nombre' => 'Ana Fernanda',
-            'docente_apellidos' => 'González Pérez',
-            'docente_sexo' => 'Femenino',
-            'docente_edad' => 25
+            'rfc_docente' => '1123456',
+            'nombre_docente' => 'Ana Fernanda',
+            'apellido_paterno_docente' => 'González',
+            'apellido_materno_docente' => 'Pérez',
+            'sexo_docente' => 'Femenino',
+            'edad_docente' => 25
         ]);
 
         $docenteUser->assignRole($roleDocente);
 
         Gestion::create([
             'nombre_accion' => 'Inscripciones',
-            'estado' => false,
+            'estado_accion' => false,
         ]);
 
         Gestion::create([
             'nombre_accion' => 'Calificar alumnos',
-            'estado' => false,
+            'estado_accion' => false,
         ]);
 
         Gestion::create([
             'nombre_accion' => 'Calificar docentes',
-            'estado' => false,
+            'estado_accion' => false,
+        ]);
+
+        Salon::create([
+            'nombre_salon' => 'No aplica',
+            'edificio_salon' => 'Online',
+            'capacidad_salon' => 0,
+            'disponibilidad_salon' => true
+        ]);
+
+        Salon::create([
+            'nombre_salon' => 'Y1',
+            'edificio_salon' => 'Edificio Y, 1er piso',
+            'capacidad_salon' => 0,
+            'disponibilidad_salon' => true
         ]);
     }
 }

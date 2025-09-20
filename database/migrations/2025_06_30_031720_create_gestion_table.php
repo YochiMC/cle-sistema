@@ -12,10 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('gestion', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+            $table->id('id_gestion');
             $table->string('nombre_accion', 100);
-            $table->boolean('estado')->default(false);
+            $table->boolean('estado_accion')->default(false);
         });
     }
 

@@ -12,8 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('niveles', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+            $table->id('id_nivel');
             $table->String('nombre_nivel');
             $table->String('mcr_nivel');
             $table->Integer('horas_nivel');

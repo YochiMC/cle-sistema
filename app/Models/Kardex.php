@@ -10,15 +10,16 @@ class Kardex extends Model
     use HasFactory;
 
     protected $table = 'kardex';
-    public $timestamps = true;
+    protected $primaryKey = 'id_kardex';
+    public $timestamps = false;
 
     protected $fillable = [
         'id_alumno',
         'id_nivel',
-        'calificacion',
-        'periodo',
-        'estado',
-        'evaluado'
+        'calificacion_kardex',
+        'periodo_kardex',
+        'estado_kardex',
+        'evaluado_kardex'
     ];
 
     public function alumno()

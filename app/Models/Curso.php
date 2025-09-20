@@ -11,27 +11,22 @@ class Curso extends Model
 
     protected $table = 'cursos';
     protected $primaryKey = 'id_curso';
-    public $timestamps = true;
+    public $timestamps = false;
 
     protected $fillable = [
+        'nombre_tms_curso',
         'id_docente',
         'id_nivel',
-        'modelo_solucion_curso',
-        'tecnm_curso',
-        'modelo_curso',
-        'nombre_tms_curso',
-        'inicio_curso',
-        'fin_curso',
-        'dias_curso',
         'horario_curso',
+        'inicio_curso',
+        'duracion_curso',
         'alumnos_actuales_curso',
         'cupo_curso',
-        'clases_via_curso',
-        'tipo_curso',
-        'acceso_plataforma_curso',
-        'acceso_teams_curso',
-        'link_clase_curso',
-        'estado_curso'
+        'modalidad_curso',
+        'via_curso',
+        'id_salon',
+        'periodo_curso',
+        'estado_curso',
     ];
 
     // Relación: un curso pertenece a un docente
@@ -43,5 +38,10 @@ class Curso extends Model
     public function nivel()
     {
         return $this->belongsTo(Nivel::class, 'id_nivel');
+    }
+
+    public function salon()
+    {
+        return $this->belongsTo(Salon::class, 'id_salon');
     }
 }

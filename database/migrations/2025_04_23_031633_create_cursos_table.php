@@ -14,34 +14,21 @@ return new class extends Migration {
     {
         Schema::create('cursos', function (Blueprint $table) {
             $table->id('id_curso');
-
+            $table->char('nombre_tms_curso', 50);
             $table->foreignId('id_docente')
                 ->constrained('docentes', 'id_docente')
                 ->cascadeOnDelete();
-            $table->foreignId('id_nivel')->constrained('niveles');
-
-            $table->string('modelo_solucion_curso', 50);
-            $table->string('tecnm_curso', 50);
-            $table->char('modelo_curso', 50);
-            $table->char('nombre_tms_curso', 50);
-
-            $table->date('inicio_curso');
-            $table->date('fin_curso');
-            $table->string('dias_curso', 50);
+            $table->foreignId('id_nivel')->constrained('niveles', 'id_nivel');
             $table->string('horario_curso', 50);
-
+            $table->string('inicio_curso', 50);
+            $table->unsignedInteger('duracion_curso');
             $table->unsignedInteger('alumnos_actuales_curso');
             $table->unsignedInteger('cupo_curso');
-
-            $table->string('clases_via_curso', 50);
-            $table->string('tipo_curso', 50);
-            $table->string('acceso_plataforma_curso', 50);
-            $table->text('acceso_teams_curso');
-            $table->text('link_clase_curso');
-
+            $table->string('modalidad_curso', 50);
+            $table->string('via_curso', 50);
+            $table->foreignId('id_salon')->constrained('salones', 'id_salon');
+            $table->string('periodo_curso', 50);
             $table->boolean('estado_curso')->default(false);
-
-            $table->timestamps();
         });
     }
 

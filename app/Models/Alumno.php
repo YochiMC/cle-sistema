@@ -11,7 +11,7 @@ class Alumno extends Model
 
     protected $table = 'alumnos';
     protected $primaryKey = 'id_alumno';
-    public $timestamps = true;
+    public $timestamps = false;
 
     protected $fillable = [
         'id_usuario',
@@ -19,7 +19,8 @@ class Alumno extends Model
         'id_nivel',
         'matricula_alumno',
         'nombre_alumno',
-        'apellidos_alumno',
+        'apellido_paterno_alumno',
+        'apellido_materno_alumno',
         'edad_alumno',
         'sexo_alumno',
         'semestre_alumno',
