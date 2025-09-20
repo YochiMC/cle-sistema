@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Gestion;
 use App\Models\Alumno;
 use App\Models\Kardex;
+use App\Models\Curso;
 
 class GestionController extends Controller
 {
@@ -69,12 +70,20 @@ class GestionController extends Controller
                             'updated_at' => now()
                         ]);
 
+                    $ajustar_grupos = Curso::where('estado_curso', false)
+                        ->update(
+                            [
+                                'estado_curso' => true,
+                                'updated_at' => now()
+                            ]
+                        );
+
                     DB::commit();
 
                     $accion->estado = !$accion->estado;
                     $accion->save();
 
-                return redirect()->back()->with('success', 'Se han deshabilitado las calificaciones');
+                    return redirect()->back()->with('success', 'Se han deshabilitado las calificaciones');
                 } catch (\Exception $e) {
                     DB::rollBack();
 

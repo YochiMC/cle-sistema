@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Models\Alumno;
 use App\Models\Docente;
 use App\Models\Carrera;
+use App\Models\Nivel;
 use App\Models\Kardex;
 use App\Models\Archivo;
 class CrudController extends Controller
@@ -36,6 +37,7 @@ class CrudController extends Controller
                     'sexo' => 'required',
                     'numero_control' => 'required|string|max:20|unique:alumnos,matricula_alumno|regex:/^[A-Z0-9]+$/',
                     'carrera' => 'required|exists:carreras,id',
+                    'id_nivel' => 'required|exists:niveles,id',
                     'semestre' => 'required|integer|min:1|max:13',
                 ];
 
@@ -51,6 +53,7 @@ class CrudController extends Controller
                     'numero_control.required' => 'El número de control es obligatorio.',
                     'numero_control.unique' => 'El número de control ya está en uso.',
                     'carrera.required' => 'La carrera es obligatoria.',
+                    'id_nivel.required' => 'El nivel es obligatorio.',
                     'semestre.required' => 'El semestre es obligatorio.',
                     'semestre.min' => 'El semestre debe ser al menos 1.',
                     'semestre.max' => 'El semestre no puede ser mayor a 13.',
@@ -148,7 +151,7 @@ class CrudController extends Controller
                 Alumno::query()->create([
                     'id_usuario' => $newUser->id,
                     'id_carrera' => $request->carrera,
-                    'id_nivel' => 1,
+                    'id_nivel' => $request->id_nivel,
                     'matricula_alumno' => $request->numero_control,
                     'nombre_alumno' => $request->nombre,
                     'apellidos_alumno' => $request->apellidos,
@@ -216,8 +219,9 @@ class CrudController extends Controller
         }
 
         $carreras = Carrera::all();
+        $niveles = Nivel::all();
 
-        return view('administrador.registro', compact('tipo', 'data', 'carreras', 'search'));
+        return view('administrador.registro', compact('tipo', 'data', 'carreras', 'niveles', 'search'));
     }
 
     /*

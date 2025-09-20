@@ -130,7 +130,7 @@
                         <span class="error">{{ $message }}</span>
                         <br>
                     @enderror
-                    <label for="caarrera">Carrera: </label>
+                    <label for="carrera">Carrera: </label>
                     <select name="carrera" id="carrera" value="{{ old('carrera') }}">
                         @foreach ($carreras as $carrera)
                             <option value="{{ $carrera->id }}">{{ $carrera->nombre_carrera }}</option>
@@ -140,6 +140,13 @@
                         <span class="error">{{ $message }}</span>
                         <br>
                     @enderror
+                    <label for="id_nivel">Nivel de inglés: </label>
+                    <select id="id_nivel" name="id_nivel">
+                        @foreach ($niveles as $nivel)
+                            <option value="{{ $nivel->id }}">{{ $nivel->nombre_nivel }} ({{ $nivel->mcr_nivel }})</option>
+                        @endforeach
+                    </select>
+                    <br>
                 </div>
 
                 <div id="adminForm" style="display:none">

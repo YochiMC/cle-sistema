@@ -39,6 +39,8 @@ return new class extends Migration {
             $table->text('acceso_teams_curso');
             $table->text('link_clase_curso');
 
+            $table->boolean('estado_curso')->default(false);
+
             $table->timestamps();
         });
     }

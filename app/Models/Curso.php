@@ -31,6 +31,7 @@ class Curso extends Model
         'acceso_plataforma_curso',
         'acceso_teams_curso',
         'link_clase_curso',
+        'estado_curso'
     ];
 
     // Relación: un curso pertenece a un docente
