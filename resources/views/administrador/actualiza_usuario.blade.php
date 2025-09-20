@@ -10,25 +10,16 @@
             <form action="{{ route('admin.update_alumno', ['tipo', 'id_alumno' => $data_alumno->id_alumno]) }}" method="POST">
                 @csrf
                 @method('PUT')
-                <h3>Datos de usuario</h3>
-                <label for="nombre">Nombre de usuario:</label>
-                <input type="text" name="nombre" value="{{ $usuario->name }}" placeholder="Nombre de usuario">
-                <br>
-                <label for="correo">Correo del usuario:</label>
-                <input type="email" name="correo" value="{{ $usuario->email }}" placeholder="Correo de usuario">
-                <br>
-                <label for="telefono">Correo del usuario:</label>
-                <input type="text" name="telefono" value="{{ $usuario->phonenumber }}" placeholder="Correo de usuario">
-                <br>
-                <!--<label for="contraseña">Contraseña:</label>
-                                                                                                            <input type="password" name="contraseña" value="{{ $usuario->password }}" placeholder="Contraseña">
-                                                                                                            <label for="comfirma">Confirma contraseña:</label>
-                                                                                                            <input type="password" name="confirma" placeholder="Contraseña">-->
-                <br>
                 <h3>Datos del alumno</h3>
+                <label for="correo">Correo del usuario:</label>
+                <input type="email" name="correo" value="{{ $usuario->email }}" placeholder="Correo de usuario" disabled>
+                <br>
+                <label for="telefono">Teléfono del usuario:</label>
+                <input type="text" name="telefono" value="{{ $usuario->phonenumber }}" placeholder="Correo de usuario" disabled>
+                <br>
                 <label for="matricula_alumno">Matrícula:</label>
                 <input type="text" name="matricula_alumno" value="{{ $data_alumno->matricula_alumno }}"
-                    placeholder="Matrícula del alumno">
+                    placeholder="Matrícula del alumno" disabled>
                 <br>
                 <label for="carrera_alumno">Carrera:</label>
                 <input type="text" name="carrera_alumno" value="{{ $data_alumno->carrera->nombre_carrera }}"
@@ -40,21 +31,25 @@
                 <br>
                 <label for="semestre_alumno">Semestre:</label>
                 <input type="text" name="semestre_alumno" value="{{ $data_alumno->semestre_alumno }}"
-                    placeholder="Semestre del alumno">
+                    placeholder="Semestre del alumno" disabled>
                 <br>
                 <label for="nombre_alumno">Nombre del alumno:</label>
                 <input type="text" name="nombre_alumno" value="{{ $data_alumno->nombre_alumno }}"
-                    placeholder="Nombre del alumno">
+                    placeholder="Nombre del alumno" disabled>
                 <br>
-                <label for="apellidos_alumno">Apellidos:</label>
-                <input type="text" name="apellidos_alumno" value="{{ $data_alumno->apellidos_alumno }}"
-                    placeholder="Apellidos del alumno">
+                <label for="apellido_paterno_alumno">Apellido paterno:</label>
+                <input type="text" name="apellido_paterno_alumno" value="{{ $data_alumno->apellido_paterno_alumno }}"
+                    placeholder="Apellido paterno del alumno" disabled>
+                <br>
+                <label for="apellido_materno_alumno">Apellido paterno:</label>
+                <input type="text" name="apellido_materno_alumno" value="{{ $data_alumno->apellido_materno_alumno }}"
+                    placeholder="Apellido materno del alumno" disabled>
                 <br>
                 <label for="edad_alumno">Edad:</label>
-                <input type="number" name="edad_alumno" value="{{ $data_alumno->edad_alumno }}" placeholder="Edad del alumno">
+                <input type="number" name="edad_alumno" value="{{ $data_alumno->edad_alumno }}" placeholder="Edad del alumno" disabled>
                 <br>
                 <label for="sexo_alumno">Sexo:</label>
-                <select name="sexo_alumno" id="sexo_alumno">
+                <select name="sexo_alumno" id="sexo_alumno" disabled>
                     <option value="Masculino" @if ($data_alumno->sexo_alumno == 'Masculino') selected @endif>Masculino
                     </option>
                     <option value="Femenino" @if ($data_alumno->sexo_alumno == 'Femenino') selected @endif>Femenino
@@ -80,54 +75,49 @@
                     @endif
                 </label>
                 <br>
-                <button type="submit">Actualizar datos</button>
+                <!--<button type="submit">Actualizar datos</button>-->
             </form>
         @elseif($tipo == 'docente')
             <form action="{{ route('admin.update_docente', ['tipo', 'id_docente' => $data_docente->id_docente]) }}"
                 method="POST">
                 @csrf
                 @method('PUT')
-                <h3>Datos de usuario</h3>
-                <label for="nombre">Nombre de usuario:</label>
-                <input type="text" name="nombre" value="{{ $usuario->name }}" placeholder="Nombre de usuario">
-                <br>
-                <label for="correo">Correo del usuario:</label>
-                <input type="email" name="correo" value="{{ $usuario->email }}" placeholder="Correo de usuario">
-                <br>
-                <label for="telefono">Correo del usuario:</label>
-                <input type="text" name="telefono" value="{{ $usuario->phonenumber }}" placeholder="Correo de usuario">
-                <br>
-                <!--<label for="contraseña">Contraseña:</label>
-                                                                                                            <input type="password" name="contraseña" value="{{ $usuario->password }}" placeholder="Contraseña">
-                                                                                                            <label for="comfirma">Confirma contraseña:</label>
-                                                                                                            <input type="password" name="confirma" placeholder="Contraseña">-->
-                <br>
                 <h3>Datos del Docente</h3>
-                <label for="docente_clave">Clave del docente:</label>
-                <input type="text" name="docente_clave" value="{{ $data_docente->docente_clave }}"
-                    placeholder="Clave del docente">
+                <label for="correo">Correo del usuario:</label>
+                <input type="email" name="correo" value="{{ $usuario->email }}" placeholder="Correo de usuario" disabled>
+                <br>
+                <label for="telefono">Teléfono del usuario:</label>
+                <input type="text" name="telefono" value="{{ $usuario->phonenumber }}" placeholder="Correo de usuario" disabled>
+                <br>
+                <label for="rfc_docente">RFC del docente:</label>
+                <input type="text" name="rfc_docente" value="{{ $data_docente->rfc_docente }}"
+                    placeholder="Clave del docente" disabled>
                 <br>
                 <label for="nombre_docente">Nombre del docente:</label>
-                <input type="text" name="nombre_docente" value="{{ $data_docente->docente_nombre }}"
-                    placeholder="Nombre del docente">
+                <input type="text" name="nombre_docente" value="{{ $data_docente->nombre_docente }}"
+                    placeholder="Nombre del docente" disabled>
                 <br>
-                <label for="apellidos_docente">Apellidos:</label>
-                <input type="text" name="apellidos_docente" value="{{ $data_docente->docente_apellidos }}"
-                    placeholder="Apellidos del docente">
+                <label for="apellido_paterno_docente">Apellido paterno:</label>
+                <input type="text" name="apellido_paterno_docente" value="{{ $data_docente->apellido_paterno_docente }}"
+                    placeholder="Apellidos del docente" disabled>
+                <br>
+                <label for="apellido_materno_docente">Apellido paterno:</label>
+                <input type="text" name="apellido_materno_docente" value="{{ $data_docente->apellido_materno_docente }}"
+                    placeholder="Apellidos del docente" disabled>
                 <br>
                 <label for="sexo_docente">Sexo:</label>
-                <select name="sexo_docente" id="sexo_docente">
-                    <option value="Masculino" @if ($data_docente->docente_sexo == 'Masculino') selected @endif>Masculino
+                <select name="sexo_docente" id="sexo_docente" disabled>
+                    <option value="Masculino" @if ($data_docente->sexo_docente == 'Masculino') selected @endif>Masculino
                     </option>
-                    <option value="Femenino" @if ($data_docente->docente_sexo == 'Femenino') selected @endif>Femenino
+                    <option value="Femenino" @if ($data_docente->sexo_docente == 'Femenino') selected @endif>Femenino
                     </option>
                 </select>
                 <br>
                 <label for="edad_docente">Edad:</label>
-                <input type="number" name="edad_docente" value="{{ $data_docente->docente_edad }}"
-                    placeholder="Edad del docente">
+                <input type="number" name="edad_docente" value="{{ $data_docente->edad_docente }}"
+                    placeholder="Edad del docente" disabled>
                 <br>
-                <button type="submit">Actualizar datos</button>
+                <!--<button type="submit">Actualizar datos</button>-->
             </form>
         @endif
         <div class="documentos">

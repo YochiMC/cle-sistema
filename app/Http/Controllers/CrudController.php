@@ -31,21 +31,29 @@ class CrudController extends Controller
             case 'alumno': // En caso de que se quiera crear un alumno
                 $rules = [
                     'phonenumber' => 'required|nullable|string|max:15',
+                    'email' => 'required|email|unique:users,email',
                     'nombre' => 'required|string|max:255|regex:/^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+$/u',
-                    'apellidos' => 'required|string|max:255|regex:/^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+$/u',
+                    'apellido_paterno' => 'required|string|max:255|regex:/^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+$/u',
+                    'apellido_materno' => 'required|string|max:255|regex:/^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+$/u',
                     'edad' => 'required|integer|min:17|max:60',
                     'sexo' => 'required',
                     'numero_control' => 'required|string|max:20|unique:alumnos,matricula_alumno|regex:/^[A-Z0-9]+$/',
-                    'carrera' => 'required|exists:carreras,id',
-                    'id_nivel' => 'required|exists:niveles,id',
+                    'carrera' => 'required|exists:carreras,id_carrera',
+                    'id_nivel' => 'required|exists:niveles,id_nivel',
                     'semestre' => 'required|integer|min:1|max:13',
                 ];
 
                 $messages = [
                     'phonenumber.required' => 'El número de teléfono es obligatorio.',
                     'phonenumber.max' => 'El número de teléfono no puede exceder los 15 caracteres.',
+                    'email.required' => 'El correo electrónico es obligatorio.',
+                    'email.email' => 'El formato del correo electrónico no es válido.',
+                    'email.unique' => 'El correo electrónico ya está en uso.',
                     'nombre.required' => 'El nombre(s) es obligatorio.',
-                    'apellidos.required' => 'Los apellidos son obligatorios.',
+                    'apellido_paterno.required' => 'El apellido paterno es obligatorio.',
+                    'apellido_materno.required' => 'El apellido materno es obligatorio.',
+                    'apellido_paterno.regex' => 'El apellido paterno solo puede contener letras y espacios.',
+                    'apellido_materno.regex' => 'El apellido materno solo puede contener letras y espacios.',
                     'edad.required' => 'La edad es obligatoria.',
                     'edad.max' => 'La edad pasa de los 60 años.',
                     'edad.min' => 'La edad es menor a 17 años.',
@@ -73,7 +81,7 @@ class CrudController extends Controller
                 // Aquí se crea el usuario
                 $newUser = User::query()->create([
                     'name' => $request->numero_control,
-                    'email' => $request->numero_control . "@leon.tecnm.mx",
+                    'email' => $request->email,
                     'phonenumber' => $request->phonenumber,
                     'password' => bcrypt($request->numero_control),
                     'email_verified_at' => now(),
@@ -84,31 +92,36 @@ class CrudController extends Controller
 
                 $rules = [
                     'phonenumber' => 'required|nullable|string|max:15',
+                    'email' => 'required|email|unique:users,email',
                     'nombre' => 'required|string|max:255|regex:/^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+$/u',
-                    'apellidos' => 'required|string|max:255|regex:/^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+$/u',
+                    'apellido_paterno' => 'required|string|max:255|regex:/^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+$/u',
+                    'apellido_materno' => 'required|string|max:255|regex:/^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+$/u',
                     'edad' => 'required|integer|min:25|max:60',
                     'sexo' => 'required',
-                    'email' => 'required|email|unique:users,email',
-                    'numero_trabajador' => 'required|string|max:20|unique:docentes,docente_clave',
+                    'rfc_docente' => 'required|string|min:12|max:13|unique:docentes,rfc_docente|regex:/^[A-Z0-9]+$/',
                 ];
 
                 $messages = [
                     'phonenumber.required' => 'El número de teléfono es obligatorio.',
                     'phonenumber.max' => 'El número de teléfono no puede exceder los 15 caracteres.',
+                    'email.required' => 'El correo electrónico es obligatorio.',
+                    'email.email' => 'El formato del correo electrónico no es válido.',
+                    'email.unique' => 'El correo electrónico ya está en uso.',
                     'nombre.required' => 'El nombre(s) es obligatorio.',
-                    'apellidos.required' => 'Los apellidos son obligatorios.',
+                    'nombre.regex' => 'El nombre solo puede contener letras y espacios.',
+                    'apellido_paterno.required' => 'El apellido paterno es obligatorio.',
+                    'apellido_materno.required' => 'El apellido materno es obligatorio.',
+                    'apellido_paterno.regex' => 'El apellido paterno solo puede contener letras y espacios.',
+                    'apellido_materno.regex' => 'El apellido materno solo puede contener letras y espacios.',
                     'edad.required' => 'La edad es obligatoria.',
                     'edad.max' => 'La edad pasa de los 60 años.',
                     'edad.min' => 'La edad es menor a 17 años.',
                     'sexo.required' => 'El sexo es obligatorio.',
-                    'email.required' => 'El correo electrónico es obligatorio.',
-                    'email.email' => 'El formato del correo electrónico no es válido.',
-                    'email.unique' => 'El correo electrónico ya está en uso.',
-                    'numero_trabajador.required' => 'El número de trabajador es obligatorio.',
-                    'numero_trabajador.unique' => 'El número de trabajador ya está en uso.',
-                    'nombre.regex' => 'El nombre solo puede contener letras y espacios.',
-                    'apellidos.regex' => 'Los apellidos solo pueden contener letras y espacios.',
-                    'numero_control.regex' => 'El número de control solo debe contener letras mayúsculas y números.',
+                    'rfc_docente.required' => 'El RFC del docente es obligatorio.',
+                    'rfc_docente.unique' => 'El RFC del docente ya está en uso.',
+                    'rfc_docente.min' => 'El RFC del docente debe tener al menos 12 caracteres.',
+                    'rfc_docente.max' => 'El RFC del docente no puede exceder los 13 caracteres.',
+                    'rfc_docente.regex' => 'El RFC del docente solo puede contener letras mayúsculas y números.',
                 ];
 
                 $validator = Validator::make($request->all(), $rules, $messages);
@@ -122,10 +135,10 @@ class CrudController extends Controller
 
                 // Aquí se crea el usuario
                 $newUser = User::query()->create([
-                    'name' => $request->numero_trabajador,
+                    'name' => $request->rfc_docente,
                     'email' => $request->email,
                     'phonenumber' => $request->phonenumber,
-                    'password' => bcrypt($request->numero_trabajador),
+                    'password' => bcrypt($request->rfc_docente),
                     'email_verified_at' => now(),
                 ]);
 
@@ -133,9 +146,6 @@ class CrudController extends Controller
             default: // En caso default se redirecciona a dicha página
                 return redirect()->back()->with('error', 'Tipo de usuario no válido.');
         }
-
-
-
         /*
         En este switch se decide el tipo de usuario a crear y por ende se crea el objeto y se guarda en su
         respectiva tabla de la base de datos y además se le asigna un rol al usuario que es $newUser (esto se respeta por las propiedades de laravel para funcionar bien).
@@ -154,7 +164,8 @@ class CrudController extends Controller
                     'id_nivel' => $request->id_nivel,
                     'matricula_alumno' => $request->numero_control,
                     'nombre_alumno' => $request->nombre,
-                    'apellidos_alumno' => $request->apellidos,
+                    'apellido_paterno_alumno' => $request->apellido_paterno,
+                    'apellido_materno_alumno' => $request->apellido_materno,
                     'edad_alumno' => $request->edad,
                     'sexo_alumno' => $request->sexo,
                     'semestre_alumno' => $request->semestre,
@@ -170,11 +181,12 @@ class CrudController extends Controller
 
                 Docente::create([
                     'id_usuario' => $newUser->id,
-                    'docente_clave' => $request->numero_trabajador,
-                    'docente_nombre' => $request->nombre,
-                    'docente_apellidos' => $request->apellidos,
-                    'docente_sexo' => $request->sexo,
-                    'docente_edad' => $request->edad
+                    'rfc_docente' => $request->rfc_docente,
+                    'nombre_docente' => $request->nombre,
+                    'apellido_paterno_docente' => $request->apellido_paterno,
+                    'apellido_materno_docente' => $request->apellido_materno,
+                    'sexo_docente' => $request->sexo,
+                    'edad_docente' => $request->edad
                 ]);
 
                 $newUser->assignRole('docente');

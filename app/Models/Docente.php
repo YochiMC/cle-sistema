@@ -29,9 +29,10 @@ class Docente extends Model
     {
         if ($term) {
             $query->where(function ($q) use ($term) {
-                $q->where('docente_clave', 'like', "%{$term}%")
-                    ->orWhere('docente_nombre', 'like', "%{$term}%")
-                    ->orWhere('docente_apellidos', 'like', "%{$term}%");
+                $q->where('rfc_docente', 'like', "%{$term}%")
+                    ->orWhere('nombre_docente', 'like', "%{$term}%")
+                    ->orWhere('apellido_paterno_docente', 'like', "%{$term}%")
+                    ->orWhere('apellido_materno_docente', 'like', "%{$term}%");
             });
         }
     }

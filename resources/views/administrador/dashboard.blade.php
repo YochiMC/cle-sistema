@@ -10,9 +10,6 @@
             <div class="info">
                 <h2>{{ $admin->name ?? 'No disponible' }}</h2>
                 <p>Correo: {{ $admin->email ?? 'No disponible' }}</p>
-                <p>Miembro desde:
-                    {{ $admin->created_at ? $admin->created_at->format('d/m/Y') : 'Fecha no disponible' }}
-                </p>
             </div>
             <button class="edit-btn">Editar Perfil</button>
         </div>

@@ -79,6 +79,12 @@
                         <span class="error">{{ $message }}</span>
                         <br>
                     @enderror
+                    <label for="email">Correo eletrónico:</label>
+                    <input type="text" id="email" name="email" value="{{ old('email') }}" placeholder="Escribe el email">
+                    @error('email')
+                        <span class="error">{{ $message }}</span>
+                        <br>
+                    @enderror
                     <label for="nombre">Nombre(s):</label>
                     <input type="text" id="nombre" name="nombre" value="{{ old('nombre') }}"
                         placeholder="Escribe el nombre(s)">
@@ -87,11 +93,19 @@
                         <span class="error">{{ $message }}</span>
                         <br>
                     @enderror
-                    <label for="apellidos">Apellido(s):</label>
-                    <input type="text" id="apellidos" name="apellidos" value="{{ old('apellidos') }}"
-                    placeholder="Escribe el apellido(s)">
+                    <label for="apellido_paterno">Apellido paterno:</label>
+                    <input type="text" id="apellido_paterno" name="apellido_paterno" value="{{ old('apellido_paterno') }}"
+                        placeholder="Escribe el apellido paterno">
                     <br>
-                    @error('apellidos')
+                    @error('apellido_paterno')
+                        <span class="error">{{ $message }}</span>
+                        <br>
+                    @enderror
+                    <label for="apellido_materno">Apellido materno:</label>
+                    <input type="text" id="apellido_materno" name="apellido_materno" value="{{ old('apellido_materno') }}"
+                        placeholder="Escribe el apellido materno">
+                    <br>
+                    @error('apellido_materno')
                         <span class="error">{{ $message }}</span>
                         <br>
                     @enderror
@@ -133,7 +147,7 @@
                     <label for="carrera">Carrera: </label>
                     <select name="carrera" id="carrera" value="{{ old('carrera') }}">
                         @foreach ($carreras as $carrera)
-                            <option value="{{ $carrera->id }}">{{ $carrera->nombre_carrera }}</option>
+                            <option value="{{ $carrera->id_carrera }}">{{ $carrera->nombre_carrera }}</option>
                         @endforeach
                     </select>
                     @error('carrera')
@@ -143,7 +157,7 @@
                     <label for="id_nivel">Nivel de inglés: </label>
                     <select id="id_nivel" name="id_nivel">
                         @foreach ($niveles as $nivel)
-                            <option value="{{ $nivel->id }}">{{ $nivel->nombre_nivel }} ({{ $nivel->mcr_nivel }})</option>
+                            <option value="{{ $nivel->id_nivel }}">{{ $nivel->nombre_nivel }} ({{ $nivel->mcr_nivel }})</option>
                         @endforeach
                     </select>
                     <br>
@@ -154,17 +168,10 @@
 
                 <div id="maestroForm" style="display:none" class="contenedor-info-docente">
                     <h3>Docente Datos</h3>
-                    <label for="email">Correo eletrónico:</label>
-                    <input type="text" id="email" name="email"
-                        value="{{ old('email') }}" placeholder="Escribe el email">
-                    @error('email')
-                        <span class="error">{{ $message }}</span>
-                        <br>
-                    @enderror
-                    <label for="numero_trabajador">Numero de trabajador:</label>
-                    <input type="text" id="numero_trabajador" name="numero_trabajador"
-                        value="{{ old('numero_trabajador') }}" placeholder="Escribe el número de trabajador">
-                    @error('numero_control')
+                    <label for="rfc_docente">RFC del docente:</label>
+                    <input type="text" id="rfc_docente" name="rfc_docente"
+                        value="{{ old('rfc_docente') }}" placeholder="Escribe el número de trabajador">
+                    @error('rfc_docente')
                         <span class="error">{{ $message }}</span>
                         <br>
                     @enderror
@@ -192,7 +199,8 @@
                             <td class="infor">{{ $alumno->matricula_alumno }}</td>
                             <td class="infor">{{ $alumno->carrera->nombre_carrera ?? 'Sin carrera' }}</td>
                             <td class="infor">{{ $alumno->semestre_alumno }}</td>
-                            <td class="infor">{{ $alumno->nombre_alumno }} {{ $alumno->apellidos_alumno }}</td>
+                            <td class="infor">{{ $alumno->nombre_alumno }} {{ $alumno->apellido_paterno_alumno }}
+                                {{ $alumno->apellido_materno_alumno }}</td>
                             <td class="infor">{{ $alumno->sexo_alumno }}</td>
                             <td class="infor">{{ $alumno->edad_alumno }}</td>
                             <td>
@@ -240,7 +248,7 @@
             <table class="table table-bordered text-center">
                 <thead class="table-dark">
                     <tr>
-                        <th>Número de trabajador</th>
+                        <th>RFC del docente</th>
                         <th>Nombre Completo</th>
                         <th>Sexo</th>
                         <th>Edad</th>
@@ -250,10 +258,11 @@
                 <tbody>
                     @foreach ($data as $docente)
                         <tr>
-                            <td class="infor">{{ $docente->docente_clave }}</td>
-                            <td class="infor">{{ $docente->docente_nombre }} {{ $docente->docente_apellidos }}</td>
-                            <td class="infor">{{ $docente->docente_sexo }}</td>
-                            <td class="infor">{{ $docente->docente_edad }}</td>
+                            <td class="infor">{{ $docente->rfc_docente }}</td>
+                            <td class="infor">{{ $docente->nombre_docente }} {{ $docente->docente_apellido_paterno }}
+                                {{ $docente->apellido_materno_docente }}</td>
+                            <td class="infor">{{ $docente->sexo_docente }}</td>
+                            <td class="infor">{{ $docente->edad_docente }}</td>
                             <td class="infor">
                                 <div class="gestionar">
                                     <form method="GET" action="{{ route('admin.actualiza_usuario', $docente->id_usuario) }}">

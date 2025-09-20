@@ -34,7 +34,8 @@ class Alumno extends Model
         if ($term) {
             $query->where(function ($q) use ($term) {
                 $q->where('nombre_alumno', 'like', "%{$term}%")
-                    ->orWhere('apellidos_alumno', 'like', "%{$term}%")
+                    ->orWhere('apellido_paterno_alumno', 'like', "%{$term}%")
+                    ->orWhere('apellido_materno_alumno', 'like', "%{$term}%")
                     ->orWhere('matricula_alumno', 'like', "%{$term}%")
                     ->orWhereHas('carrera', function ($q) use ($term) {
                         $q->where('nombre_carrera', 'like', "%{$term}%");
