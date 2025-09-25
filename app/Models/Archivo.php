@@ -14,9 +14,9 @@ class Archivo extends Model
     public $timestamps = false;
     protected $fillable = [
         'id_usuario',
-        'nombre',
-        'ruta',
-        'tipo',
+        'nombre_archivo',
+        'ruta_archivo',
+        'tipo_archivo',
     ];
 
     public function user()

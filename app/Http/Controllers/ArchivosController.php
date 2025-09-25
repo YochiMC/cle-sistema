@@ -25,9 +25,9 @@ class ArchivosController extends Controller
         // Crear registro en la base de datos
         Archivo::create([
             'id_usuario' => $id_usuario,
-            'nombre' => $archivo->getClientOriginalName(),
-            'ruta' => $ruta,
-            'tipo' => $archivo->getClientMimeType(), // guarda el MIME
+            'nombre_archivo' => $archivo->getClientOriginalName(),
+            'ruta_archivo' => $ruta,
+            'tipo_archivo' => $archivo->getClientMimeType(), // guarda el MIME
         ]);
 
         return back()->with('success', 'Archivo subido correctamente.');
@@ -48,7 +48,7 @@ class ArchivosController extends Controller
     public function download($id)
     {
         $archivo = Archivo::findOrFail($id);
-        return Storage::disk('public')->download($archivo->ruta, $archivo->nombre);
+        return Storage::disk('public')->download($archivo->ruta_archivo, $archivo->nombre_archivo);
     }
 
     /**
@@ -59,7 +59,7 @@ class ArchivosController extends Controller
         $archivo = Archivo::findOrFail($id);
 
         // Borrar físicamente del storage
-        Storage::disk('public')->delete($archivo->ruta);
+        Storage::disk('public')->delete($archivo->ruta_archivo);
 
         // Borrar el registro en BD
         $archivo->delete();

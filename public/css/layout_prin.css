@@ -107,6 +107,19 @@ header {
     overflow: hidden;
 }
 
+.back-button {
+    display: flex;
+    overflow: hidden;
+    position: absolute;
+    margin: 20px;
+    width: 60px;
+    height: 40px;
+    border-radius: 5px;
+    background-color: var(--azul);
+    justify-content: center;
+    align-items: center;
+}
+
 /* Menú lateral */
 .menu-icons {
     width: 20px;
@@ -242,3 +255,5 @@ header {
     margin-top: 5px;
     margin-bottom: 10px;
 }
+
+
