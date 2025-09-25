@@ -29,15 +29,15 @@
                                 {{ $accion->nombre_accion }}
                             </td>
                             <td>
-                                <form action="{{ route('admin.gestion.update', $accion->id) }}" method="POST">
+                                <form action="{{ route('admin.gestion.update', $accion->id_gestion) }}" method="POST">
                                     @csrf
                                     @method('PUT')
                                     <button class="btn btn-success" type="submit" name="action"
-                                        @if ($accion->estado == true) disabled @endif>
+                                        @if ($accion->estado_accion == true) disabled @endif>
                                         Habilitar
                                     </button>
                                     <button class="btn btn-danger" type="submit" name="action"
-                                        @if ($accion->estado == false) disabled @endif>
+                                        @if ($accion->estado_accion == false) disabled @endif>
                                         Deshabilitar
                                     </button>
                                 </form>

@@ -31,7 +31,7 @@
                      @foreach ($inscritos as $alumno)
                          <tr>
                              <td class="infor">{{ $alumno->matricula_alumno }}</td>
-                             <td class="infor">{{ $alumno->nombre_alumno }} {{ $alumno->apellidos_alumno }}</td>
+                             <td class="infor">{{ $alumno->nombre_alumno }} {{ $alumno->apellido_paterno_alumno }} {{ $alumno->apellido_materno_alumno }}</td>
                              <td class="infor">
                                 <form method="GET" action="{{ route('admin.calificaciones.show', $alumno->id_alumno) }}">
                                      @csrf
@@ -51,7 +51,7 @@
                  </tbody>
              </table>
          </div>
-         @if($inscripcion->estado == true)
+         @if($inscripcion->estado_accion == true)
          <h3>Alumnos en proceso de inscripción</h3>
          <table class="table table-bordered text-center">
              <thead class="table-dark">
@@ -67,7 +67,7 @@
                  @foreach ($alumnos as $alumno)
                      <tr>
                          <td class="infor">{{ $alumno->matricula_alumno }}</td>
-                         <td class="infor">{{ $alumno->nombre_alumno }} {{ $alumno->apellidos_alumno }}</td>
+                         <td class="infor">{{ $alumno->nombre_alumno }} {{ $alumno->apellido_paterno_alumno }} {{ $alumno->apellido_materno_alumno }}</td>
                          <td class="infor">
                              @if ($alumno->inscrito == 1)
                                  <span class="badge bg-success">Inscrito</span>

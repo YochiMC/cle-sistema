@@ -109,13 +109,6 @@ h3 {
     color: white;
 }
 
-.error {
-    color: red;
-    font-size: 0.9em;
-    margin-top: 0.2em;
-    display: block;
-}
-
 /* Estilos para el modal */
 .modal {
     width: 90%;
@@ -129,7 +122,6 @@ h3 {
 
 .modal::backdrop {
     background-color: rgba(27, 57, 106, 0.5);
-    /* Usando el azul con transparencia */
 }
 
 .modal h2 {

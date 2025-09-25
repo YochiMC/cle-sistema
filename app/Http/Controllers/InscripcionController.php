@@ -2,15 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\Inscripcion;
-use App\Models\Curso;
 use App\Models\Alumno;
-use App\Models\Kardex;
+use App\Models\Curso;
 use App\Models\Gestion;
+use App\Models\Inscripcion;
+use App\Models\Kardex;
+
 class InscripcionController extends Controller
 {
-
     public function show()
     {
         $inscripciones = Inscripcion::with(['alumno', 'curso'])->get();
@@ -25,6 +24,7 @@ class InscripcionController extends Controller
         if ($inscripcion) {
             return redirect()->back()->with('error', 'El alumno ya está inscrito en este curso.');
         }
+
         Inscripcion::create([
             'id_curso' => $id_curso,
             'id_alumno' => $id_alumno,
@@ -40,11 +40,11 @@ class InscripcionController extends Controller
 
         Kardex::create([
             'id_alumno' => $id_alumno,
-            'id_nivel' => $curso->nivel->id,
-            'calificacion' => 0,
-            'periodo' => $curso->inicio_curso . ' - ' . $curso->fin_curso,
-            'estado' => 'cursando',
-            'evaluado' => false
+            'id_nivel' => $curso->nivel->id_nivel,
+            'calificacion_kardex' => 0,
+            'periodo_kardex' => $curso->periodo_curso,
+            'estado_kardex' => 'cursando',
+            'evaluado_kardex' => false,
         ]);
 
         return redirect()->back()->with('success', 'Inscripción exitosa.');
@@ -54,7 +54,7 @@ class InscripcionController extends Controller
     {
         $inscripcion = Inscripcion::where('id_alumno', $id_alumno)->where('id_curso', $id_curso)->first();
 
-        if (!$inscripcion) {
+        if (! $inscripcion) {
             return redirect()->back()->with('error', 'Inscripción no encontrada.');
         }
 
@@ -69,7 +69,7 @@ class InscripcionController extends Controller
         $curso->save();
 
         $kardex = Kardex::where('id_alumno', $id_alumno)
-            ->orderBy('created_at', 'desc')
+            ->orderBy('id_kardex', 'desc')
             ->first();
 
         if ($kardex) {
@@ -83,7 +83,7 @@ class InscripcionController extends Controller
     {
 
         $grupo = Curso::find($id);
-        $nivel_grupo = $grupo->nivel->id;
+        $nivel_grupo = $grupo->nivel->id_nivel;
 
         $alumnos = Alumno::with('nivel')->where(function ($query) use ($nivel_grupo) {
             $query->where('acredita', true)
@@ -96,7 +96,7 @@ class InscripcionController extends Controller
         $ids_alumnos = Inscripcion::where('id_curso', $id)->pluck('id_alumno');
         $inscritos = Alumno::whereIn('id_alumno', $ids_alumnos)->paginate(5);
 
-        $inscripcion = Gestion::where('id', 1)->first();
+        $inscripcion = Gestion::where('id_gestion', 1)->first();
 
         if ($grupo) {
             return view('administrador.inscribir_alumnos', compact('grupo', 'alumnos', 'inscritos', 'inscripcion'));
@@ -104,6 +104,4 @@ class InscripcionController extends Controller
             return redirect(route('admin.registro_cursos'))->with('error', 'Grupo no encontrado');
         }
     }
-
-
 }

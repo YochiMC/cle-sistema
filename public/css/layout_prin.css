@@ -235,3 +235,10 @@ header {
     color:#1B396A;
 }
 
+.error {
+    display: block;
+    color: red;
+    font-size: 0.9em;
+    margin-top: 5px;
+    margin-bottom: 10px;
+}

@@ -169,9 +169,6 @@ class CrudController extends Controller
                     'edad_alumno' => $request->edad,
                     'sexo_alumno' => $request->sexo,
                     'semestre_alumno' => $request->semestre,
-                    'inscrito' => false,
-                    'acredita' => false,
-                    'liberado' => false
                 ]);
 
                 $newUser->assignRole('alumno');

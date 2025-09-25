@@ -9,7 +9,6 @@
             <img src="{{ asset('resources/img/GATO.jpeg') }}" alt="Foto de perfil">
             <div class="info">
                 <h2>{{ $admin->name ?? 'No disponible' }}</h2>
-                <p>Correo: {{ $admin->email ?? 'No disponible' }}</p>
             </div>
             <button class="edit-btn">Editar Perfil</button>
         </div>

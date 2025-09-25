@@ -8,7 +8,7 @@
         <h2>Gestión de Calificaciones</h2>
         <h3>Información del Alumno</h3>
         <label for="nombre_alumno">Nombre:</label>
-        <input type="text" name="nombre_alumno" value="{{ $alumno->nombre_alumno . ' ' . $alumno->apellidos_alumno }}"
+        <input type="text" name="nombre_alumno" value="{{ $alumno->nombre_alumno . ' ' . $alumno->apellido_paterno_alumno . ' ' . $alumno->apellido_materno_alumno }}"
             disabled>
         <br>
         <label for="matricula_alumno">Matrícula:</label>
@@ -30,7 +30,7 @@
             <tbody>
                 @foreach ($alumno->kardex as $registro)
                     <tr>
-                        <form action="{{ route('admin.calificaciones.update', $registro->id) }}" method="POST" >
+                        <form action="{{ route('admin.calificaciones.update', $registro->id_kardex) }}" method="POST" >
                             @csrf
                             @method('PUT')
                             <td>
@@ -41,10 +41,10 @@
                                     min="0" max="100" required @disabled($calificar->estado == false || $alumno->id_nivel != $registro->id_nivel || $registro->evaluado == true)>
                             </td>
                             <td>
-                                <p>{{ $registro->periodo }}</p>
+                                <p>{{ $registro->periodo_kardex }}</p>
                             </td>
                             <td>
-                                <p>{{ $registro->estado }}</p>
+                                <p>{{ $registro->estado_kardex }}</p>
                             </td>
                             <td>
                                 <div class="gestionar">

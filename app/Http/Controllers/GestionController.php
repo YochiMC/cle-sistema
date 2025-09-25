@@ -23,7 +23,7 @@ class GestionController extends Controller
         $accion = Gestion::findOrFail($id);
         // lógica que se encarga de establecer acciones
         if ($id == 1) {
-            if ($accion->estado == false) {
+            if ($accion->estado_accion == false) {
 
                 try {
                     DB::beginTransaction();
@@ -33,18 +33,16 @@ class GestionController extends Controller
                             'id_nivel' => DB::raw('id_nivel + 1'),
                             'inscrito' => false,
                             'acredita' => false,
-                            'updated_at' => now()
                         ]);
 
                     $no_promovidos = Alumno::where('acredita', false)
                         ->update([
                             'inscrito' => false,
-                            'updated_at' => now()
                         ]);
 
                     DB::commit();
 
-                    $accion->estado = !$accion->estado;
+                    $accion->estado_accion = !$accion->estado_accion;
                     $accion->save();
 
                     return redirect()->back()->with('success', 'Se han habilitado las inscripciones correctamente');
@@ -54,33 +52,31 @@ class GestionController extends Controller
                     return redirect()->back()->with('error', 'Ocurrió un error al habilitar el proceso de inscripción.');
                 }
             } else {
-                $accion->estado = !$accion->estado;
+                $accion->estado_accion = !$accion->estado_accion;
                 $accion->save();
                 return redirect()->back()->with('success', 'Se han deshabilitado las inscripciones correctamente');
             }
 
         } elseif ($id == 2) {
-            if ($accion->estado == true) {
+            if ($accion->estado_accion == true) {
                 try {
                     DB::beginTransaction();
 
                     $evaluar_kardex = Kardex::query()
                         ->update([
-                            'evaluado' => true,
-                            'updated_at' => now()
+                            'evaluado_kardex' => true
                         ]);
 
                     $ajustar_grupos = Curso::where('estado_curso', false)
                         ->update(
                             [
-                                'estado_curso' => true,
-                                'updated_at' => now()
+                                'estado_curso' => true
                             ]
                         );
 
                     DB::commit();
 
-                    $accion->estado = !$accion->estado;
+                    $accion->estado_accion = !$accion->estado_accion;
                     $accion->save();
 
                     return redirect()->back()->with('success', 'Se han deshabilitado las calificaciones');
@@ -91,12 +87,12 @@ class GestionController extends Controller
                 }
 
             } else {
-                $accion->estado = !$accion->estado;
+                $accion->estado_accion = !$accion->estado_accion;
                 $accion->save();
                 return redirect()->back()->with('success', 'Se han habilitado las calificaciones');
             }
         } else {
-            $accion->estado = !$accion->estado;
+            $accion->estado_accion = !$accion->estado_accion;
             $accion->save();
         }
 
