@@ -19,7 +19,7 @@ class CrudCursosController extends Controller
     {
         //Validación de los datos del curso
         $rules = [
-                    'nombre_tms_curso' => 'required|nullable|string|max:15',
+                    'nombre_tms_curso' => 'required|nullable|string|max:15|redex:/^[A-Za-z0-9\s]+$/',
                     'docente_curso' => 'required|exists:docentes,id_docente',
                     'nivel_curso' => 'required|exists:niveles,id_nivel',
                     'horario_curso' => 'required|string|max:50',

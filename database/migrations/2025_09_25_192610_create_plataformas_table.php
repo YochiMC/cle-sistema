@@ -11,10 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('modalidades', function (Blueprint $table) {
-            $table->id('id_modalidad');
-            $table->String('nombre_modalidad');
-            $table->String('prefijo_modalidad');
+        Schema::create('plataformas', function (Blueprint $table) {
+            $table->id('id_plataforma');
+            $table->String('nombre_plataforma');
         });
     }
 
@@ -23,6 +22,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('modalidades');
+        Schema::dropIfExists('plataformas');
     }
 };

@@ -11,10 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('modalidades', function (Blueprint $table) {
-            $table->id('id_modalidad');
-            $table->String('nombre_modalidad');
-            $table->String('prefijo_modalidad');
+        Schema::create('formatos', function (Blueprint $table) {
+            $table->id('id_formato');
+            $table->String('nombre_formato');
+            $table->String('descripcion_formato')->nullable();
         });
     }
 
@@ -23,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('modalidades');
+        Schema::dropIfExists('formatos');
     }
 };

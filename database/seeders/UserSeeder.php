@@ -240,7 +240,6 @@ class UserSeeder extends Seeder
             'email' => 'coordinacion@coordinacion.com',
             'phonenumber' => '4772941234',
             'password' => bcrypt('coordinacion123'),
-            'email_verified_at' => now(),
         ]);
 
         $adminUser->assignRole($roleAdmin);
@@ -250,7 +249,6 @@ class UserSeeder extends Seeder
             'email' => 'admin@admin.com',
             'phonenumber' => '4772954125',
             'password' => bcrypt('admin123'),
-            'email_verified_at' => now(),
         ]);
 
         $adminUser->assignRole($roleAdmin_);
@@ -260,7 +258,6 @@ class UserSeeder extends Seeder
             'email' => 'alumno@alumno.com',
             'phonenumber' => '4772942057',
             'password' => bcrypt('alumno123'),
-            'email_verified_at' => now(),
         ]);
 
         $alumno = Alumno::create([
@@ -286,7 +283,6 @@ class UserSeeder extends Seeder
             'email' => 'docente@docente.com',
             'phonenumber' => '4772941237',
             'password' => bcrypt('docente123'),
-            'email_verified_at' => now(),
         ]);
 
         Docente::create([

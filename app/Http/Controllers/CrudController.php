@@ -138,8 +138,7 @@ class CrudController extends Controller
                     'name' => $request->rfc_docente,
                     'email' => $request->email,
                     'phonenumber' => $request->phonenumber,
-                    'password' => bcrypt($request->rfc_docente),
-                    'email_verified_at' => now(),
+                    'password' => bcrypt($request->rfc_docente)
                 ]);
 
                 break;
