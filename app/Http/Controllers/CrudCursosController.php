@@ -19,7 +19,7 @@ class CrudCursosController extends Controller
     {
         //Validación de los datos del curso
         $rules = [
-                    'nombre_tms_curso' => 'required|nullable|string|max:15|redex:/^[A-Za-z0-9\s]+$/',
+                    'nombre_tms_curso' => 'required|nullable|string|max:15|regex:/^[A-Za-z0-9]+$/',
                     'docente_curso' => 'required|exists:docentes,id_docente',
                     'nivel_curso' => 'required|exists:niveles,id_nivel',
                     'horario_curso' => 'required|string|max:50',
@@ -36,6 +36,7 @@ class CrudCursosController extends Controller
                     'nombre_tms_curso.required' => 'El campo nombre del curso es obligatorio.',
                     'nombre_tms_curso.string' => 'El campo nombre del curso debe ser una cadena de texto.',
                     'nombre_tms_curso.max' => 'El campo nombre del curso no debe exceder los 15 caracteres.',
+                    'nombre_tms_curso.regex' => 'El campo nombre del curso solo puede contener letras y números',
                     'docente_curso.required' => 'El campo docente es obligatorio.',
                     'docente_curso.exists' => 'El docente seleccionado no existe.',
                     'nivel_curso.required' => 'El campo nivel es obligatorio.',

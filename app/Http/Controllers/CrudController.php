@@ -30,7 +30,7 @@ class CrudController extends Controller
                 break;
             case 'alumno': // En caso de que se quiera crear un alumno
                 $rules = [
-                    'phonenumber' => 'required|nullable|string|max:15',
+                    'phonenumber' => 'unique:users,phonenumber|required|nullable|string|max:15',
                     'email' => 'required|email|unique:users,email',
                     'nombre' => 'required|string|max:255|regex:/^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+$/u',
                     'apellido_paterno' => 'required|string|max:255|regex:/^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+$/u',
@@ -44,6 +44,7 @@ class CrudController extends Controller
                 ];
 
                 $messages = [
+                    'phonenumber.unique' => 'El número de teléfono ya está en uso.',
                     'phonenumber.required' => 'El número de teléfono es obligatorio.',
                     'phonenumber.max' => 'El número de teléfono no puede exceder los 15 caracteres.',
                     'email.required' => 'El correo electrónico es obligatorio.',
@@ -91,7 +92,7 @@ class CrudController extends Controller
             case 'docente': // En caso de crear un docente
 
                 $rules = [
-                    'phonenumber' => 'required|nullable|string|max:15',
+                    'phonenumber' => 'unique:users,phonenumber|required|nullable|string|max:15',
                     'email' => 'required|email|unique:users,email',
                     'nombre' => 'required|string|max:255|regex:/^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+$/u',
                     'apellido_paterno' => 'required|string|max:255|regex:/^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+$/u',
@@ -102,6 +103,7 @@ class CrudController extends Controller
                 ];
 
                 $messages = [
+                    'phonenumber.unique' => 'El número de teléfono ya está en uso.',
                     'phonenumber.required' => 'El número de teléfono es obligatorio.',
                     'phonenumber.max' => 'El número de teléfono no puede exceder los 15 caracteres.',
                     'email.required' => 'El correo electrónico es obligatorio.',
