@@ -95,22 +95,12 @@
                 @error('sexo')
                 <span class="error">{{ $message }}</span>
                 @enderror
-                <label for="edad">Edad:</label>
-                <input type="number" id="edad" name="edad" value="{{ old('edad') }}" placeholder="Escribe la edad">
-                @error('edad')
-                <span class="error">{{ $message }}</span>
-                @enderror
             </div>
             <div id="alumnoForm" style="display:none" class="contenedor-info-alumno">
                 <h3>Alumno Datos</h3>
                 <label for="numero_control">Numero de control:</label>
                 <input type="text" id="numero_control" name="numero_control" value="{{ old('numero_control') }}" placeholder="Escribe el número de control">
                 @error('numero_control')
-                <span class="error">{{ $message }}</span>
-                @enderror
-                <label for="semestre">Semestre:</label>
-                <input type="number" id="semestre" name="semestre" value="{{ old('semestre') }}" placeholder="Escribe el semestre">
-                @error('semestre')
                 <span class="error">{{ $message }}</span>
                 @enderror
                 <label for="carrera">Carrera: </label>
@@ -152,10 +142,8 @@
             <tr>
                 <th>Número de control</th>
                 <th>Carrera</th>
-                <th>Semestre</th>
                 <th>Nombre</th>
-                <th>Sexo</th>
-                <th>Edad</th>
+                <th>Nivel</th>
                 <th>Acciones</th>
             </tr>
         </thead>
@@ -164,11 +152,9 @@
             <tr>
                 <td class="infor">{{ $alumno->matricula_alumno }}</td>
                 <td class="infor">{{ $alumno->carrera->nombre_carrera ?? 'Sin carrera' }}</td>
-                <td class="infor">{{ $alumno->semestre_alumno }}</td>
                 <td class="infor">{{ $alumno->nombre_alumno }} {{ $alumno->apellido_paterno_alumno }}
                     {{ $alumno->apellido_materno_alumno }}</td>
-                <td class="infor">{{ $alumno->sexo_alumno }}</td>
-                <td class="infor">{{ $alumno->edad_alumno }}</td>
+                <td class="infor">{{ $alumno->nivel->nombre_nivel }} ({{ $alumno->nivel->mcr_nivel }})</td>
                 <td>
                     <div class="gestionar">
                         <form method="GET" action="{{ route('admin.actualiza_usuario', $alumno->id_usuario) }}">
@@ -208,7 +194,6 @@
                 <th>RFC del docente</th>
                 <th>Nombre Completo</th>
                 <th>Sexo</th>
-                <th>Edad</th>
                 <th>Acciones</th>
             </tr>
         </thead>
@@ -219,7 +204,6 @@
                 <td class="infor">{{ $docente->nombre_docente }} {{ $docente->docente_apellido_paterno }}
                     {{ $docente->apellido_materno_docente }}</td>
                 <td class="infor">{{ $docente->sexo_docente }}</td>
-                <td class="infor">{{ $docente->edad_docente }}</td>
                 <td class="infor">
                     <div class="gestionar">
                         <form method="GET" action="{{ route('admin.actualiza_usuario', $docente->id_usuario) }}">

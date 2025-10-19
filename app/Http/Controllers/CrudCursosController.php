@@ -94,8 +94,23 @@ class CrudCursosController extends Controller
     // El método read carga los docentes, cursos, niveles y salones para mostrarlos en la vista del CRUD de los currsos.
     public function read(Request $request)
     {
+
+        $tipo = $request->input('tipo', 'nuevos');
+        $cursos = null;
+
+        switch($tipo){
+            case 'nuevos':
+                $cursos = Curso::where('estado_curso', false)->paginate(5);
+                break;
+            case 'concluidos':
+                $cursos = Curso::where('estado_curso', true)->paginate(5);
+                break;
+            default:
+                $cursos = Curso::where('estado_curso', false)->paginate(5);
+                break;
+        }
+
         $docentes = Docente::all();
-        $cursos = Curso::all();
         $niveles = Nivel::all();
         $salones = Salon::all();
 

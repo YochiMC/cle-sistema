@@ -268,9 +268,7 @@ class UserSeeder extends Seeder
             'nombre_alumno' => 'Joseph Alexander',
             'apellido_paterno_alumno' => 'Martínez',
             'apellido_materno_alumno' => 'Cortés',
-            'edad_alumno' => 20,
             'sexo_alumno' => 'Masculino',
-            'semestre_alumno' => 8,
             'inscrito' => false,
             'acredita' => false,
             'liberado' => false
@@ -292,7 +290,6 @@ class UserSeeder extends Seeder
             'apellido_paterno_docente' => 'González',
             'apellido_materno_docente' => 'Pérez',
             'sexo_docente' => 'Femenino',
-            'edad_docente' => 25
         ]);
 
         $docenteUser->assignRole($roleDocente);

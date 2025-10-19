@@ -21,7 +21,6 @@ return new class extends Migration
             $table->string('apellido_paterno_docente', 100);
             $table->string('apellido_materno_docente', 100);
             $table->string('sexo_docente', 10);
-            $table->integer('edad_docente');
         });
     }
 

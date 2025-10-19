@@ -97,9 +97,10 @@ class InscripcionController extends Controller
         $inscritos = Alumno::whereIn('id_alumno', $ids_alumnos)->paginate(5);
 
         $inscripcion = Gestion::where('id_gestion', 1)->first();
+        $calificaciones = Gestion::where('id_gestion', 2)->first();
 
         if ($grupo) {
-            return view('administrador.inscribir_alumnos', compact('grupo', 'alumnos', 'inscritos', 'inscripcion'));
+            return view('administrador.inscribir_alumnos', compact('grupo', 'alumnos', 'inscritos', 'inscripcion', 'calificaciones'));
         } else {
             return redirect(route('admin.registro_cursos'))->with('error', 'Grupo no encontrado');
         }

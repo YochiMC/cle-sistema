@@ -21,9 +21,7 @@ return new class extends Migration {
             $table->string('nombre_alumno', 100);
             $table->string('apellido_paterno_alumno', 100);
             $table->string('apellido_materno_alumno', 100);
-            $table->unsignedTinyInteger('edad_alumno');
             $table->string('sexo_alumno', 100);
-            $table->unsignedTinyInteger('semestre_alumno');
             $table->boolean('inscrito')->default(false);
             $table->boolean('acredita')->default(false);
             $table->boolean('liberado')->default(false);

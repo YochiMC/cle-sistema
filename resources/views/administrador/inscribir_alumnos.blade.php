@@ -12,11 +12,11 @@
      </a>
  </div>
  <div class="container-">
-     <h2>Monitoreo de curso</h2>
-     <h3>Información del curso</h3>
+     <h2>Monitoreo del grupo</h2>
+     <h3>Información del grupo</h3>
      <div class="info-curso">
          <div class="info">
-             <label for="">Cupo del curso:</label>
+             <label for="">Cupo del grupo:</label>
              <p>{{ $grupo->cupo_curso }}</p>
          </div>
          <div class="info">
@@ -55,7 +55,7 @@
              </tbody>
          </table>
      </div>
-     @if($inscripcion->estado_accion == true)
+     @if($inscripcion->estado_accion == true && $grupo->estado_curso != true)
      <h3>Alumnos en proceso de inscripción</h3>
      <table class="table table-bordered text-center">
          <thead class="table-dark">
@@ -63,7 +63,6 @@
                  <th>Número de control</th>
                  <th>Nombre</th>
                  <th>Status de inscripción</th>
-                 <th>Acreditación</th>
                  <th>Acciones</th>
              </tr>
          </thead>
@@ -77,15 +76,6 @@
                      <span class="badge bg-success">Inscrito</span>
                      @elseif ($alumno->inscrito == 0)
                      <span class="badge bg-danger">No inscrito</span>
-                     @else
-                     <span class="badge bg-warning">Sin datos</span>
-                     @endif
-                 </td>
-                 <td class="infor">
-                     @if ($alumno->acredita == 1)
-                     <span class="badge bg-success">Acreditado</span>
-                     @elseif ($alumno->acredita == 0)
-                     <span class="badge bg-danger">No acreditado</span>
                      @else
                      <span class="badge bg-warning">Sin datos</span>
                      @endif
@@ -117,8 +107,10 @@
              @endforeach
          </tbody>
      </table>
+     @elseif ($inscripcion->estado_accion == false && $grupo->estado_curso != true && $calificaciones->estado_accion == false && $grupo->alumnos_actuales_curso == 0)
+        <h3>No se han habilitado las inscripciones</h3>
      @else
-     <h3>No se han habilitado las inscripciones</h3>
+        <h3>Las inscripciones están cerradas para este grupo</h3>
      @endif
  </div>
  @endsection

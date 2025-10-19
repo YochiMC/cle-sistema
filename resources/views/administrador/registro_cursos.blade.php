@@ -12,10 +12,23 @@
         </svg></button>
     @endcan
     @can('ver grupos')
-    <h3>Grupos actuales</h3>
+    <div class="opciones">
+        <form method="GET" action="{{ route('admin.registro_cursos') }}">
+            @csrf
+            <label for="tipo">Grupos a mostrar</label>
+            <select name="tipo" id="tipo" onchange="this.form.submit()">
+                @can('ver docentes')
+                <option value="nuevos" {{ request('tipo') == 'nuevos' ? 'selected' : '' }}>Nuevos</option>
+                @endcan
+                @can('ver alumnos')
+                <option value="concluidos" {{ request('tipo') == 'concluidos' ? 'selected' : '' }}>Concluidos</option>
+                @endcan
+            </select>
+        </form>
+    </div>
     <div class="container-grupos">
+        @if($cursos != null)
         @foreach ($cursos as $grupo)
-        @if($grupo->estado_curso != true)
         <div class="grupo">
             <h3>{{ $grupo->nivel_curso }}</h3>
             <p>Docente:
@@ -48,8 +61,10 @@
                 </form>
             </div>
         </div>
-        @endif
         @endforeach
+        @else
+        <p>No hay grupos para mostrar.</p>
+        @endif
     </div>
     @endcan
     <dialog id="modal" class="modal">
@@ -151,6 +166,7 @@
         </form>
     </dialog>
 </div>
+{{ $cursos->appends(['cursos' => $cursos])->links('vendor.pagination.custom') }}
 <script src="{{ asset('js/modal.js') }}"></script>
 <script>
     //Modales

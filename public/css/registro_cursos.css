@@ -417,3 +417,63 @@ input[type="number"]::-webkit-inner-spin-button {
 .grupo {
     animation: fadeIn 0.3s ease-out;
 }
+
+.mi-paginacion {
+  list-style: none;
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  padding: 0;
+}
+
+.mi-paginacion li a {
+  padding: 6px 12px;
+  background: var(--naranja);
+  color: #fff;
+  border-radius: 6px;
+  text-decoration: none;
+}
+
+.mi-paginacion li.active span {
+  background: var(--azul);
+  color: #fff;
+  padding: 6px 12px;
+  border-radius: 6px;
+}
+
+.mi-paginacion li.disabled span {
+  color: #aaa;
+  padding: 6px 12px;
+}
+
+.opciones {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    background-color: white;
+    padding: 15px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    border-left: 4px solid var(--naranja);
+}
+
+.opciones form {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.opciones label {
+    font-weight: bold;
+    margin-right: 10px;
+    color: var(--azul);
+}
+
+.opciones select {
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: var(--border-radius);
+    background-color: white;
+    cursor: pointer;
+}

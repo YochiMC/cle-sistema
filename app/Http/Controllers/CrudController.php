@@ -35,12 +35,10 @@ class CrudController extends Controller
                     'nombre' => 'required|string|max:255|regex:/^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+$/u',
                     'apellido_paterno' => 'required|string|max:255|regex:/^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+$/u',
                     'apellido_materno' => 'required|string|max:255|regex:/^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+$/u',
-                    'edad' => 'required|integer|min:17|max:60',
                     'sexo' => 'required',
                     'numero_control' => 'required|string|max:20|unique:alumnos,matricula_alumno|regex:/^[A-Z0-9]+$/',
                     'carrera' => 'required|exists:carreras,id_carrera',
                     'id_nivel' => 'required|exists:niveles,id_nivel',
-                    'semestre' => 'required|integer|min:1|max:13',
                 ];
 
                 $messages = [
@@ -51,23 +49,16 @@ class CrudController extends Controller
                     'email.email' => 'El formato del correo electrónico no es válido.',
                     'email.unique' => 'El correo electrónico ya está en uso.',
                     'nombre.required' => 'El nombre(s) es obligatorio.',
+                    'nombre.regex' => 'El nombre solo puede contener letras y espacios.',
                     'apellido_paterno.required' => 'El apellido paterno es obligatorio.',
                     'apellido_materno.required' => 'El apellido materno es obligatorio.',
                     'apellido_paterno.regex' => 'El apellido paterno solo puede contener letras y espacios.',
                     'apellido_materno.regex' => 'El apellido materno solo puede contener letras y espacios.',
-                    'edad.required' => 'La edad es obligatoria.',
-                    'edad.max' => 'La edad pasa de los 60 años.',
-                    'edad.min' => 'La edad es menor a 17 años.',
                     'sexo.required' => 'El sexo es obligatorio.',
                     'numero_control.required' => 'El número de control es obligatorio.',
                     'numero_control.unique' => 'El número de control ya está en uso.',
                     'carrera.required' => 'La carrera es obligatoria.',
                     'id_nivel.required' => 'El nivel es obligatorio.',
-                    'semestre.required' => 'El semestre es obligatorio.',
-                    'semestre.min' => 'El semestre debe ser al menos 1.',
-                    'semestre.max' => 'El semestre no puede ser mayor a 13.',
-                    'nombre.regex' => 'El nombre solo puede contener letras y espacios.',
-                    'apellidos.regex' => 'Los apellidos solo pueden contener letras y espacios.',
                 ];
 
                 $validator = Validator::make($request->all(), $rules, $messages);
@@ -97,7 +88,6 @@ class CrudController extends Controller
                     'nombre' => 'required|string|max:255|regex:/^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+$/u',
                     'apellido_paterno' => 'required|string|max:255|regex:/^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+$/u',
                     'apellido_materno' => 'required|string|max:255|regex:/^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+$/u',
-                    'edad' => 'required|integer|min:25|max:60',
                     'sexo' => 'required',
                     'rfc_docente' => 'required|string|min:12|max:13|unique:docentes,rfc_docente|regex:/^[A-Z0-9]+$/',
                 ];
@@ -115,9 +105,6 @@ class CrudController extends Controller
                     'apellido_materno.required' => 'El apellido materno es obligatorio.',
                     'apellido_paterno.regex' => 'El apellido paterno solo puede contener letras y espacios.',
                     'apellido_materno.regex' => 'El apellido materno solo puede contener letras y espacios.',
-                    'edad.required' => 'La edad es obligatoria.',
-                    'edad.max' => 'La edad pasa de los 60 años.',
-                    'edad.min' => 'La edad es menor a 17 años.',
                     'sexo.required' => 'El sexo es obligatorio.',
                     'rfc_docente.required' => 'El RFC del docente es obligatorio.',
                     'rfc_docente.unique' => 'El RFC del docente ya está en uso.',
@@ -167,9 +154,7 @@ class CrudController extends Controller
                     'nombre_alumno' => $request->nombre,
                     'apellido_paterno_alumno' => $request->apellido_paterno,
                     'apellido_materno_alumno' => $request->apellido_materno,
-                    'edad_alumno' => $request->edad,
                     'sexo_alumno' => $request->sexo,
-                    'semestre_alumno' => $request->semestre,
                 ]);
 
                 $newUser->assignRole('alumno');
@@ -184,7 +169,6 @@ class CrudController extends Controller
                     'apellido_paterno_docente' => $request->apellido_paterno,
                     'apellido_materno_docente' => $request->apellido_materno,
                     'sexo_docente' => $request->sexo,
-                    'edad_docente' => $request->edad
                 ]);
 
                 $newUser->assignRole('docente');
@@ -214,7 +198,6 @@ class CrudController extends Controller
 
                 $data = $query->paginate(10);
                 break;
-
             case 'docentes':
                 $query = Docente::query();
                 if ($search) {
@@ -222,7 +205,6 @@ class CrudController extends Controller
                 }
                 $data = $query->paginate(10);
                 break;
-
             default:
                 $data = Alumno::paginate(10);
                 break;

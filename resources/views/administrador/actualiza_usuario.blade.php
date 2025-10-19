@@ -33,9 +33,6 @@
         <label for="plan_estudio_carrera">Plan de estudios:</label>
         <input type="text" name="plan_estudios_carrera" value="{{ $data_alumno->carrera->plan_estudios_carrera }}" placeholder="Plan de estudios del alumno" disabled>
         <br>
-        <label for="semestre_alumno">Semestre:</label>
-        <input type="text" name="semestre_alumno" value="{{ $data_alumno->semestre_alumno }}" placeholder="Semestre del alumno" disabled>
-        <br>
         <label for="nombre_alumno">Nombre del alumno:</label>
         <input type="text" name="nombre_alumno" value="{{ $data_alumno->nombre_alumno }}" placeholder="Nombre del alumno" disabled>
         <br>
@@ -44,9 +41,6 @@
         <br>
         <label for="apellido_materno_alumno">Apellido paterno:</label>
         <input type="text" name="apellido_materno_alumno" value="{{ $data_alumno->apellido_materno_alumno }}" placeholder="Apellido materno del alumno" disabled>
-        <br>
-        <label for="edad_alumno">Edad:</label>
-        <input type="number" name="edad_alumno" value="{{ $data_alumno->edad_alumno }}" placeholder="Edad del alumno" disabled>
         <br>
         <label for="sexo_alumno">Sexo:</label>
         <select name="sexo_alumno" id="sexo_alumno" disabled>
@@ -107,9 +101,6 @@
             <option value="Femenino" @if ($data_docente->sexo_docente == 'Femenino') selected @endif>Femenino
             </option>
         </select>
-        <br>
-        <label for="edad_docente">Edad:</label>
-        <input type="number" name="edad_docente" value="{{ $data_docente->edad_docente }}" placeholder="Edad del docente" disabled>
         <br>
         <!--<button type="submit">Actualizar datos</button>-->
     </form>
